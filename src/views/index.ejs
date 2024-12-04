@@ -1,2 +1,51 @@
-main
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="
+    https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js
+    "></script>
+    <script>
+              document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar')
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        })
+        calendar.render()
+      })
 
+    </script>
+    
+</head>
+<body>
+    <div id="wrap">
+    <%- include ('./default/header') %>
+    <div id="inside_wrap">
+        <div id="todo">
+            <h4>todo</h4>
+            <div class="list">
+                <form action="#" method="get">
+                    <textarea name="title" id="todo_title" maxlength="20" placeholder="제목"></textarea>
+                    <textarea name="memo" id="todo_memo" maxlength="100"placeholder="메모"></textarea>
+                    <input type="datetime-local" id="todo_datetime">
+                    <select name="" id="">
+                        <option value="1st">중요</option>
+                        <option value="2nd">그다음으로 중요</option>
+                        <option value="3th">중요하지 않음</option>
+                    </select><br>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+        <!-- <br> -->
+        <div id='calendar'></div>
+        <!-- <div id="comment"></div> -->
+    </div>
+</div>
+
+</body>
+</html>
