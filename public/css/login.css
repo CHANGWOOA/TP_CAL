@@ -68,9 +68,15 @@ body {
   color: white;
   border: none;
 }
+.login_form .login_button:nth-child(3):hover {
+  background-color: rgb(0, 98, 0);
+}
 .login_form .login_button:nth-child(4) {
   margin-top: 1rem;
   background-color: white;
   color: green;
   border: 2px solid green;
+}
+.login_form .login_button:nth-child(4):hover {
+  background-color: rgba(0, 128, 0, 0.311);
 }
