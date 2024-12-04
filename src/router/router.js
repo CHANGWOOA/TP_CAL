@@ -9,5 +9,11 @@ module.exports=(app)=>{
         res.render('index')
     })
 
+    router.get('/logout', (req,res) => {
+        res.session = null;
+        res.redirect('/');
+    })
+
     return router;
 }
+
