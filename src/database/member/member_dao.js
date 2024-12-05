@@ -1,4 +1,4 @@
-const oracledb = require("orcledb");
+const oracledb = require("oracledb");
 const dbConfig = require("../../../config/database/db_config");
 oracledb.autoCommit = true;
 oracledb.outFormat = oracledb.OBJECT;
@@ -20,7 +20,7 @@ const getList = async () => {
     const sql = `select * from ALLUSER`;
     let result;
     try{
-        const con = await oracledb.getConnection( dbCOnfig );
+        const con = await oracledb.getConnection( dbConfig );
         result = await con.execute( sql, body );
     }catch(err){
         console.log( err )
@@ -31,14 +31,17 @@ const getList = async () => {
 
 const register = async ( body ) => {
     //회원가입 db등록
-    const sql = `insert into ALLUSER values(:U_ID, :U_PW, :U_NAME, :U_TEL)`;
+    console.log("memdao body", body)
+    const sql = `insert into ALLUSER values('${body.id}', ${body.password}, '${body.username}', ${body.phone})`;
+    //console.log("memdao sql", sql)
     let result;
     try {
         const con = await oracledb.getConnection( dbConfig );
-        await con.execute( sql );
+        result = await con.execute( sql );
     } catch (err) {
         console.log( err )
     }
+    return result;
 }
 
 const U_del = async( U_ID ) => {
@@ -61,4 +64,4 @@ const U_modify = async( body ) => {
     }
 }
 
-Module.exports = { loginCheck, getList, register, U_del, U_modify };
+module.exports = { loginCheck, getList, register, U_del, U_modify };

@@ -2,8 +2,9 @@
 const dao = require("../../database/member/member_dao")
 
 const getMessage = (msg, url) => {
+
     return `<script>
-                alert("${msg}")location.href=${url};
+                alert("${msg}");location.href='${url}';
             </script>`;
 }
 
@@ -45,11 +46,14 @@ const loginCheck = async( body, req, res ) => {
 
 const register = async(body) => {
     let result = await dao.register(body)
-    let msg="", url=""
+    console.log("memser result:",result)
+    let msg=``,url;
     //회원가입 진행했을 때의 결과
     if(result){
-        msg = `회원 가입에 성공하였습니다.`
-        url = `/main`
+        msg += `${body.username}님 가입을 환영합니다`;
+        url='/';
+        // msg = `회원 가입에 성공하였습니다.`
+        // url = `<script>location.href="/"</script>`
     }else{
         msg = `문제가 발생하였습니다.`
         url = `/`
@@ -66,4 +70,4 @@ const U_modify = (body) => {
     dao.U_modify(body)
 }
 
-Module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify}
+module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify}

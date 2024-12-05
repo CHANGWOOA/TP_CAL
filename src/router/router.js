@@ -1,6 +1,9 @@
 module.exports=(app)=>{
     const router=require('express').Router();
-
+    const bodyParser = require("body-parser")
+    app.use(bodyParser.urlencoded())
+    const memberRouter = require("./member/member_router")
+    app.use("/member", memberRouter)
 
     router.get('/',(req,res)=>{
         res.render('login')
