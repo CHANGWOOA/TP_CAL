@@ -1,0 +1,78 @@
+#inside_wrap {
+    & > div {
+        margin: 3%;
+    }
+}
+
+#todo, #rate {
+    display: inline-block;
+}
+#calendar, #comment {
+    display: inline-block;
+}
+
+#calendar {
+    width: 500px; height: 500px;
+}
+#comment {
+    width: 200px; height: 200px; background-color: aqua;
+}
+#todo {
+    width: 30%; height: 60vh; background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    & h4{
+    background-color: rgb(235, 235, 235);
+
+    border-radius: 10px;
+
+        text-align: center;
+        font-size: 30px; font-weight: 600;
+        margin-top: 20px;
+        /* padding: 10px; */
+    }
+
+}
+
+form{
+    padding: 10px;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10px;
+    background-color: rgb(66, 189, 62);
+
+    text-align: center;
+    & > * {
+    border-radius: 10px;
+    border: 0;
+
+    background-color: rgb(235, 235, 235);
+
+    }
+
+    & #todo_title{
+        width: 80%; height: 20px;
+        padding-left: 10px;
+    }
+    & #todo_memo{
+        width: 80%; height: 40px;
+        padding-left: 10px;
+
+    }
+    
+    & #todo_datetime{
+        width: 50%; height: 20px;
+        margin: 10px 10px 10px 0;
+    }
+    & select{
+        width: 20%; 
+    }
+
+    & input[type="submit"]{
+        padding: 5px 10px;
+    }
+}
+
+#rate {
+    width: 50vw; height: 100px; background-color: red;
+
+}

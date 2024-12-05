@@ -14,5 +14,11 @@ module.exports=(app)=>{
         res.render('board/board')
     })
 
+    router.get('/logout', (req,res) => {
+        res.session = null;
+        res.redirect('/');
+    })
+
     return router;
 }
+

@@ -1,7 +1,10 @@
-router.get("/login", ctrl.login )
+const router = require("express").Router();
+
+const ctrl = require("../../controller/member/member_ctrl");
+
+router.post("/login_check", ctrl.loginCheck )
 router.get("/logout", ctrl.logout )
 router.get("/register", ctrl.register )
 
-const ctrl = require("../controller/member_ctrl")
 
 module.exports = router;
