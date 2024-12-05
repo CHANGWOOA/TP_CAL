@@ -6,9 +6,44 @@ module.exports=(app)=>{
         res.render('login')
     });
 
+
+    const todolist=[
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-07-12'
+        },
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-08-12'
+        },
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-08-12'
+        },
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-08-12'
+        },
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-08-12'
+        },
+        {title:'titletitle',
+            memo:'memomemomemo',
+            date:'2024-09-12'
+        }
+    ];
     router.post('/main',(req,res)=>{
-        res.render('index')
+        res.render('index',{todolist:todolist})
     });
+
+    router.get('/main',(req,res)=>{
+        res.render('index',{todolist:todolist})
+    })
+    
+    router.get('/calendar',(req,res)=>{
+        res.render('calendar')
+    })
 
     router.get('/board',(req,res)=>{
         res.render('board/board')
