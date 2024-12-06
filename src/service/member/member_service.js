@@ -23,22 +23,27 @@ const loginCheck = async( body, req, res ) => {
     //member_dao에서 불러온 데이터 근거 - 정보 존재, 일치 여부 체크
     let msg;
     let url;
-
-    const result = await dao.loginCheck( body.usertyped_id)
+    //console.log("mem ser - body: ",body)
+    const result = await dao.loginCheck(body.id)
+    //console.log("그럼 result?", result)
+    //찬교님 작성: const result = await dao.loginCheck( body.usertyped_id) 
+    //뷰에서 받아오는 값은 뷰에 지정된 id여야 해서 body.id로 수정했습니다.
     // 뷰에서 받아오는 값을 usertyped_id라고 지정
     if(result.rows.length == 0 ){
         msg = "존재하지 않는 ID입니다."
-        url = "/member/login_form"
+        url = "/"
     }else{
-        if(result.rows[0].PWD == body.usertyped_pw){
-            req.session.username = body.usertyped_id;
-            req.session.name = result.rows[0].NAME
-            res.cookie("isLogin", true)
+       if(result.rows[0].U_PW == body.pwd){
+            // req.session.username = body.id;
+            // req.session.name = result.rows[0].U_NAME
+
+            //console.log("세션네임:", req.session.name)
+            //res.cookie("isLogin", true)
             msg = "로그인에 성공하였습니다."
-            url = "/"
+            url = "/main"
         }else{
             msg = "비밀번호가 일치하지 않습니다."
-            url = "/member/login_form"
+            url = "/"
         }
     }
     return getMessage( msg, url );

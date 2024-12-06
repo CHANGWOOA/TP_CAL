@@ -11,7 +11,8 @@ app.set("views", "./src/views");
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session(config.sessionConfig));
 
 app.use("/", router);
 
-app.listen(3000, () => console.log("3000서버 구동"));
+app.listen(3000, () => console.log("3000 서버 구동")); 
