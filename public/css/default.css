@@ -11,29 +11,29 @@
 
 }
 body {
-    background-color: rgb(195, 202, 199);
-
+    background-color: white;
 }
 
 #wrap {
-    margin: 10vh;
+    margin: 15vh;
 }
 
 #inside_wrap {
     width: 80vw;
-    height: 100vh;
-    background-color: ghostwhite;
+    height: 90vh;
+    background-color: rgb(200, 200, 200);
     border-radius: 0px 30px 30px 30px;
-
+    & > * {
+        padding: 3%;
+    }
 }
 
 nav a{
-        /* 메뉴 글씨 조정*/
-        font-size: 25px;
-        font-weight: 500;
+        font-size: 30px;
+        font-weight: 700;
         padding: 10px 30px;
-        background-color: ghostwhite;
-        border-radius: 20px 20px 0px 0px;
+        background-color: rgb(200, 200, 200);
+        border-radius: 10px 10px 0px 0px;
         margin-right: 10px;
         &[name="main"]{
             margin-right: 30vw;

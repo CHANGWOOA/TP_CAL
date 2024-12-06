@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/todolist.css">
     <link rel="stylesheet" href="css/index.css">
-   
-    
+    <link rel="stylesheet" href="css/todolist.css">
+
 </head>
 <body>
     <div id="wrap">
-    <%- include ('./default/header') %>
-    <%- include ('todolist') %>
-    <br>
+        <%- include ('./default/header') %>
+        <div id="inside_wrap">
+            <%- include ('./default/todolist') %>
+            <div id="left">
+                <div id="rate"></div><br>
+                <%- include ('./default/calendar') %>
+                <div id="board">
+                    <div name="title">Borad</div>
+                    <% for (i=0;i<3;i++) { %>
+                        <a href=<%= boardList[i]['url'] %> class="content"><%= boardList[i]['title'] %></a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="rate">
-        <!-- <div id="bar"></div>/ -->
-    </div>
-    <div id="div1">
-        <%- include ('./default/calendar') %>
-        <div id="board">    </div>
-    </div>
-
-
 </body>
 </html>
