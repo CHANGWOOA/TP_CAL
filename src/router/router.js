@@ -9,7 +9,7 @@ module.exports=(app)=>{
         res.render('login')
     });
 
-    router.post('/main',(req,res)=>{
+    router.get('/main',(req,res)=>{
         res.render('index')
     });
 

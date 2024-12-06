@@ -5,12 +5,15 @@ oracledb.outFormat = oracledb.OBJECT;
 
 const loginCheck = async (U_ID) => {
     //db근거 로그인 체크
-    const sql = `select * from ALLUSER where id='${U_ID}'`;
+    //console.log("memdao loginCheck", U_ID)
+    const sql = `select * from ALLUSER where U_ID='${U_ID}'`; //쿼리문에 id를 U_ID로 수정했습니다.
+    //console.log("memdao - sql", sql)
     let user;
     try {
         let con = await oracledb.getConnection( dbConfig );
         user = await con.execute( sql )
-    } catch (error) {
+
+    } catch (err) { //err로 써줘야 밑에 에러랑 맞춰져서 error를 err로 수정했습니다.
         console.log( err )
     }
     return user;
@@ -31,7 +34,7 @@ const getList = async () => {
 
 const register = async ( body ) => {
     //회원가입 db등록
-    console.log("memdao body", body)
+    //console.log("memdao회원가입 body", body)
     const sql = `insert into ALLUSER values('${body.id}', ${body.password}, '${body.username}', ${body.phone})`;
     //console.log("memdao sql", sql)
     let result;
