@@ -1,3 +1,6 @@
+const ser=require("../../service/board/board_service")
+const serCom= require("../../service/ser_common")
+
 const views={
     list : ()=>{ //게시글 리스트
 
@@ -17,9 +20,6 @@ const process= {
 
     },
     delete : () => { //게시글 삭제
-
-    },
-    modify : () => { //게시글 수정
 
     }
 }
