@@ -1,0 +1,73 @@
+#todo {
+    margin-top: 20px;
+    float: right;
+    overflow: scroll;
+    width: 15vw; height: 80vh;
+    background-color: white;
+    border-radius: 50px;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgb(235, 235, 235);
+    }
+    & > div[name="title"]{
+        text-align: center;
+        font-size: 30px; font-weight: 600;
+        margin: 20px auto;
+
+    }
+
+}
+
+form{
+    padding: 20px 10px;
+    margin: 0 auto 20px auto;
+    width: 90%;
+    border-radius: 50px 50px 50px 0 ;
+    background-color: rgb(66, 189, 62);
+    text-align: center;
+    & > * {
+        border-radius: 10px;
+        border: 0;
+        background-color:white;
+    }
+    & #todo_title{
+        width: 80%; height: 20px;
+        padding-left: 10px;
+    }
+    & #todo_memo{
+        width: 80%; height: 40px;
+        padding-left: 10px;
+
+    }
+    & #todo_datetime{
+        width: 50%; height: 20px;
+        margin: 10px 10px 10px 0;
+    }
+    & select{
+        width: 20%; 
+    }
+
+    & input[type="submit"]{
+        margin: 10px 10px 0 0;
+        padding: 5px 10px;
+    }
+}
+
+.todo {
+    padding: 10px;
+    margin: 0 auto 10px auto;
+    width: 80%;
+    text-align: center;
+    border-radius: 50px 50px 0 50px;
+
+    background-color: rgb(200, 200, 200);
+
+    & > div[name="title"],input{
+        display: inline-block;
+        color: black;
+
+    }
+}
