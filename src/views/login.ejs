@@ -21,10 +21,11 @@
           <!-- 사이트 이름 -->
           <div class="login_title">site name</div>
           <!-- 로그인 폼 -->
-          <form action="/main" method="post" class="login_form">
-            <input type="text" name="id" placeholder="id" class="login_input" />
+          <form action="/member/login_check" method="post" class="login_form">
+            <input type="text" id="id" name="id" placeholder="id" class="login_input" /> 
             <input
               type="password"
+              id="password"
               name="pwd"
               placeholder="password"
               class="login_input"

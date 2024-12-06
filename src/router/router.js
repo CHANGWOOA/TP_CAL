@@ -9,6 +9,7 @@ module.exports=(app)=>{
         res.render('login')
     });
 
+<<<<<<< HEAD
 
     const todolist=[
         {title:'titletitle',
@@ -56,6 +57,10 @@ module.exports=(app)=>{
     ];
     router.post('/main',(req,res)=>{
         res.render('index',{todolist:todolist,boardList:boardList})
+=======
+    router.get('/main',(req,res)=>{
+        res.render('index')
+>>>>>>> 9eae4303a864698d03ac71008ebede355ea53b1d
     });
 
     router.get('/main',(req,res)=>{
