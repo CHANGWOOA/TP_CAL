@@ -1,9 +1,12 @@
+const boardSer = require("../../service/board/board_service")
+const serCom = require("../../service/ser_common")
+
 const views={
     list : ()=>{ //게시글 리스트
 
     },
-    writeForm : () => {
-
+    writeForm : (req, res) => {
+        res.render("board/write_form", {})
     },
     data : () => {
 
@@ -13,8 +16,11 @@ const views={
     }
 }
 const process= {
-    write : () => { //게시글 작성
-
+    write : async (req, res) => { //게시글 작성
+        const msg = await ser.boardSer.write(
+            req.body
+        );
+        res.send(msg)
     },
     delete : () => { //게시글 삭제
 
