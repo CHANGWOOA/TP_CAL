@@ -1,5 +1,9 @@
-const views={
-    list : ()=>{ //게시글 리스트
+const ser = require("../../service/board/board_service")
+
+const views = {
+    list : async ( req, res )=>{ //게시글 리스트
+        const data = await ser.boardRead.list(req.query.start);
+        res.send("리스트 페이지")
 
     },
     writeForm : () => {
@@ -23,4 +27,4 @@ const process= {
 
     }
 }
-module.exports= {process, views}
+module.exports= { process, views }
