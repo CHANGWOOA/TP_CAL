@@ -1,13 +1,17 @@
 const ser = require("../../service/member/member_service")
 
+
 const loginCheck = (req, res) => {
-    // 로그인 체크 실행
+    console.log("mem ctrl:나와라")
 }
 const logout = (req, res) => {
     // 로그아웃
 }
-const register = async ( body ) => {
-    //회원가입
+const register = async ( req, res ) => {
+     //console.log("ctrl body:", req.body)
+     let msg = await ser.register(req.body);
+     res.send(msg);
+     
 }
 
 
