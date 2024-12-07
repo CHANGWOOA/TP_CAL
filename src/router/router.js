@@ -1,16 +1,17 @@
 module.exports=(app)=>{
     const router=require('express').Router();
+    
     const bodyParser = require("body-parser")
     app.use(bodyParser.urlencoded())
+    
     const memberRouter = require("./member/member_router")
     app.use("/member", memberRouter)
     
+    const boardRouter = require("../router/board/board_router")
+    app.use("/board", boardRouter )
+    
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
-    })
-
-    router.get('/board',(req,res)=>{
-        res.render('board/board')
     })
 
     router.get('/logout', (req,res) => {
