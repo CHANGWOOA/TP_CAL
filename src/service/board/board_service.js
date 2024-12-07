@@ -25,6 +25,26 @@ const boardRead={
     },
     data : () => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
 
+    },
+    detail: async ( P_ID ) => {//게시글 하나 눌렀을 때 보이는 페이지에 대한 것, 게시글의 고유번호를 주고받는다
+        const contentList =  await dao.boardRead.detail (P_ID);
+        
+        return contentList; //리스트 형식으로 ctrl로 전송
+    },
+    search: async ( searchType, searchKey ) => {
+        //console.log("board ser 검색조건:", searchType)
+        //console.log("board ser 검색키:", searchKey)
+        let resultList;
+        if(searchType == "T_ID"){
+            resultList = await dao.boardRead.serTeam( searchKey )
+        }else if(searchType == "U_ID" ){
+            resultList = await dao.boardRead.serUID( searchKey )
+        }else if(searchType == "P_TITLE" ){
+            resultList = await dao.boardRead.serTitle( searchKey )
+        }else if(searchType == "P_CONTENT" ){
+            resultList = await dao.boardRead.serContent (searchKey)
+        }
+        return resultList;
     }
 }
 const boardInsert={ //게시글 작성

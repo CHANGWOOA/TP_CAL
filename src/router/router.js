@@ -2,7 +2,8 @@ module.exports=(app)=>{
     const router=require('express').Router();
     
     const bodyParser = require("body-parser")
-    app.use(bodyParser.urlencoded())
+    app.use(bodyParser.urlencoded({ extended:true }))//bodyParser에 extended:true 추가
+    app.use(bodyParser.json())
     
     const memberRouter = require("./member/member_router")
     app.use("/member", memberRouter)

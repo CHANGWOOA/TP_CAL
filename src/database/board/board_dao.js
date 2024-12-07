@@ -14,6 +14,12 @@ const boardRead = {
         return list;
       
     },
+    detail: async ( P_ID ) => { //한 제목을 클릭했을때 글을 불러오는 요소 작성 필요 //일단 받아오는 것을 string으로 지정해둠
+        const sql = `select * from POST where P_ID = ${ P_ID }`;
+        const contentList = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
+        return contentList;
+    },
+    
     totalCnt: async() =>{ //게시글의 총 개수를 세는 함수
         let cnt;
         try{
@@ -23,21 +29,31 @@ const boardRead = {
         }
         return cnt;
     },
-    title : async ( string ) =>{ // 제목에 해당 string이 포함된 경우 검색하는 기능 
-        const sql = `select * from POST where P_TITLE like %${string}%`
+    serTeam : async ( searchKey ) =>{
+        const sql = `select * from POST where T_ID = '${ searchKey }'`
+        const result = await (await con).execute( sql );
+        console.log(result)
+        return result;
+    },
+    serUID : async ( searchKey ) => {
+        const sql = `select * from POST where U_ID = '${searchKey}'`
+        const result = await (await con).execute (sql);
+        console.log(result)
+        return result;
+
+    },
+    serTitle : async ( searchKey ) =>{ // 제목에 해당 string이 포함된 경우 검색하는 기능 
+        const sql = `select * from POST where P_TITLE like '%${searchKey}%'`
         const data = (await con).execute( sql ); //반환값은 array 형식이 될 것 같다.
         return data;
     },
-    content : async ( string ) =>{ //내용검색: 내용에 해당 string 이 포함된 경우 검색하는 기능
-        const sql = `select * from POST where P_CONTENT like %${string}%`
+    serContent : async ( searchKey ) =>{ //내용검색: 내용에 해당 string 이 포함된 경우 검색하는 기능
+        const sql = `select * from POST where P_CONTENT like '%${searchKey}%'`
         const data = (await con).execute( sql );
         return data;
     },
-    detail: async ( string ) => { //한 제목을 클릭했을때 글을 불러오는 요소 작성 필요 //일단 받아오는 것을 string으로 지정해둠
-        const sql = `select * from POST where P_TITLE = ${ string }`;
-        const content = (await con).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
-        return content;
-    }
+    
+    
 }
 
 const boardInsert = { //게시물 추가 쿼리문
