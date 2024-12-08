@@ -3,7 +3,10 @@ module.exports=(app)=>{
     const bodyParser = require("body-parser")
     app.use(bodyParser.urlencoded())
     const memberRouter = require("./member/member_router")
+    const todoRouter=require("./todo/todo_router")
+
     app.use("/member", memberRouter)
+    app.use("/todo",todoRouter)
     
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
@@ -29,5 +32,17 @@ module.exports=(app)=>{
     router.get('/main',(req,res)=>{
         res.render('index',{todolist:todolist,boardList:boardList})
     })
+
+    const todolist=[
+        {
+            title:'todotitle',
+            memo:'todomemo',
+            date:'tododate'
+        }
+    ]
+    const boardList=[{
+        title:'boardtitle',
+        url:'aaa'
+    }]
     return router;
 }

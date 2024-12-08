@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/todolist.css">
     <link rel="stylesheet" href="css/index.css">
-   
+    <link rel="stylesheet" href="css/calendar.css">
     
 </head>
 <body>
     <div id="wrap">
-    <%- include ('./default/header') %>
-    <br>
+        <%- include ('./default/header') %>
+        <div id="inside_wrap">
+            <%- include ('./default/calendar') %>
+            <div id="newScedule">
+                <form action="/newScedule">
+                    <input type="text" id="cal_title" placeholder="title">
+                    <input type="text" id="cal_subtitle" placeholder="subtitle">
+                    <textarea name="memo" id="cal_memo"></textarea>
+                    <input type="datetime-local" name="cal_date" id="scedule_date">
+                    <input type="submit" value="등록">
+                </form>
+            </div>
+        </div>
     </div>
-    <div id="rate">
-        진행 상황
-        <div id="bar"></div>
-    </div>
-    <%- include ('./default/calendar') %>
 
 </body>
 </html>

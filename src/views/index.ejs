@@ -12,6 +12,7 @@
 <body>
     <div id="wrap">
         <%- include ('./default/header') %>
+        <div ></div>
         <div id="inside_wrap">
             <%- include ('./default/todolist') %>
             <div id="left">
@@ -19,9 +20,7 @@
                 <%- include ('./default/calendar') %>
                 <div id="board">
                     <div name="title">Borad</div>
-                    <% for (i=0;i<3;i++) { %>
-                        <a href=<%= boardList[i]['url'] %> class="content"><%= boardList[i]['title'] %></a>
-                    <% } %>
+
                 </div>
             </div>
         </div>
