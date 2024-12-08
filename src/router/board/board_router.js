@@ -14,8 +14,7 @@ router.post('/search', ctrl.views.search)
 router.post('/lineUp', ctrl.views.line)
     //console.log(req.body.lineType)
 
-router.get("/", (req, res)=> res.send("게시판 페이지입니다다다다"))
-router.get("/list", ctrl.views.list)
+
 
 
 
