@@ -20,6 +20,20 @@
         <button type="submit"> search </button>
     </form>
     <br>
+    <form action="/board/lineUP" method="post" align ="right">
+        <label for="lineUP">정 렬</label>
+        <select name="lineType" id="lineTpye">
+            <option value="P_HITD" id="P_HITD">조회수 많은 순</option>
+            <option value="P_HITA" id="P_HITA">조회수 적은 순</option>
+            <option value="P_REPD" id="P_REPD">댓글 많은 순</option>
+            <option value="P_REPA" id="P_REPA">댓글 적은 순</option>
+            <option value="P_DATEN" id="P_DATEN">작성일자 최신 순</option>
+            <option value="P_DATEO" id="P_DATEO">작성일자 오래된 순</option>
+            
+        </select>
+        <button type="submit"> Line Up </button>
+    </form>
+    <br>
 <div class="content wrap" id="main">
     <table border="1" style="width:100%;">
         <tr>

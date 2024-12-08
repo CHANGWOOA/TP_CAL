@@ -29,29 +29,68 @@ const boardRead = {
         }
         return cnt;
     },
-    serTeam : async ( searchKey ) =>{
+    serTeam : async ( searchKey ) =>{ //Team 명으로 검색하는 기능
         const sql = `select * from POST where T_ID = '${ searchKey }'`
         const result = await (await con).execute( sql );
         console.log(result)
         return result;
     },
-    serUID : async ( searchKey ) => {
+    serUID : async ( searchKey ) => { //유저의 아이디로 검색하는 기능
         const sql = `select * from POST where U_ID = '${searchKey}'`
         const result = await (await con).execute (sql);
         console.log(result)
         return result;
 
     },
-    serTitle : async ( searchKey ) =>{ // 제목에 해당 string이 포함된 경우 검색하는 기능 
+    serTitle : async ( searchKey ) =>{ // 제목에 해당 key가 포함된 경우 검색하는 기능 
         const sql = `select * from POST where P_TITLE like '%${searchKey}%'`
         const data = (await con).execute( sql ); //반환값은 array 형식이 될 것 같다.
         return data;
     },
-    serContent : async ( searchKey ) =>{ //내용검색: 내용에 해당 string 이 포함된 경우 검색하는 기능
+    serContent : async ( searchKey ) =>{ //내용검색: 내용에 해당 key가 포함된 경우 검색하는 기능
         const sql = `select * from POST where P_CONTENT like '%${searchKey}%'`
         const data = (await con).execute( sql );
         return data;
     },
+    lineHitDesc : async ( start ) => { //조회 수 많은 순으로 정렬
+        const sql = `select * from POST order by P_HIT desc
+                    offset ${start} rows fetch next 5 rows only`
+        const data = await (await con).execute(sql);
+        return data;   
+    },
+    lineHitAsc : async ( start ) => { //조회 수 적은 순으로 정렬
+        const sql = `select * from POST order by P_HIT asc
+                    offset ${start} rows fetch next 5 rows only` 
+        const data = await (await con).execute(sql);
+        return data;            
+    },
+    lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬 -> 댓글세는 DB만들어야함
+        const sql = `select * from POST order by ${댓글수} desc
+                    offset ${start} rows fetch next 5 rows only`
+        const data = await (await con).execute(sql);
+        return data;  
+    },
+    
+    lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 -> 댓글세는 DB만들어야함
+        const sql = `select * from POST order by ${댓글수} asc
+                    offset ${start} rows fetch next 5 rows only` 
+        const data = await (await con).execute(sql);
+        return data;  
+    },
+    lineDateNew : async ( start ) =>{
+        const sql = `select * from POST order by P_DATE desc
+                    offset ${start} rows fetch next 5 rows only`
+        const data = await (await con).execute(sql);
+        return data;
+    },
+    lineDateOld : async ( start ) => {
+        const sql = `select * from POST order by P_DATE asc 
+                    offset ${start} rows fetch next 5 rows only`
+        const data = await (await con).execute( sql );
+        return data;
+    }
+
+    
     
     
 }
@@ -77,9 +116,9 @@ VALUES (Post_seq.nextval, null, '${body.id}', '${body.title}', '0', '${body.cont
 
 
 const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 조회수 +1 되는 기능
-    upHit : async ( num ) => {
+    upHit : async ( P_TITLE ) => {//제목을 클릭할 테니까 P_TITLE로 변경
         const sql = 
-        `update post set P_hit = P_hit + 1 where P_ID=${num}`;
+        `update post set P_hit = P_hit + 1 where P_TITLE=${P_TITLE}`;
         (await con).execute( sql );
     },
     delete : async ( body ) =>{ //게시글 삭제 기능, 게시글의 고유번호를 받아와서 고유번호 일치하는 글을 삭제함

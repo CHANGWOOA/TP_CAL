@@ -45,6 +45,36 @@ const boardRead={
             resultList = await dao.boardRead.serContent (searchKey)
         }
         return resultList;
+    },
+    line : async (start, lineType) => {
+        if( start == undefined )
+            start = 1;
+        start = Number(start);
+
+        const totalCnt = await dao.boardRead.totalCnt(); ///dao에서 post table의 게시물 총 갯수를 세어온다.
+        const num = totalCnt.rows[0]['COUNT(*)']; //{'COUNT(*)':8}에서 8만 추출하는 것
+        const result = (num % 5 ==0)? 0:1;
+        const page = parseInt(num/5 +result);
+
+        const startNum = ( start-1 ) *5;
+
+        //console.log("board ser 정렬조건: ", lineType)
+
+        let resultList;
+        if(lineType == "P_HITD"){//조회수 많은 순
+            resultList = await dao.boardRead.lineHitDesc(start)
+        }else if(lineType =="P_HITA"){//조회수 적은 순
+            resultList = await dao.boardRead.lineHitAsc(start)
+        }else if (lineType =="P_REPD"){//댓글 많은 순
+            resultList = await dao.boardRead.lineReplyDesc(start)
+        }else if (lineType =="P_REPA"){//댓글 적은 순
+            resultList = await dao.boardRead.lineReplyAsc(start)
+        }else if (lineType =="P_DATEN"){//작성일자 최신 순
+            resultList = await dao.boardRead.lineDateNew(start)
+        }else if (lineType =="P_DATEO"){//작성일자 오래된 순
+            resultList = await dao.boardRead.lineDateOld(start)
+        } 
+        return resultList;
     }
 }
 const boardInsert={ //게시글 작성
