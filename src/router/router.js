@@ -6,7 +6,9 @@ module.exports=(app)=>{
     app.use(bodyParser.json())
     
     const memberRouter = require("./member/member_router")
+    const boardRouter = require("./board/board_router")
     app.use("/member", memberRouter)
+    app.use("/board", boardRouter)
     
     const boardRouter = require("../router/board/board_router")
     app.use("/board", boardRouter )
@@ -14,6 +16,8 @@ module.exports=(app)=>{
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
     })
+    //캘린더 라우터 아직 만들어지지 않아서 그대로 두겠습니다.
+    //이후 캘린더 라우터 만들어지면 옮기겠습니다.
 
     router.get('/logout', (req,res) => {
         res.session = null;

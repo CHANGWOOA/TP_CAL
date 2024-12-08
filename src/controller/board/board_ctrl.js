@@ -50,4 +50,4 @@ const process= {
 
     }
 }
-module.exports= {process, views}
+module.exports= { process, views }
