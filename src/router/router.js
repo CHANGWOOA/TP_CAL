@@ -26,6 +26,18 @@ module.exports=(app)=>{
         res.render('login')
     })
 
+    const todolist=[
+        {title:'바보',
+            memo:'멍청이',
+            date:'집에 보내줘'
+        }
+    ]
+    const boardList=[
+        {
+            title:'board',
+            url:'/zzz'
+        }
+    ]
     router.post('/main',(req,res)=>{
         res.render('index',{todolist:todolist,boardList:boardList})
     })
