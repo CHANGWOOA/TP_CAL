@@ -1,7 +1,7 @@
 const dao= require("../../database/board/board_reply_dao")
-const insert= {
+const repInsert= {
     register : async(body) => { //코멘트 작성
-        const result= await dao.insert.register(body)
+        const result= await dao.repInsert.register(body)
         return result.rowsAffected; //rowsAffected (영향을 받은 행의 수)를 반환
     }
 }
@@ -13,4 +13,14 @@ const repRead={
         return result;
     }
 }
-module.exports= {repRead, insert}
+const repUpdate={
+    delete : (R_ID)=>{//답글 삭제
+        dao.repUpdate.delete(R_ID);
+    },
+    modify : (body)=>{//답글 수정
+        dao.repUpdate.modify(body);
+
+
+    }
+}
+module.exports= {repRead, repInsert, repUpdate}
