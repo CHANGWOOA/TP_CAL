@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 비밀번호 일치 여부 확인 함수
   const checkPasswordMatch = () => {
-    const pw1 = password.value.trim();
+    const pw1 = ppassword.value.trim();
     const pw2 = confirmPassword.value.trim();
 
     if (pw1 && pw1 === pw2) {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 폼 제출 시 비밀번호 일치 여부 확인
   signupForm.addEventListener("submit", (event) => {
-    const pw1 = password.value.trim();
+    const pw1 = ppassword.value.trim();
     const pw2 = confirmPassword.value.trim();
 
     if (pw1 !== pw2) {
