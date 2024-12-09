@@ -12,4 +12,12 @@ const getaMessage= (msg,url) => {
         location.href='${url}';
     </script>`;
 }
-module.exports={sessionCheck, getaMessage}
+const timeModify= (list)=>{
+    list= list.map(data=>{
+        data['R_DATE']= data['R_DATE'].toLocaleString();
+        return data;
+    })
+    return list;
+
+}
+module.exports={sessionCheck, getaMessage, timeModify}

@@ -14,8 +14,8 @@ const boardInsert={ //게시글 작성
     }
 }
 const boardUpdate= {
-    upHit : (num)=> { //조회수
-        dao.boardUpdate.upHit(num);
+    upHit : (P_HIT)=> { //조회수
+        dao.boardUpdate.upHit(P_HIT);
     },
     delete : (P_ID) => { //삭제
         dao.boardUpdate.delete(P_ID);

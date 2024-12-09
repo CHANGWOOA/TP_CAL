@@ -11,7 +11,9 @@ const views={
     data : () => {
 
     },
-    modifyForm : async () => {
+    modify : async (req, res) => {
+        const data= await ser.boardRead.data(req,params.P_ID);
+        res.render("board/modify_form", {data})
 
     }
 }
