@@ -1,6 +1,7 @@
 const router= require("express").Router();
 const ctrl= require("../../controller/board/board_ctrl")
 
+
 router.get('/', ctrl.views.list)
 //기본 게시판 경로
 
@@ -13,6 +14,16 @@ router.post('/search', ctrl.views.search)
 
 router.post('/lineUp', ctrl.views.line)
     //console.log(req.body.lineType)
+
+
+router.get("/delete/:P_ID/:file_name", ctrl.process.delete);
+
+//은미님 코드
+//router.get("/modify_form/:P_ID", ctrl.views.modifyForm);
+//우선 주석처리해두었습니다.
+//ctrl.view.modifyForm과 대응이 필요!
+//router.post("/modify", upload.single('file_name'), ctrl.process.modify);
+//ctrl.process에 modify가 없어서 
 
 
 

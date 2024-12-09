@@ -1,4 +1,8 @@
+
 const ser = require("../../service/board/board_service")
+const serCom= require("../../service/ser_common")
+
+
 
 const views={
     list : async (req, res)=>{ //게시글 기본 리스트 가져오는 기능
@@ -19,7 +23,9 @@ const views={
         res.render("board/board_detail", { data }) //data를 ejs로 보낸다-> 반복문 사용해서 건들여야 한다고...
         console.log("b ctrl detail:", data)
     },
-    modifyForm : async () => {
+    modify : async (req, res) => {
+        const data= await ser.boardRead.data(req,params.P_ID);
+        res.render("board/modify_form", {data})
 
     },
     search : async( req, res ) =>{ //글 검색하는 기능
@@ -43,11 +49,11 @@ const process= {
     write : () => { //게시글 작성
 
     },
-    delete : () => { //게시글 삭제
+    modify : () => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
 
     },
-    modify : () => { //게시글 수정
-
+    delete : (req, res) => { //게시글 삭제
+        console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
     }
 }
 module.exports= { process, views }
