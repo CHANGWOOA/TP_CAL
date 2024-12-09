@@ -14,15 +14,14 @@
         <%- include ('./default/header') %>
         <div id="inside_wrap">
             <%- include ('./default/calendar') %>
-            <div id="newScedule">
-                <form action="/newScedule">
+                <form action="/newScedule" id="newScedule">
                     <input type="text" id="cal_title" placeholder="title">
                     <input type="text" id="cal_subtitle" placeholder="subtitle">
                     <textarea name="memo" id="cal_memo"></textarea>
                     <input type="datetime-local" name="cal_date" id="scedule_date">
                     <input type="submit" value="등록">
                 </form>
-            </div>
+
         </div>
     </div>
 
