@@ -10,8 +10,6 @@ module.exports=(app)=>{
     app.use("/member", memberRouter)
     app.use("/board", boardRouter)
     
-    const boardRouter = require("../router/board/board_router")
-    app.use("/board", boardRouter )
     
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
