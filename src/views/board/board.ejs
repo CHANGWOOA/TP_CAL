@@ -1,0 +1,83 @@
+<!-- 게시글 기본페이지 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ("../default/header") %>
+    <form action="/board/search" method ="post" style="float : right;">
+        <label for="searchType">검 색</label>
+        <select name="searchType" id="searchType">
+            <option value="T_ID" id="T_ID">팀 명</option>
+            <option value="U_ID" id="U_ID">아이디</option>
+            <option value="P_TITLE" id="P_TITLE">글제목</option>
+            <option value="P_CONTENT" id="P_CONTENT">글내용</option>
+        </select>
+        <input type ="text" name="searchKey" id="searchKey" placeholder="search" >
+        <button type="submit"> search </button>
+    </form>
+    <br>
+    <form action="/board/lineUP" method="post" align ="right">
+        <label for="lineUP">정 렬</label>
+        <select name="lineType" id="lineTpye">
+            <option value="P_HITD" id="P_HITD">조회수 많은 순</option>
+            <option value="P_HITA" id="P_HITA">조회수 적은 순</option>
+            <option value="P_REPD" id="P_REPD">댓글 많은 순</option>
+            <option value="P_REPA" id="P_REPA">댓글 적은 순</option>
+            <option value="P_DATEN" id="P_DATEN">작성일자 최신 순</option>
+            <option value="P_DATEO" id="P_DATEO">작성일자 오래된 순</option>
+            
+        </select>
+        <button type="submit"> Line Up </button>
+    </form>
+    <br>
+<div class="content wrap" id="main">
+    <table border="1" style="width:100%;">
+        <tr>
+            <th>번호</th> <th>id</th> <th>제목</th> <th>날짜</th>
+            <th>조회수</th>
+        </tr>
+        <% if( list.length == 0){ %>
+            <tr>
+                <th colspan="7">등록된 글이 없습니다</th>j
+            </tr>
+        <%}else{
+            list.forEach(data=>{%>
+            <tr>
+                <td><%=data.P_ID%></td><td><%=data.U_ID%></td>
+                <td>
+                    <a href="/board/detail/<%= data.P_ID %>">
+                        <%=data.P_TITLE%> 
+                    </a>
+
+                </td><td><%=data.P_DATE%></td>
+                <td><%=data.P_HIT%></td>
+            </tr>
+            <%})
+        }%>
+         <tr>
+            <td colspan="7" align="right">
+                <% if( start <= 1){ %>
+                    <button disabled>이전</button>
+                <%}else{%>
+                    <button type="button" onclick="
+                        location.href='/board/list?start=<%=start - 1%>'">이전</button>
+                <% }for(let i=1 ; i <= page ; i++ ){ %>
+                    <a href="/board/list?start=<%= i %>"><%= i %></a>
+                <% }if( start < page ){%>
+                    <button type="button" onclick="
+                        location.href='/board/list?start=<%=start + 1%>'">다음</button>
+                <% }else{ %> <button disabled>다음</button> <% } %>
+                <%= start %> / <%= page %>
+                    <a href="/board/write_form">글 작성</a>
+            </td>
+            
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
