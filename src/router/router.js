@@ -9,12 +9,13 @@ module.exports=(app)=>{
     const memberRouter = require("./member/member_router")
     const todoRouter=require("./todo/todo_router")
     const boardRouter = require("./board/board_router");
+    // const calRouter=require('./calendar/calendar_router');
 
 
     app.use("/member", memberRouter)
     app.use("/todo",todoRouter)
     app.use("/board", boardRouter)
-    
+
 
     router.get("/database", async(req,res) =>{
         let connection;
@@ -48,7 +49,7 @@ module.exports=(app)=>{
         res.render('index',{todolist:todolist,boardList:boardList})
     })
 
-<<<<<<< HEAD
+
     const todolist=[
         {
             title:'todotitle',
@@ -60,8 +61,6 @@ module.exports=(app)=>{
         title:'boardtitle',
         url:'aaa'
     }]
-=======
 
->>>>>>> BE_LCW
     return router;
 }

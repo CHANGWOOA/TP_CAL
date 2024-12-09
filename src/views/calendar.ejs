@@ -14,14 +14,13 @@
         <%- include ('./default/header') %>
         <div id="inside_wrap">
             <%- include ('./default/calendar') %>
-                <form action="/newScedule" id="newScedule">
-                    <input type="text" id="cal_title" placeholder="title">
-                    <input type="text" id="cal_subtitle" placeholder="subtitle">
-                    <textarea name="memo" id="cal_memo"></textarea>
-                    <input type="datetime-local" name="cal_date" id="scedule_date">
-                    <input type="submit" value="등록">
-                </form>
-
+            <form action="/newScedule" method="post" id="newScedule">
+                <textarea name="cal_title" id="title"  maxlength="20" placeholder="title"></textarea>
+                <textarea name="cal_subtitle" id="subtitle" maxlength="20" placeholder="subtitle"></textarea>
+                <textarea name="cal_memo" id="memo" placeholder="memo"></textarea>
+                <input type="datetime-local" name="cal_date" id="datetime">
+                <input type="submit" value="등록">
+            </form>
         </div>
     </div>
 

@@ -2,7 +2,7 @@
     margin-top: 20px;
     float: right;
     overflow: scroll;
-    width: 15vw; height: 80vh;
+    width: 30vmin; height: 80vh;
     background-color: white;
     border-radius: 50px;
     &::-webkit-scrollbar {
@@ -21,19 +21,6 @@
 
 }
 
-form{
-    & #todo_title{
-        width: 80%; height: 20px;
-    }
-    & #todo_memo{
-        width: 80%; height: 40px;
-    }
-    & #todo_datetime{
-        width: 50%; height: 20px;
-        margin: 10px 10px 10px 0;
-    }
-}
-
 .todolist {
     padding: 10px;
     margin: 0 auto 10px auto;
@@ -46,6 +33,8 @@ form{
     & > div[name="title"],input{
         display: inline-block;
         color: black;
-
+    }
+    & > * {
+        margin-bottom: 5px;
     }
 }
