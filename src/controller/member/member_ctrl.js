@@ -2,7 +2,7 @@ const ser = require("../../service/member/member_service")
 
 
 const loginCheck = async (req, res) => {
-    let msg = await ser.loginCheck(req.body)
+    let msg = await ser.loginCheck(req.body, req, res)
     res.send(msg);
 }
 const logout = (req, res) => {

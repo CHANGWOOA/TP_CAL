@@ -34,11 +34,11 @@ const loginCheck = async( body, req, res ) => {
         url = "/"
     }else{
        if(result.rows[0].U_PW == body.pwd){
-            // req.session.username = body.id;
-            // req.session.name = result.rows[0].U_NAME
+            req.session.username = body.id;
+            req.session.name = result.rows[0].U_NAME
 
-            //console.log("세션네임:", req.session.name)
-            //res.cookie("isLogin", true)
+            console.log("세션네임:", req.session.name)
+            res.cookie("isLogin", true)
             msg = "로그인에 성공하였습니다."
             url = "/main"
         }else{

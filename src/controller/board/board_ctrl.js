@@ -9,7 +9,7 @@ const views={
         const data = await ser.boardRead.list ( req.query.start ) //http://...//list?start=10 ->이 경우req.query.start =10
         res.render("board/board", { list: data.list, start:data.start, page: data.page })
     
-        console.log("b ctrl views:", data.list, data.start, data.page)
+        //console.log("b ctrl views:", data.list, data.start, data.page)
     
     }, //결과값을 data로 정의함
     writeForm : () => {
@@ -31,10 +31,16 @@ const views={
     search : async( req, res ) =>{ //글 검색하는 기능
         //console.log("board ctrl search:", req.body.searchKey)
         const result = await ser.boardRead.search( req.body.searchType, req.body.searchKey ) 
-        //console.log("board ctrl search:", result);
-        console.log("b ctrl search:", result)
-        return result;
+        //console.log("board ctrl search:", result.rows[0]);
         
+        if(result.rows[0] == undefined){
+            msg ="해당하는 정보가 없습니다.";
+            url =`/board`
+            let message = serCom.getaMessage(msg,url);
+            res.send(message);
+        }else{
+            return result;
+        }
     },
     line : async (req, res) => {
         //console.log("board ctrl lineType:", req.body.lineType)

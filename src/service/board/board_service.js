@@ -45,6 +45,7 @@ const boardRead={
             resultList = await dao.boardRead.serContent (searchKey)
         }
         return resultList;
+        
     },
     line : async (start, lineType) => {
         if( start == undefined )
@@ -59,7 +60,7 @@ const boardRead={
         const startNum = ( start-1 ) *5;
 
         //console.log("board ser 정렬조건: ", lineType)
-
+        
         let resultList;
         if(lineType == "P_HITD"){//조회수 많은 순
             resultList = await dao.boardRead.lineHitDesc(start)
@@ -74,7 +75,8 @@ const boardRead={
         }else if (lineType =="P_DATEO"){//작성일자 오래된 순
             resultList = await dao.boardRead.lineDateOld(start)
         } 
-        return resultList;
+         return resultList;
+        
     }
 }
 const boardInsert={ //게시글 작성
