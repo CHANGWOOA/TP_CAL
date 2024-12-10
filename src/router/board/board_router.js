@@ -20,7 +20,7 @@ router.post('/lineUp', ctrl.views.line)
     //console.log(req.body.lineType)
 
 
-router.get("/delete/:P_ID/:file_name", ctrl.process.delete);
+router.get("/delete/:P_ID", ctrl.process.delete);
 
 //은미님 코드
 router.get("/modify_form/:P_ID", ctrl.views.modifyForm);

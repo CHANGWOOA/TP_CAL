@@ -8,7 +8,7 @@
 <body>
 <div id="main">
 <div style="width:300px; margin: 0 auto;">
-    <form action="/board/modify" enctype="multipart/form-data" method="post" >
+    <form action="/board/modify" method="post" >
         <% console.log('data',data) %>
         <input type="hidden" name="P_ID" value="<%=data[0].P_ID%>">
         제목	<input type="text" size="30" name="title" value="<%=data[0].P_TITLE%>"><hr>
