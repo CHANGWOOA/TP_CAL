@@ -58,16 +58,21 @@
         <div class="board_blank"></div>
         <div class="board_content">
           <div>
-            <form class="boardWrite_content">
+            <form
+              action="/board/write"
+              method="post"
+              class="boardWrite_content"
+            >
               <input
                 type="text"
-                id="#"
+                id="title"
+                name="title"
                 placeholder="제목을 입력하세요"
                 required
               />
               <hr />
               <textarea
-                id="#"
+                id="content"
                 placeholder="내용을 입력하세요"
                 name="content"
                 rows="10"
@@ -84,7 +89,7 @@
               <hr />
               <a href="#">이미지 불러오기</a>
             </span>
-            <button type="submit" class="boardWrite_btn">제출 버튼</button>
+            <button type="submit" class="boardWrite_btn">등록</button>
           </div>
         </div>
         <div class="board_blank"></div>
