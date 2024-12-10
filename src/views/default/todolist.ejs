@@ -1,24 +1,66 @@
+<script>
+    const isChecked=(box)=>{
+        console.log(box);
+
+        const title=document.getElementById('title');
+        if (box.checked){
+            circle.innerHTML=`
+<style>
+    #label_circ {
+        margin-left:15px;
+    }
+</style>`
+        }else{
+            circle.innerHTML=`
+<style>
+    #label_circ {
+        margin-left:0;
+    }
+</style>`
+        }
+        console.log(box.checked);
+    }
+</script>
+
+
 <div id="inside_wrap">
     <div id="todo">
         <div name="title">To-Do</div>
         <form action="/todo/newtodo" method="post" id="todoform">
-            <textarea name="title" id="title" maxlength="20" placeholder="제목"></textarea>
-            <textarea name="memo" id="memo" maxlength="100"placeholder="메모"></textarea>
-            <input type="datetime-local" name="todo_datetime" id="datetime">
-            <select name="select" id="select">
-                <option value="1st">중요</option>
-                <option value="2nd">그다음으로 중요</option>
-                <option value="3th">중요하지 않음</option>
+            <textarea name="title" id="title" maxlength="13" placeholder="제목" required></textarea>
+            <select name="priority" id="priority" requireds>
+                <option value="priority" selected disabled hidden >우선순위</option>
+                <option value="0">없음</option>
+                <option value="disable" disabled>-</option>
+                <option value="1">낮음</option>
+                <option value="2">중간</option>
+                <option value="3">높음</option>
             </select>
             <input type="submit" value="등록">
         </form>
             <% for (i=0;i<todolist.length;i++) { %>
-                <div class="todolist">
-                <input type="checkbox" name="finTodo" id="finTodo">
-                <div name="title"><%= todolist[i]['title'] %></div>
-                <div name="memo"><%= todolist[i]['memo'] %></div>
-                <%= todolist[i]['date'] %>까지
-                <button >삭제</button>
+                <div class="todolist" >
+                    <div id="todo_wrap">
+                        <label for="todo_checkbox" >
+                            <div id="lebel_bg">
+                                <div id="label_circ"></div>
+                            </div>
+                        </label>
+                        <% if(todolist[i]['priority']=='1') { %>
+                            !
+                        <% } else if(todolist[i]['priority']=='2'){ %>
+                            !! 
+                        <% } else if(todolist[i]['priority']=='3') { %>
+                            !!!
+                            <%  } else { %>
+                            <% } %>
+                        <div name="title" id=`todo_title-`><%= todolist[i]['title'] %></div>
+                        <input type="checkbox" name="<%= todolist[i]['pk'] %>" id="todo_checkbox" onclick="isChecked(this)">
+        
+                    </div>
+
+                <button>수정</button>
+                <button>삭제</button>
             </div>
 
             <% } %>

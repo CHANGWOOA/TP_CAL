@@ -1,4 +1,5 @@
-#todo {
+#todo { 
+    /* todo 위젯 전체 */
     margin-top: 20px;
     float: right;
     overflow: scroll;
@@ -22,19 +23,53 @@
 }
 
 .todolist {
+    /* todo 목록 */
     padding: 10px;
     margin: 0 auto 10px auto;
     width: 80%;
     text-align: center;
     border-radius: 50px 50px 0 50px;
-
     background-color: rgb(200, 200, 200);
 
-    & > div[name="title"],input{
-        display: inline-block;
+    & > div[name="title"]{
+        width: 3vw; height: 1.5vh;
         color: black;
     }
     & > * {
         margin-bottom: 5px;
     }
+    & > button {
+        border-radius: 20px;
+        border: 0;
+        background-color:white;
+        margin-bottom: 5px;
+        margin: 10px 10px 0 0;
+        padding: 5px 10px;
+    }
+
+    & input[type='checkbox'] {
+        display:none ;
+    }
+
+    & #todo_wrap {
+        display: flex;
+        }
+
+    & label[for='todo_checkbox'] {
+        & > #lebel_bg {
+            
+            width: 30px; height: 15px;
+            background-color: white;
+            padding: 2px;
+            margin: 0 10px;
+            border-radius: 50px;
+            & #label_circ {
+                width: 15px; height: 15px;
+                background-color: rgb(100, 100, 100);
+                border-radius: 100%;
+            }
+            
+        }
+    }
 }
+

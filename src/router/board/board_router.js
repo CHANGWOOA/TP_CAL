@@ -10,7 +10,7 @@ router.post('/newboard',(req,res)=>{
 router.get("/write_form", ctrl.views.writeForm);
 router.post("/write", ctrl.process.write);
 router.get("/delete/:P_ID/:file_name", ctrl.process.delete);
-router.get("/modify_form/:P_ID", ctrl.views.modifyForm);
-router.post("/modify", upload.single('file_name'), ctrl.process.modify);
+// router.get("/modify_form/:P_ID", ctrl.views.modifyForm);
+// router.post("/modify", upload.single('file_name'), ctrl.process.modify);
 
 module.exports=router;
