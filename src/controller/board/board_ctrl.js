@@ -19,9 +19,10 @@ const views={
         //console.log("ctrl에서의 params:", req.params.P_ID)
         const contentList = await ser.boardRead.detail (req.params.P_ID) //클릭 시 들어오는 params를 서비스로 전송하고
         //console.log("board ctrl:", contentList.rows)
-        const data = contentList.rows //dao를 거쳐 온 P_ID글고유번호에 대한 해당 글의 정보 리스트를 배열형식으로 받아 data 변수에 저장
+        const data = contentList //dao를 거쳐 온 P_ID글고유번호에 대한 해당 글의 정보 리스트를 배열형식으로 받아 data 변수에 저장
+        const uphit = await ser.boardRead.data(req.params.P_ID)
         res.render("board/board_detail", { data }) //data를 ejs로 보낸다->ejs 사용하지 않고 data[0].P_ID 형식으로 바로 정보 받을 수 있음
-        //console.log("b ctrl detail:", data[0].P_ID)
+        //console.log("b ctrl detail:", data)
     },
     modify : async (req, res) => {
         const data= await ser.boardRead.data(req,params.P_ID);

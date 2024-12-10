@@ -12,7 +12,7 @@
         <label for="searchType">검 색</label>
         <select name="searchType" id="searchType">
             <option value="T_ID" id="T_ID">팀 명</option>
-            <option value="U_ID" id="U_ID">아이디</option>
+            <option value="U_NAME" id="U_NAME">이름</option>
             <option value="P_TITLE" id="P_TITLE">글제목</option>
             <option value="P_CONTENT" id="P_CONTENT">글내용</option>
         </select>
@@ -47,7 +47,7 @@
         <%}else{
             list.forEach(data=>{%>
             <tr>
-                <td><%=data.P_ID%></td><td><%=data.U_ID%></td>
+                <td><%=data.P_ID%></td><td><%=data.U_NAME%></td>
                 <td>
                     <a href="/board/detail/<%= data.P_ID %>">
                         <%=data.P_TITLE%> 

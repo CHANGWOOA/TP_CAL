@@ -16,20 +16,21 @@ const boardRead={
 
         let list = await dao.boardRead.list (startNum);
         //console.log("board ser list:", list)
-        list = serCom.timeModify(list.rows) //시간 형식을 바꿔서 다시 리스트로 만들어주는 함수
-        //console.log(list.length)
+        list = serCom.dateSimple(list.rows) //시간 형식을 바꿔서 다시 리스트로 만들어주는 함수
+        //console.log("board ser list수정후:", list)
         //console.log("start", start)
         //console.log("page", page)
         //console.log("list.length", list.rows.length)
         return { list, start, page } //dao에서 읽어온 list, 변환한 start, 총 page 값을 반환해준다.
     },
-    data : () => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
-
+    data : async (P_ID) => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
+        await dao.boardUpdate.upHit(P_ID);
     },
     detail: async ( P_ID ) => {//게시글 하나 눌렀을 때 보이는 페이지에 대한 것, 게시글의 고유번호를 주고받는다
         const contentList =  await dao.boardRead.detail (P_ID);
-        
-        return contentList; //리스트 형식으로 ctrl로 전송
+        list = serCom.timeModify(contentList.rows)
+        //console.log("board ser detail:", list)
+        return list; //리스트 형식으로 ctrl로 전송
     },
     search: async ( searchType, searchKey ) => {
         //console.log("board ser 검색조건:", searchType)

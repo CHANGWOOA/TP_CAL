@@ -6,7 +6,7 @@ const boardRead = {
         //START는 현재페이지를 계산하는 수식에서 나온 변수임.
         
         const sql = `select * from Post order by P_ID asc
-                    offset ${start} rows fetch next 5 rows only`;
+                    offset ${start} rows fetch next 10 rows only`;
         
         const list = await (await con).execute( sql )
         //console.log("board dao list:" ,list) rows형식으로 가져옴!!!
@@ -57,38 +57,38 @@ const boardRead = {
     },
     lineHitDesc : async ( start ) => { //조회 수 많은 순으로 정렬
         const sql = `select * from POST order by P_HIT desc
-                    offset ${start} rows fetch next 5 rows only`
+                    offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;   
     },
     lineHitAsc : async ( start ) => { //조회 수 적은 순으로 정렬
         const sql = `select * from POST order by P_HIT asc
-                    offset ${start} rows fetch next 5 rows only` 
+                    offset ${start} rows fetch next 10 rows only` 
         const data = await (await con).execute(sql);
         return data;            
     },
     lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬 -> 댓글세는 DB만들어야함
         const sql = `select * from POST order by ${댓글수} desc
-                    offset ${start} rows fetch next 5 rows only`
+                    offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;  
     },
     
     lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 -> 댓글세는 DB만들어야함
         const sql = `select * from POST order by ${댓글수} asc
-                    offset ${start} rows fetch next 5 rows only` 
+                    offset ${start} rows fetch next 10 rows only` 
         const data = await (await con).execute(sql);
         return data;  
     },
     lineDateNew : async ( start ) =>{
         const sql = `select * from POST order by P_DATE desc
-                    offset ${start} rows fetch next 5 rows only`
+                    offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;
     },
     lineDateOld : async ( start ) => {
         const sql = `select * from POST order by P_DATE asc 
-                    offset ${start} rows fetch next 5 rows only`
+                    offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute( sql );
         return data;
     }
@@ -103,7 +103,7 @@ const boardInsert = { //게시물 추가 쿼리문
         //console.log("body : ", body)
         const sql = 
 `INSERT INTO Post (P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, P_DATE)
-VALUES (Post_seq.nextval, null, '${body.id}', '${body.title}', '0', '${body.content}', SYSDATE)`;
+VALUES (Post_seq.nextval, null, '${req.session.name}', '${body.title}', '0', '${body.content}', SYSDATE)`;
 //body.id는 기존에 로그인 된 세션을 사용한다.=> 아직 세션 관련 지정하지 않아서 body.id로 넣어둠
 //U_ID는 각 팀의 아이디인데, 글 쓸때에는 null로 하고, 업데이트 시 각 팀 명을 부여한다
 //P_ID는 자동적으로 증가하는 게시물 번호, hit은 0으로 초기화시키고, p_date는 현재시간을 입력하도록 쿼리문 작성함
@@ -119,10 +119,10 @@ VALUES (Post_seq.nextval, null, '${body.id}', '${body.title}', '0', '${body.cont
 
 
 const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 조회수 +1 되는 기능
-    upHit : async ( P_TITLE ) => {//제목을 클릭할 테니까 P_TITLE로 변경
+    upHit : async ( P_ID ) => {//detail과 함께 가야하므로 P_ID로 변경
         const sql = 
-        `update post set P_hit = P_hit + 1 where P_TITLE=${P_TITLE}`;
-        (await con).execute( sql );
+        `update post set P_hit = P_hit + 1 where P_ID=${P_ID}`;
+         (await con).execute( sql );
     },
     delete : async ( body ) =>{ //게시글 삭제 기능, 게시글의 고유번호를 받아와서 고유번호 일치하는 글을 삭제함
         const sql = `delete from post where P_ID='${P_ID}'`;
