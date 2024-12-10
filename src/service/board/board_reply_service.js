@@ -7,8 +7,8 @@ const repInsert= {
 }
 const common= require("../ser_common");
 const repRead={
-    data : async(R_ID)=>{// 답글 번호 받아와 시간 수정
-        let result= await dao.repRead.data(R_ID);
+    data : async(R_ID)=>{// 답글 번호 받아와 데이터 조회
+        let result= await dao.repRead.data(R_ID);//조회한 댓글 데이터 시간 수정
         result= common.timeModify(result.rows);
         return result;
     }
