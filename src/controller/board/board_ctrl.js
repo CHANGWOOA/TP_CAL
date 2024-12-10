@@ -24,8 +24,8 @@ const views={
         console.log("b ctrl detail:", data)
     },
     modifyForm : async (req, res) => {
-        //const data= await ser.boardRead.data(req.params.P_ID);
-        const data=[{}];
+        const data= await ser.boardRead.data(req.params.P_ID);
+        //const data=[{}];
         console.log('modify form : ',data)
         res.render("board/modify_form", {data:data});
 
@@ -52,12 +52,14 @@ const process= {
 
     },
     modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
-        ser.modify(req.body)
+        ser.boardUpdate.modify(req.body)
         res.redirect("/board/board_detail/"+req.body.P_ID);
 
     },
     delete : (req, res) => { //게시글 삭제
         console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
+        ser.boardUpdate.delete(req.params.P_ID);
+        res.redirect("/board")
     }
 }
 module.exports= { process, views }
