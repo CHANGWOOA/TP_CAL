@@ -9,7 +9,9 @@ router.post('/newtodo',(req,res)=>{
 
 router.get('/',(req,res)=>{
     const todolist=[]
-    res.render('todo/todo',{todolist:todolist})
+    const memlist=['aaa','bbb','ccc','ddd','eee'];
+    const teamlist=[]
+    res.render('todo/todo',{todo:todolist,mem:memlist,team:teamlist})
 });
 
 module.exports=router;

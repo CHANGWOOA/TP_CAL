@@ -66,15 +66,12 @@ module.exports=(app)=>{
     }];
 
     router.post('/main',(req,res)=>{
-        res.render('index',{todolist:todolist,boardList:boardList})
+        res.render('index',{todo:todolist,boardList:boardList})
     })
 
     router.get('/main',(req,res)=>{
-        res.render('index',{todolist:todolist,boardList:boardList})
+        res.render('index',{todo:todolist,boardList:boardList})
     })
-
-
-
 
     return router;
 }

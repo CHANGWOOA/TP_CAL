@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD
 const ser=require("../../service/board/board_service")
 const serCom= require("../../service/ser_common")
-=======
-const { user } = require("../../../config/database/db_config")
-const ser = require("../../service/board/board_service")
-const serCom= require("../../service/ser_common")
-
->>>>>>> master
+// const { user } = require("../../../config/database/db_config")
 
 const views={
     list : async (req, res)=>{ //게시글 기본 리스트 가져오는 기능
@@ -38,9 +32,6 @@ const views={
         //const data=[{}];
         console.log('modify form : ',data)
         res.render("board/modify_form", {data:data});
-
-<<<<<<< HEAD
-=======
     },
     search : async( req, res ) =>{ //글 검색하는 기능
         //console.log("board ctrl search:", req.body.searchKey)
@@ -57,14 +48,14 @@ const views={
         console.log("board ctrl result:", result)
         
         return result;
->>>>>>> master
-    }
-    // ,
-    // modify : async (req, res) => {
-    //     const data= await ser.boardRead.data(req,params.P_ID);
-    //     res.render("board/modify_form", {data})
 
-    // }
+    }
+    ,
+    modify : async (req, res) => {
+        const data= await ser.boardRead.data(req,params.P_ID);
+        res.render("board/modify_form", {data})
+
+    }
 }
 const process= {
     write : async (req, res) => { //게시글 작성

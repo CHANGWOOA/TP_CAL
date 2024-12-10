@@ -21,15 +21,11 @@ const timeModify = ( list ) => { //날짜데이터를 localeString 형식으로 
         
     })
     return list;
-<<<<<<< HEAD
 
 }
 
-module.exports={sessionCheck, getaMessage, timeModify}
-=======
-}
 
 
 
 module.exports={sessionCheck, getMessage, timeModify}
->>>>>>> master
+

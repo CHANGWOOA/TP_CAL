@@ -25,8 +25,8 @@ const boardRead={
     },
     data : async(P_HIT) => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
         boardUpdate.upHit(P_HIT);
-        let data=await dao.boardRead.data(P_HIT);
-        data= serCom.timeModify(data.rows);
+        // let data=await dao.boardRead.data(P_HIT);
+        let data= serCom.timeModify(data.rows);
         return data[0];
     },
     detail: async ( P_ID ) => {//게시글 하나 눌렀을 때 보이는 페이지에 대한 것, 게시글의 고유번호를 주고받는다
