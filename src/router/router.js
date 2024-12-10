@@ -35,7 +35,7 @@ module.exports=(app)=>{
     })
 
     router.get('/',(req,res)=>{
-        res.render('login')
+        res.render('login', {id : req.session.username})
     })
 
     const todolist=[

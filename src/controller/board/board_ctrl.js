@@ -17,7 +17,7 @@ const views={
         if(msg == 0){
             return res.send(msg);
         }
-        res.render("board/write_form", {}) // 전송할 데이터 - 유저 정보
+        res.render("board/write_form", {body: req.body, username : req.session.username}) // 전송할 데이터 - 유저 정보
     },
 
     detail : async (req, res) => { //글 제목 클릭했을 때의 기능
@@ -54,9 +54,8 @@ const views={
 }
 const process= {
     write : async (req, res) => { //게시글 작성
-        const msg = await boardSer.boardInsert.write(
-            req.body
-        );
+        //console.log("ctrl: ",req.body)
+        const msg = await ser.boardInsert.write(req.body, req.session.username);
         res.send(msg)
     },
     modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.

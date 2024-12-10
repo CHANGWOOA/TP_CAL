@@ -81,12 +81,13 @@ const boardRead={
     }
 }
 const boardInsert={ //게시글 작성
-    write: async (body)=>{
+    write: async (body, username)=>{
+        //console.log("ser:", username)
     let msg, url;
-    const  result = await dao.boardInsert.write(body);
-    if(result !=0){
+    const  result = await dao.boardInsert.write(body, username);
+    if(result !==0){
         msg = "등록 성공";
-        url = "/board/list";
+        url = "/board";
     }else{
         msg = "등록 실패";
         url = "/board/write_form";
