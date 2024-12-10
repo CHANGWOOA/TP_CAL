@@ -4,51 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-<<<<<<< HEAD
-</head>
-<body>
-    <%- include ("../default/header") %>
-    <form action="/board/search" method ="post" style="float : right;">
-        <label for="searchType">검 색</label>
-        <select name="searchType" id="searchType">
-            <option value="T_ID" id="T_ID">팀 명</option>
-            <option value="U_NAME" id="U_NAME">이름</option>
-            <option value="P_TITLE" id="P_TITLE">글제목</option>
-            <option value="P_CONTENT" id="P_CONTENT">글내용</option>
-        </select>
-        <input type ="text" name="searchKey" id="searchKey" placeholder="search" >
-        <button type="submit"> search </button>
-    </form>
-    <br>
-    <form action="/board/lineUP" method="post" align ="right">
-        <label for="lineUP">정 렬</label>
-        <select name="lineType" id="lineTpye">
-            <option value="P_HITD" id="P_HITD">조회수 많은 순</option>
-            <option value="P_HITA" id="P_HITA">조회수 적은 순</option>
-            <option value="P_REPD" id="P_REPD">댓글 많은 순</option>
-            <option value="P_REPA" id="P_REPA">댓글 적은 순</option>
-            <option value="P_DATEN" id="P_DATEN">작성일자 최신 순</option>
-            <option value="P_DATEO" id="P_DATEO">작성일자 오래된 순</option>
-            
-        </select>
-        <button type="submit"> Line Up </button>
-    </form>
-    <br>
-<div class="content wrap" id="main">
-    <table border="1" style="width:100%;">
-        <tr>
-            <th>번호</th> <th>id</th> <th>제목</th> <th>날짜</th>
-            <th>조회수</th>
-        </tr>
-        <% if( list.length == 0){ %>
-            <tr>
-                <th colspan="7">등록된 글이 없습니다</th>j
-            </tr>
-        <%}else{
-            list.forEach(data=>{%>
-            <tr>
-                <td><%=data.P_ID%></td><td><%=data.U_NAME%></td>
-=======
     <link rel="stylesheet" href="/css/board.css" />
     <link rel="stylesheet" href="/css/navBar.css" />
   </head>
@@ -137,7 +92,6 @@
               <tr>
                 <td><%= data.P_ID %></td>
                 <td><%= data.U_ID %></td>
->>>>>>> b01a35d560b0244610fda89750a0ab245a853b2f
                 <td>
                   <a href="/board/detail/<%= data.P_ID %>">
                     <%= data.P_TITLE %>
@@ -146,7 +100,8 @@
                 <td><%= data.P_DATE %></td>
                 <td><%= data.P_HIT %></td>
               </tr>
-              <% }) } %>
+              <% }) 
+            } %>
             </table>
             <div class="board_paging">
               <tr>

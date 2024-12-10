@@ -33,4 +33,4 @@ const dateSimple = ( list ) => { //날짜 데이터를 간단한 형식으로 �
 
 
 
-module.exports={sessionCheck, getMessage, timeModify}
+module.exports={sessionCheck, getMessage, timeModify, dateSimple}

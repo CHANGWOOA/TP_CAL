@@ -9,7 +9,7 @@ const views={
         const data = await ser.boardRead.list ( req.query.start ) //http://...//list?start=10 ->이 경우req.query.start =10
         res.render("board/board", { list: data.list, start:data.start, page: data.page })
     
-        //console.log("b ctrl views:", data.list)
+        console.log("b ctrl views:", data.list)
     
     }, //결과값을 data로 정의함
     writeForm : (req, res) => {
