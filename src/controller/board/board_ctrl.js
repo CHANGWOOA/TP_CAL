@@ -23,9 +23,11 @@ const views={
         res.render("board/board_detail", { data }) //data를 ejs로 보낸다-> 반복문 사용해서 건들여야 한다고...
         console.log("b ctrl detail:", data)
     },
-    modify : async (req, res) => {
-        const data= await ser.boardRead.data(req,params.P_ID);
-        res.render("board/modify_form", {data})
+    modifyForm : async (req, res) => {
+        const data= await ser.boardRead.data(req.params.P_ID);
+        //const data=[{}];
+        console.log('modify form : ',data)
+        res.render("board/modify_form", {data:data});
 
     },
     search : async( req, res ) =>{ //글 검색하는 기능
@@ -49,11 +51,15 @@ const process= {
     write : () => { //게시글 작성
 
     },
-    modify : () => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+    modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+        ser.boardUpdate.modify(req.body)
+        res.redirect("/board/board_detail/"+req.body.P_ID);
 
     },
     delete : (req, res) => { //게시글 삭제
         console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
+        ser.boardUpdate.delete(req.params.P_ID);
+        res.redirect("/board")
     }
 }
 module.exports= { process, views }

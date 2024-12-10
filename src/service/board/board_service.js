@@ -23,8 +23,11 @@ const boardRead={
         //console.log("list.length", list.rows.length)
         return { list, start, page } //dao에서 읽어온 list, 변환한 start, 총 page 값을 반환해준다.
     },
-    data : () => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
-
+    data : async(P_HIT) => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
+        boardUpdate.upHit(P_HIT);
+        let data=await dao.boardRead.data(P_HIT);
+        data= serCom.timeModify(data.rows);
+        return data[0];
     },
     detail: async ( P_ID ) => {//게시글 하나 눌렀을 때 보이는 페이지에 대한 것, 게시글의 고유번호를 주고받는다
         const contentList =  await dao.boardRead.detail (P_ID);
@@ -90,21 +93,7 @@ const boardUpdate= {
         dao.boardUpdate.delete(P_ID);
     },
     modify : async(body) => { //수정
-        
-        const result= await dao.boardUpdate.modify(body);
-        let msg, url;
-        let message= {}
-        message.result= result.rowsAffected;
-        if(message.result===1){
-            msg="게시글 수정 완료";
-            url= `/board/data/${body.P_ID}`;
-        }else{
-            msg="문제가 발생했습니다";
-            url= `/board/modify_form/${body.P_ID}`;
-            message.result=0;
-        }
-        message.msg= serCom.getMessage(msg,url);
-        return message;
+        dao.boardUpdate.modify(body);
     }
 }
 module.exports={boardRead, boardInsert, boardUpdate}
