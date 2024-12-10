@@ -1,4 +1,8 @@
 module.exports=(app)=>{
+    const express = require("express");
+    const getConnection = require("../database/db_common")
+    app.use(express.json());
+
     const router=require('express').Router();
     
     const bodyParser = require("body-parser")
@@ -6,10 +10,18 @@ module.exports=(app)=>{
     app.use(bodyParser.json())
     
     const memberRouter = require("./member/member_router")
-    const boardRouter = require("./board/board_router")
     app.use("/member", memberRouter)
-    app.use("/board", boardRouter)
+
+    router.get("/database", async(req,res) =>{
+        let connection;
+        connection = await getConnection();
+        const result = await connection.execute("select * from ALLUSER")
+        res.json(result.rows);
+    })
     
+
+    const boardRouter = require("./board/board_router");
+    app.use("/board", boardRouter)
     
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
@@ -23,7 +35,7 @@ module.exports=(app)=>{
     })
 
     router.get('/',(req,res)=>{
-        res.render('login', { id: req.session.username })
+        res.render('login', {id : req.session.username})
     })
 
     const todolist=[
@@ -45,5 +57,7 @@ module.exports=(app)=>{
     router.get('/main',(req,res)=>{
         res.render('index',{todolist:todolist,boardList:boardList})
     })
+
+
     return router;
 }

@@ -34,6 +34,7 @@ const loginCheck = async( body, req, res ) => {
         url = "/"
     }else{
        if(result.rows[0].U_PW == body.pwd){
+            
             req.session.username = body.id;
             req.session.name = result.rows[0].U_NAME
 

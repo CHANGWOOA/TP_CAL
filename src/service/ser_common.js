@@ -2,11 +2,11 @@ const sessionCheck= (session) => {
     if(session==undefined || session.user==undefined){
         msg=`로그인 사용자만 접근 가능`;
         url='/'
-        return getaMessage(msg, url);
+        return getMessage(msg, url);
     }
     return 0;
 }
-const getaMessage= (msg,url) => {
+const getMessage= (msg,url) => {
     return `<script>
         alert('${msg}');
         location.href='${url}';
@@ -32,5 +32,5 @@ const dateSimple = ( list ) => { //날짜 데이터를 간단한 형식으로 �
 }
 
 
-module.exports={sessionCheck, getaMessage, timeModify,  dateSimple}
 
+module.exports={sessionCheck, getMessage, timeModify}

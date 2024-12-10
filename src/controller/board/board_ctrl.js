@@ -1,7 +1,7 @@
 
+const { user } = require("../../../config/database/db_config")
 const ser = require("../../service/board/board_service")
 const serCom= require("../../service/ser_common")
-
 
 
 const views={
@@ -12,9 +12,14 @@ const views={
         //console.log("b ctrl views:", data.list)
     
     }, //결과값을 data로 정의함
-    writeForm : () => {
-
+    writeForm : (req, res) => {
+        const msg = serCom.sessionCheck(req.session);
+        if(msg == 0){
+            return res.send(msg);
+        }
+        res.render("board/write_form", {body: req.body, username : req.session.username}) // 전송할 데이터 - 유저 정보
     },
+
     detail : async (req, res) => { //글 제목 클릭했을 때의 기능
         //console.log("ctrl에서의 params:", req.params.P_ID)
         const contentList = await ser.boardRead.detail (req.params.P_ID) //클릭 시 들어오는 params를 서비스로 전송하고
@@ -24,9 +29,11 @@ const views={
         res.render("board/board_detail", { data }) //data를 ejs로 보낸다->ejs 사용하지 않고 data[0].P_ID 형식으로 바로 정보 받을 수 있음
         //console.log("b ctrl detail:", data)
     },
-    modify : async (req, res) => {
-        const data= await ser.boardRead.data(req,params.P_ID);
-        res.render("board/modify_form", {data})
+    modifyForm : async (req, res) => {
+        const data= await ser.boardRead.data(req.params.P_ID);
+        //const data=[{}];
+        console.log('modify form : ',data)
+        res.render("board/modify_form", {data:data});
 
     },
     search : async( req, res ) =>{ //글 검색하는 기능
@@ -53,14 +60,20 @@ const views={
     }
 }
 const process= {
-    write : () => { //게시글 작성
-
+    write : async (req, res) => { //게시글 작성
+        //console.log("ctrl: ",req.body)
+        const msg = await ser.boardInsert.write(req.body, req.session.username);
+        res.send(msg)
     },
-    modify : () => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+    modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+        ser.boardUpdate.modify(req.body)
+        res.redirect("/board/board_detail/"+req.body.P_ID);
 
     },
     delete : (req, res) => { //게시글 삭제
         console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
+        ser.boardUpdate.delete(req.params.P_ID);
+        res.redirect("/board")
     }
 }
 module.exports= { process, views }

@@ -1,4 +1,4 @@
-const con = require("../db_common")
+const con = require("../db_common");
 
 const boardRead = {
     list : async ( start ) => { 
@@ -92,30 +92,27 @@ const boardRead = {
         const data = await (await con).execute( sql );
         return data;
     }
+    
+};
 
-    
-    
-    
-}
-
-const boardInsert = { //게시물 추가 쿼리문
-    write : async ( body ) => {
-        //console.log("body : ", body)
-        const sql = 
-`INSERT INTO Post (P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, P_DATE)
-VALUES (Post_seq.nextval, null, '${req.session.name}', '${body.title}', '0', '${body.content}', SYSDATE)`;
-//body.id는 기존에 로그인 된 세션을 사용한다.=> 아직 세션 관련 지정하지 않아서 body.id로 넣어둠
-//U_ID는 각 팀의 아이디인데, 글 쓸때에는 null로 하고, 업데이트 시 각 팀 명을 부여한다
-//P_ID는 자동적으로 증가하는 게시물 번호, hit은 0으로 초기화시키고, p_date는 현재시간을 입력하도록 쿼리문 작성함
+const boardInsert = {
+    write : async (body, username) => {
+        //console.log("ddd: ", username)
+        const sql = `INSERT INTO Post (P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, P_DATE)
+        VALUES (Post_seq.nextval, null, '${username}',  '${body.title}', '0', '${body.content}', SYSDATE)`;
+       // console.log(sql);
+        //body.id는 기존에 로그인 된 세션을 사용한다.=> 아직 세션 관련 지정하지 않아서 body.id로 넣어둠
+        //U_ID는 각 팀의 아이디인데, 글 쓸때에는 null로 하고, 업데이트 시 각 팀 명을 부여한다
+        //P_ID는 자동적으로 증가하는 게시물 번호, hit은 0으로 초기화시키고, p_date는 현재시간을 입력하도록 쿼리문 작성함
         let result = 0;
         try{
-            result = await(await con).execute(sql, body);
+            result = await(await con).execute(sql);
         }catch(err){
             console.log(err)
         }
         return result;
-    }
-}
+  }
+};
 
 
 const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 조회수 +1 되는 기능
