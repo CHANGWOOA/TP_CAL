@@ -17,13 +17,13 @@ const views={
 }
 const process= {
     write : async (req, res) => { //게시글 작성
-        const msg = await ser.boardSer.write(
+        const msg = await boardSer.boardInsert.write(
             req.body
         );
         res.send(msg)
     },
-    delete : () => { //게시글 삭제
-
+    delete : (req, res) => { //게시글 삭제
+        
     },
     modify : () => { //게시글 수정
 
