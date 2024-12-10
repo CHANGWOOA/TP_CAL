@@ -36,6 +36,7 @@ const register = async ( body ) => {
     //회원가입 db등록
     //console.log("memdao회원가입 body", body)
     const sql = `insert into ALLUSER values('${body.id}', '${body.password}', '${body.username}',' ${body.phone}')`;
+
     //console.log("memdao sql", sql)
     let result;
     try {

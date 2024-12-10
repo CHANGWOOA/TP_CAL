@@ -1,0 +1,41 @@
+<!-- 게시글을 클릭했을때 나오는 세부 페이지 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ("../default/header") %>
+<div id="main">
+    <div style="width:600px; margin: 0 auto;">
+    <h3 style="text-align: center; margin-bottom: 10px;"> - 글 정 보- </h3>
+    <table border="1" align="center">
+        <tr>
+            <th width="100">글 번호</th> <td width="200"><%= data[0].P_ID %></td> 
+            <th width="100">작성자</th>  <td width="200"><%= data[0].U_ID %></td>
+        </tr>
+        <tr>
+            <th>제목</th> <td><%= data[0].P_TITLE %></td> 
+            <th>등록일자</th> <td><%= data[0].P_DATE %></td>
+        </tr>
+        <tr>
+            <th>내용</th><td><%= data[0].P_CONTENT %></td> 
+        </tr>
+        <tr>
+            <td colspan="4" align="center">
+                    <input type="button" onclick="location.href=
+            '/board/modify_form/<%= data[0].P_ID %>'" value="수정하기"> 
+                    <input type="button" onclick="location.href=
+            '/board/delete/<%= data[0].P_ID %>'" value="삭제하기">
+                <input type="button" onclick="reply_form()" value="답글달기"> 
+                <input type="button" onclick="" value="리스트로 돌아가기">
+            </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
