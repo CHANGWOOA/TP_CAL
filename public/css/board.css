@@ -1,0 +1,199 @@
+/*전체 스타일 - 여백 제거*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.board_container {
+  height: 100vh; /* 화면 전체 높이 */
+  width: 100vw; /* 화면 전체 너비 */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* 컨테이너 스크롤 활성화 */
+}
+.board_container::-webkit-scrollbar {
+  width: 0; /* 스크롤 바 숨김 */
+}
+
+.board_container::-webkit-scrollbar-thumb {
+  display: none; /* 스크롤 thumb(바) 숨김 */
+}
+
+.board_container::-webkit-scrollbar-track {
+  display: none; /* 스크롤 트랙 숨김 */
+}
+/* 게시판 상단 제목, 검색 */
+.board_top {
+  height: 13vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.board_title {
+  font-size: 4rem;
+  font-weight: bolder;
+  color: green;
+  margin-right: 1vw;
+}
+.board_search_box {
+  width: 25vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.board_search_box_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.board_search_box_select {
+  background-color: white;
+  border-bottom: 6px solid green;
+  border-top: 6px solid green;
+  border-left: none;
+  height: 8vh;
+}
+.board_search_box_input {
+  width: 15vw;
+  height: 8vh;
+  border: 6px solid green;
+  border-right: none;
+}
+.board_search_box_input:focus {
+  outline: none;
+}
+.board_search_box_btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  background-color: green;
+  height: 8vh;
+  width: 8vh;
+  cursor: pointer;
+}
+/* 게시판 navBar 아래 */
+.board_main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+.board_blank {
+  width: 20%;
+}
+.board_content {
+  width: 60%;
+  background-color: rgba(224, 224, 224, 0.547);
+  display: flex;
+  flex-direction: column;
+}
+.board_controller {
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  align-items: flex-end;
+}
+.board_controller_form {
+  width: 100%;
+  height: 1rem;
+  display: flex;
+}
+.board_write {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: green;
+  height: 2em;
+  width: 10rem;
+  border-radius: 10px;
+}
+/* 기본 스타일 */
+.board_table {
+  width: 100%;
+  margin: 0 auto; /* 중앙 정렬 */
+  border-collapse: collapse; /* 중복된 테두리 제거 */
+  position: relative; /* Paging 고정을 위해 필요 */
+}
+
+.board_table table {
+  width: 100%;
+  table-layout: fixed; /* 각 열 크기 균등 분배 */
+  border-spacing: 0;
+}
+
+.board_table th,
+.board_table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+  width: 10%;
+  color: #333;
+  font-weight: bold;
+}
+
+.board_table th {
+  background-color: #f4f4f4; /* 헤더 배경색 */
+  font-weight: bold; /* 헤더 텍스트 굵게 */
+}
+/*테이블 개별 열 CSS*/
+table th:nth-child(3),
+table td:nth-child(3) {
+  width: 60%;
+  color: #333;
+  font-weight: bold;
+}
+table th:nth-child(4),
+table td:nth-child(4) {
+  width: 15%;
+  color: #333;
+  font-weight: bold;
+}
+table th:nth-child(5),
+table td:nth-child(5) {
+  width: 10%;
+  color: #333;
+  font-weight: bold;
+}
+
+.board_table td a {
+  text-decoration: none;
+}
+
+.board_table td a:hover {
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+}
+
+/* Paging 섹션 */
+.board_paging {
+  background-color: #f4f4f4;
+  padding: 0.5rem 0;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky; /* 화면 하단에 고정되면서 스크롤과 함께 움직임 */
+  bottom: 0;
+}
+
+.board_paging button:disabled {
+  background-color: #ccc; /* 비활성화 버튼 색상 */
+  cursor: not-allowed;
+}
+
+.board_paging a {
+  text-decoration: none;
+  padding: 0 0.5rem;
+}
+/*
+카카오 색상 표
+#3a1d1d : 갈색
+#F7E600 : 노란색
+*/
