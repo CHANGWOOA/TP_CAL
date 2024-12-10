@@ -1,0 +1,63 @@
+.boardWrite_content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
+}
+.boardWrite_content input {
+  padding: 1rem;
+  height: 10vh;
+  font-size: 6vh;
+  background-color: transparent;
+  border: none;
+}
+.boardWrite_content textarea {
+  padding: 1rem;
+  height: 70vh;
+  font-size: 3vh;
+  background-color: transparent;
+  border: none;
+}
+.boardWrite_bottom {
+  background-color: #f4f4f4;
+  padding: 0.5rem 0;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
+  position: sticky;
+  bottom: 0;
+  height: 10vh;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.boardWrite_bottom span {
+  display: flex;
+  flex-direction: row;
+}
+.boardWrite_bottom span a {
+  text-decoration: none;
+  color: #a3a3a3;
+  margin: 0 5px;
+}
+.boardWrite_content input:focus,
+.boardWrite_content textarea:focus {
+  outline: none;
+}
+.boardWrite_btn {
+  border-radius: 3rem;
+  border: none;
+  background-color: black;
+  font-weight: bolder;
+  color: white;
+  height: 3rem;
+  width: 10rem;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.boardWrite_btn:hover {
+  background-color: green;
+}

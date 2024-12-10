@@ -93,6 +93,7 @@ body {
   background-color: rgba(224, 224, 224, 0.547);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .board_controller {
   display: flex;
@@ -179,7 +180,7 @@ table td:nth-child(5) {
   text-align: center;
   border-top: 1px solid #ddd;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky; /* 화면 하단에 고정되면서 스크롤과 함께 움직임 */
+  position: sticky;
   bottom: 0;
 }
 
