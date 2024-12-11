@@ -22,7 +22,7 @@
 
 }
 
-.todolist {
+#todolist {
     /* todo 목록 */
     padding: 10px;
     margin: 0 auto 10px auto;
@@ -36,7 +36,7 @@
         color: black;
     }
     & > * {
-        margin-bottom: 5px;
+        margin: 15px auto 10px auto;
     }
     & > button {
         border-radius: 20px;
@@ -70,6 +70,9 @@
             }
             
         }
+    }
+    .icon{
+        margin-left: 80%;
     }
 }
 

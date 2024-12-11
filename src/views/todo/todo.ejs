@@ -15,17 +15,6 @@
         <div id="inside_wrap">
         <%- include ('../default/todolist') %>
 
-        <div class="memtodo">
-        <input type="text" list="list" id="numbers">
-        <datalist id ="list">
-            <% for(let i=0;i<mem.length;i++) { %>
-                <option value="<%= mem[i] %>">
-            <% } %>
-        </datalist>
-            <div>fetch 사용하기</div>
-            <% for(let i=0;i<mem.length;i++) { %>
-                <option value="<%= mem[i] %>">
-            <% } %>
         </div>
 
     </div>
