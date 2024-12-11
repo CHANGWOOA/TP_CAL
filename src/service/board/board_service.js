@@ -23,14 +23,20 @@ const boardRead={
         //console.log("list.length", list.rows.length)
         return { list, start, page } //dao에서 읽어온 list, 변환한 start, 총 page 값을 반환해준다.
     },
+
     data : async (P_ID) => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
         await dao.boardUpdate.upHit(P_ID);
+
     },
     detail: async ( P_ID ) => {//게시글 하나 눌렀을 때 보이는 페이지에 대한 것, 게시글의 고유번호를 주고받는다
+
         const contentList =  await dao.boardRead.detail (P_ID);
+
+
         list = serCom.timeModify(contentList.rows)
         //console.log("board ser detail:", list)
         return list; //리스트 형식으로 ctrl로 전송
+
     },
     search: async ( searchType, searchKey ) => {
         //console.log("board ser 검색조건:", searchType)
@@ -99,11 +105,12 @@ const boardUpdate= {
     upHit : (P_HIT)=> { //조회수
         dao.boardUpdate.upHit(P_HIT);
     },
-    delete : (P_ID) => { //삭제
-        dao.boardUpdate.delete(P_ID);
+    delete : async(body) => { //삭제
+        await dao.boardUpdate.delete(body);
     },
     modify : async(body) => { //수정
-        dao.boardUpdate.modify(body);
+        console.log('sevice modify',body)
+        await dao.boardUpdate.modify(body);
     }
 }
 module.exports={boardRead, boardInsert, boardUpdate}

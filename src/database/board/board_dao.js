@@ -16,6 +16,7 @@ const boardRead = {
     },
     detail: async ( P_ID ) => { //한 제목을 클릭했을때 글을 불러오는 요소 작성 필요 //일단 받아오는 것을 string으로 지정해둠
         const sql = `select * from POST where P_ID = ${ P_ID }`;
+        console.log(P_ID);
         const contentList = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
         return contentList;
     },
@@ -122,12 +123,13 @@ const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 
          (await con).execute( sql );
     },
     delete : async ( body ) =>{ //게시글 삭제 기능, 게시글의 고유번호를 받아와서 고유번호 일치하는 글을 삭제함
-        const sql = `delete from post where P_ID='${P_ID}'`;
+        console.log(body)
+        const sql = `delete from post where P_ID=${body}`;
         (await con).execute( sql );
     },
     modify : async ( body )=>{ //게시물 수정기능, 제목, 내용, 글쓴 날짜만 업데이트 가능하도록 하였고, 글 고유번호인 P_ID로 식별할 수 있도록 구현
-        const sql = `update post set P_TITLE='${P_TITLE}', P_CONTENT='${P_CONTENT}', P_DATE=sysdate where P_ID=${P_ID}; `;
-        return (await con).execute( sql, body );
+        const sql = `update post set P_TITLE='${body.title}', P_CONTENT='${body.content}', P_DATE=sysdate where P_ID=${body.P_ID} `;
+        return (await con).execute( sql );
     }
 }
 module.exports = { boardRead , boardInsert , boardUpdate };
