@@ -45,11 +45,11 @@ const views={
         //console.log("board ctrl search:", req.body.searchKey)
         const result = await ser.boardRead.search( req.body.searchType, req.body.searchKey ) 
         //console.log("board ctrl search:", result.rows[0]);
-        
+        console.log("board ctrl", result.rows[0])
         if(result.rows[0] == undefined){
             msg ="해당하는 정보가 없습니다.";
             url =`/board`
-            let message = serCom.getaMessage(msg,url);
+            let message = serCom.getMessage(msg,url);
             res.send(message);
         }else{
             return result;
