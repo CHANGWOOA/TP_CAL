@@ -1,49 +1,110 @@
-<!-- 게시글을 클릭했을때 나오는 세부 페이지 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <%- include ("../default/header") %>
-<div id="main">
-    <div style="width:600px; margin: 0 auto;">
-    <h3 style="text-align: center; margin-bottom: 10px;"> - 글 정 보- </h3>
-    <table border="1" align="center">
-        <tr>
-            <th width="100">글 번호</th> <td width="200"><%= data[0].P_ID %></td> 
-
-            <th width="100">작성자</th>  <td width="200"><%= data[0].U_NAME %></td>
-
-        </tr>
-        <tr>
-            <th>제목</th> <td><%= data[0].P_TITLE %></td> 
-            <th>등록일자</th> <td><%= data[0].P_DATE %></td>
-        </tr>
-        <tr>
-            <th>내용</th><td><%= data[0].P_CONTENT %></td> 
-        </tr>
-        <tr>
-            <td colspan="4" align="center">
-                    <input type="button" onclick="location.href=
-            '/board/modify_form/<%= data[0].P_ID %>'" value="수정하기"> 
-                    <input type="button" onclick="location.href=
-            '/board/delete/<%= data[0].P_ID %>'" value="삭제하기">
-                <input type="button" onclick="reply_form()" value="답글달기"> 
-                <input type="button" onclick="" value="리스트로 돌아가기">
-            </td>
-
-        </tr>
-        </table>
-<br> 
-<!-- 댓글 작성 폼 -->
-<div class="comment-form">
-    <h3>댓글 작성</h3>
-    <textarea id="commentContent" rows="4" placeholder="댓글 내용을 입력하세요..." required></textarea>
-    <button onclick="submitComment()">댓글 작성</button>
-</div>
-
-</body>
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <link rel="stylesheet" href="/css/boardDetail.css" />
+  </head>
+  <body>
+    <div class="board_container">
+      <div class="board_top">
+        <div class="board_title">Amazon</div>
+        <div class="board_search_box">
+          <form
+            action="/board/search"
+            method="post"
+            class="board_search_box_form"
+          >
+            <input
+              type="text"
+              name="searchKey"
+              id="searchKey"
+              placeholder="search"
+              class="board_search_box_input"
+            />
+            <select
+              class="board_search_box_select"
+              name="searchType"
+              id="searchType"
+            >
+              <option value="T_ID" id="T_ID">팀 명</option>
+              <option value="U_ID" id="U_ID">아이디</option>
+              <option value="P_TITLE" id="P_TITLE">글제목</option>
+              <option value="P_CONTENT" id="P_CONTENT">글내용</option>
+            </select>
+            <button type="submit" class="board_search_box_btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.8rem"
+                height="1.8rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M18.319 14.433A8.001 8.001 0 0 0 6.343 3.868a8 8 0 0 0 10.564 11.976l.043.045l4.242 4.243a1 1 0 1 0 1.415-1.415l-4.243-4.242zm-2.076-9.15a6 6 0 1 1-8.485 8.485a6 6 0 0 1 8.485-8.485"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+      <%- include ('../default/navBar') %>
+      <div class="board_main">
+        <div class="board_blank"></div>
+        <div class="board_content">
+          <div class="boardDetail_upper">
+            <div class="boardDetail_info">
+              <%= data[0].P_ID %>번
+              <hr />
+              <%= data[0].U_ID %>
+              <hr />
+              <%= data[0].P_DATE %>
+            </div>
+            <div class="boardDetail_controller">
+              <input
+                type="button"
+                onclick="location.href='/board/modify_form/<%= data[0].P_ID %>'"
+                value="수정하기"
+              />
+              <input
+                type="button"
+                onclick="location.href='/board/delete/<%= data[0].P_ID %>'"
+                value="삭제하기"
+              />
+              <input
+                type="button"
+                onclick="location.href='/board'"
+                value="리스트로 돌아가기"
+              />
+            </div>
+          </div>
+          <div class="boardDetail_contentBox">
+            <div><%= data[0].P_TITLE %></div>
+            <div><%= data[0].P_CONTENT %></div>
+          </div>
+          <div class="boardDetail_commented">댓글 보일 공간</div>
+          <div class="boardDetail_commentBox">
+            <form class="boardDetail_commentForm">
+              <textarea
+                class="boarDetail_comment_input"
+                id="commentContent"
+                rows="4"
+                placeholder="댓글 내용을 입력하세요..."
+                required
+              ></textarea>
+              <button class="boardDetail_commentBtn" onclick="submitComment()">
+                댓글 작성
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="board_blank"></div>
+      </div>
+    </div>
+  </body>
 </html>

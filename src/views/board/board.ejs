@@ -100,8 +100,7 @@
                 <td><%= data.P_DATE %></td>
                 <td><%= data.P_HIT %></td>
               </tr>
-              <% }) 
-            } %>
+              <% }) } %>
             </table>
             <div class="board_paging">
               <tr>
@@ -111,16 +110,16 @@
                   <% } else { %>
                   <button
                     type="button"
-                    onclick="location.href='/board/list?start=<%= start - 1 %>'"
+                    onclick="location.href='/board/?start=<%= start - 1 %>'"
                   >
                     이전
                   </button>
                   <% } for (let i = 1; i <= page; i++) { %>
-                  <a href="/board/list?start=<%= i %>"><%= i %></a>
+                  <a href="/board/?start=<%= i %>"><%= i %></a>
                   <% } if (start < page) { %>
                   <button
                     type="button"
-                    onclick="location.href='/board/list?start=<%= start + 1 %>'"
+                    onclick="location.href='/board/?start=<%= start + 1 %>'"
                   >
                     다음
                   </button>
