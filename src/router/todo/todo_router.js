@@ -2,7 +2,7 @@ const router= require("express").Router();
 const ctrl=require('../../controller/todo/todo_ctrl');
 
 router.post('/newtodo',(req,res)=>{
-    console.log('new todo data ',req.body);
+    // console.log('new todo data ',req.body);
     // let todo=ctrl.views.data();
     // console.log('new todo todo ',todo);
     // res.render('todo/newtodo');
