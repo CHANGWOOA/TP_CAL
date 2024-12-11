@@ -38,7 +38,7 @@ const loginCheck = async( body, req, res ) => {
             req.session.username = body.id;
             req.session.name = result.rows[0].U_NAME
 
-            console.log("세션네임:", req.session.name)
+            //console.log("세션네임:", req.session.name)
             res.cookie("isLogin", true)
             msg = "로그인에 성공하였습니다."
             url = "/main"
@@ -52,7 +52,7 @@ const loginCheck = async( body, req, res ) => {
 
 const register = async(body) => {
     let result = await dao.register(body)
-    console.log("memser result:",result)
+    //console.log("memser result:",result)
     let msg=``,url;
     //회원가입 진행했을 때의 결과
     if(result){

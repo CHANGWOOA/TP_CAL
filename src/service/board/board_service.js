@@ -88,12 +88,17 @@ const boardRead={
 }
 const boardInsert={ //게시글 작성
     write: async (body, username)=>{
-        //console.log("ser:", username)
+        //console.log("ser:", body.P_ID)
     let msg, url;
     const  result = await dao.boardInsert.write(body, username);
+    
+    const num = await dao.boardInsert.latest();
+    console.log ("최신숫자", num.rows[0].LATEST)
+    
     if(result !==0){
         msg = "등록 성공";
-        url = "/board";
+        url = "/board/detail/"+num.rows[0].LATEST;
+        
     }else{
         msg = "등록 실패";
         url = "/board/write_form";
