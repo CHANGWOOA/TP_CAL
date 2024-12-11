@@ -1,8 +1,7 @@
 
-const { user } = require("../../../config/database/db_config")
-const ser = require("../../service/board/board_service")
+const ser=require("../../service/board/board_service")
 const serCom= require("../../service/ser_common")
-
+// const { user } = require("../../../config/database/db_config")
 
 const views={
     list : async (req, res)=>{ //게시글 기본 리스트 가져오는 기능

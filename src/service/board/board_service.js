@@ -24,6 +24,7 @@ const boardRead={
         return { list, start, page } //dao에서 읽어온 list, 변환한 start, 총 page 값을 반환해준다.
     },
 
+
     data : async (P_ID) => { //게시물 수 업데이트 하는 기능 (클릭 할 때마다 조회수 +1)
         await dao.boardUpdate.upHit(P_ID);
 
