@@ -28,8 +28,8 @@
     <div id="todo">
         <div name="title">To-Do</div>
         <form action="/todo/newtodo" method="post" id="todoform">
-            <textarea name="title" id="title" maxlength="13" placeholder="제목" required></textarea>
-            <select name="priority" id="priority" requireds>
+            <textarea name="T_TITLE" id="title" maxlength="13" placeholder="제목" required></textarea>
+            <select name="T_PRIORITY" id="priority" required>
                 <option value="priority" selected disabled hidden >우선순위</option>
                 <option value="0">없음</option>
                 <option value="disable" disabled>-</option>
@@ -37,8 +37,8 @@
                 <option value="2">중간</option>
                 <option value="3">높음</option>
             </select>
-            <input type="hidden" name="id" value="user">
-            <input type="hidden" name="pk" value="aaa">
+            <input type="hidden" name="U_ID" value="U_ID">
+            <input type="hidden" name="T_CHECK" value="T_CHECK">
             <input type="submit" value="등록">
         </form>
             <% for (i=0;i<todo.length;i++) { %>
@@ -49,16 +49,16 @@
                                 <div id="label_btn"></div>
                             </div>
                         </label>
-                        <% if(todo[i]['priority']=='1') { %>
+                        <% if(todo[i]['T_PRIORITY']=='1') { %>
                             !
-                        <% } else if(todo[i]['priority']=='2'){ %>
+                        <% } else if(todo[i]['T_PRIORITY']=='2'){ %>
                             !! 
-                        <% } else if(todo[i]['priority']=='3') { %>
+                        <% } else if(todo[i]['T_PRIORITY']=='3') { %>
                             !!!
                             <%  } else { %>
                             <% } %>
-                        <div name="title" id=`todo_title-`><%= todo[i]['title'] %></div>
-                        <input type="checkbox" name="<%= todo[i]['pk'] %>" id="todo_checkbox" onclick="isChecked(this)">
+                        <div name="title" id="todo_title-<%= todo[i].T_ID %>"><%= todo[i]['T_TITLE'] %></div>
+                        <input type="checkbox" name="<%= todo[i]['T_ID'] %>" id="todo_checkbox" onclick="isChecked(this)">
                     </div>
                     
                     <div class="icon">
@@ -77,6 +77,7 @@
             </div>
 
             <% } %>
+        </div>
         </div>
 
 
