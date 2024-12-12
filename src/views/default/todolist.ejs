@@ -4,20 +4,30 @@
 
         const title=document.getElementById('title');
         const btn=document.getElementById('label_btn');
-        if (box.checked){
+        if (! box.checked){
             btn.innerHTML=`
 <style>
-    #label_btn {
+    #label_btnc {
         margin-left:15px;
     }
+    div[name='title'] {
+        font-style:normal;
+        color: black;
+}
 </style>`
+
         }else{
             btn.innerHTML=`
 <style>
     #label_btnc {
         margin-left:0;
     }
+    div[name='title'] {
+        font-style: italic;
+        color: rgb(100, 100, 100);
+}
 </style>`
+
         }
         console.log(box.checked);
     }
@@ -26,7 +36,7 @@
 
 <div id="inside_wrap">
     <div id="todo">
-        <div name="title">To-Do</div>
+        <div id="todo_title">To-Do</div>
         <form action="/todo/newtodo" method="post" id="todoform">
             <textarea name="T_TITLE" id="title" maxlength="13" placeholder="제목" required></textarea>
             <select name="T_PRIORITY" id="priority" required>
@@ -41,25 +51,27 @@
             <input type="hidden" name="T_CHECK" value="T_CHECK">
             <input type="submit" value="등록">
         </form>
-            <% for (i=0;i<todo.length;i++) { %>
+            
+            <% for (i=0;i<todo.rows.length;i++) { %>
                 <div id="todolist" >
                     <div id="todo_wrap">
+                        <div id="context"> 
                         <label for="todo_checkbox" >
                             <div id="lebel_bg">
                                 <div id="label_btn"></div>
                             </div>
                         </label>
-                        <% if(todo[i]['T_PRIORITY']=='1') { %>
+                        <% if(todo.rows[i]['T_PRIORITY']=='1') { %>
                             !
-                        <% } else if(todo[i]['T_PRIORITY']=='2'){ %>
+                        <% } else if(todo.rows[i]['T_PRIORITY']=='2'){ %>
                             !! 
-                        <% } else if(todo[i]['T_PRIORITY']=='3') { %>
+                        <% } else if(todo.rows[i]['T_PRIORITY']=='3') { %>
                             !!!
                             <%  } else { %>
                             <% } %>
-                        <div name="title" id="todo_title-<%= todo[i].T_ID %>"><%= todo[i]['T_TITLE'] %></div>
-                        <input type="checkbox" name="<%= todo[i]['T_ID'] %>" id="todo_checkbox" onclick="isChecked(this)">
-                    </div>
+                        <div name="title" id="todo_title-<%= todo.rows[i].T_ID %>"><%= todo.rows[i]['T_TITLE'] %></div>
+                        <input type="checkbox" name="<%= todo.rows[i]['T_ID'] %>" id="todo_checkbox" onclick="isChecked(this)">
+                    </div></div>
                     
                     <div class="icon">
                         <svg width="13px" height="13px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +85,7 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6H13V16H3V6ZM7 9H9V13H7V9Z" fill="rgb(100, 100, 100)"/>
                                 </svg>
                     </div>
+                    
 
             </div>
 

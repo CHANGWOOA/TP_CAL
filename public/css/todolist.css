@@ -3,7 +3,7 @@
     margin-top: 20px;
     float: right;
     overflow: scroll;
-    width: 30vmin; height: 80vh;
+    width: 50vmin; height: 80vh;
     background-color: white;
     border-radius: 50px;
     &::-webkit-scrollbar {
@@ -13,7 +13,7 @@
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
     }
-    & > div[name="title"]{
+    & > #todo_title{
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
@@ -21,7 +21,9 @@
     }
 
 }
-
+*::placeholder{
+    font-size: 1vmax;
+}
 #todolist {
     /* todo 목록 */
     padding: 10px;
@@ -31,12 +33,10 @@
     border-radius: 50px 50px 0 50px;
     background-color: rgb(200, 200, 200);
 
-    & > div[name="title"]{
-        width: 3vw; height: 1.5vh;
-        color: black;
-    }
     & > * {
-        margin: 15px auto 10px auto;
+        margin: 15px auto 0 auto;
+
+
     }
     & > button {
         border-radius: 20px;
@@ -51,13 +51,19 @@
         display:none ;
     }
 
-    & #todo_wrap {
+    & #todo_wrap > #context {
         display: flex;
+
+        & > div[name="title"]{
+            word-break: keep-all;
+            padding-right: 10px;
+            margin-left: 5px;
+            font-size: 1vmax;
+        }
         }
 
     & label[for='todo_checkbox'] {
         & > #lebel_bg {
-            
             width: 30px; height: 15px;
             background-color: white;
             padding: 2px;
@@ -71,8 +77,14 @@
             
         }
     }
-    .icon{
-        margin-left: 80%;
+    & .icon{
+        margin: 5px 0 0 70% ;
+        & svg {
+            padding: 5px;
+            &:hover path{
+                fill: black;
+            }
+        }
     }
 }
 

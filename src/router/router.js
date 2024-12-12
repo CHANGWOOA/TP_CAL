@@ -20,6 +20,15 @@ module.exports=(app)=>{
     app.use("/todo",todoRouter)
     app.use("/board", boardRouter)
 
+    const todoCtrl=require('../controller/todo/todo_ctrl');
+    // router.post('/main',(req,res)=>{
+    //     console.log('session post',req.session.username)
+    //     console.log(todo_ctrl.views.list())
+    //     res.render('index',{todo:todo_ctrl.views.list() ,boardList:boardList})
+    // })
+
+
+    router.get('/main', todoCtrl.views.data)
 
     router.get("/database", async(req,res) =>{
         let connection;
@@ -42,37 +51,9 @@ module.exports=(app)=>{
         res.render('login', {id : req.session.username})
     })
 
-    const todolist=[
-        {
-            title:'프로젝트 마무리 하기',
-            priority: '1',
-            pk:'aaa'
-        },
-        {
-            title:'체크박스 함께 움직임',
-            priority: '2',
-            pk:'bbb'
-        },
-        {
-            title:'수정 필요',
-            priority: '0',
-            pk:'ccc'
+    
 
-        }
-    ];
-    const boardList=[{
-        title:'boardtitle',
-        url:'aaa'
-    }];
-
-    const todo_ctrl=require('../controller/todo/todo_ctrl')
-    router.post('/main',(req,res)=>{
-        res.render('index',{todo:todolist,boardList:boardList})
-    })
-
-    router.get('/main',(req,res)=>{
-        res.render('index',{todo:todolist,boardList:boardList})
-    })
+    
 
     return router;
 }
