@@ -11,7 +11,7 @@ const views={
 
         //console.log("b ctrl views:", data.list, data.start, data.page)
 
-        console.log("b ctrl views:", data.list)
+        //console.log("b ctrl views:", data.list)
     
     }, //결과값을 data로 정의함
     writeForm : (req, res) => {
@@ -34,7 +34,7 @@ const views={
 
     },
     modifyForm : async (req, res) => {
-        console.log('req params',req.params.P_ID)
+        //console.log('req params',req.params.P_ID)
         const data= await ser.boardRead.detail(req.params.P_ID);
         // console.log('modify form : ',data)
         res.render("board/modify_form", {data});
@@ -42,25 +42,27 @@ const views={
     },
     search : async( req, res ) =>{ //글 검색하는 기능
         //console.log("board ctrl search:", req.body.searchKey)
-        const result = await ser.boardRead.search( req.body.searchType, req.body.searchKey ) 
+        const result = await ser.boardRead.search( req.body.searchType, req.body.searchKey, req.query.start ) 
+
         //console.log("board ctrl search:", result.rows[0]);
-        
-        if(result.rows[0] == undefined){
+        //console.log("board ctrl", result)
+        if(result == undefined){
             msg ="해당하는 정보가 없습니다.";
             url =`/board`
-            let message = serCom.getaMessage(msg,url);
+            let message = serCom.getMessage(msg,url);
             res.send(message);
         }else{
-            return result;
+            res.render("board/board", {list:result, start: result.start, page: result.page});
         }
     },
     line : async (req, res) => {
         //console.log("board ctrl lineType:", req.body.lineType)
-        const result = await ser.boardRead.line (req.body.start, req.body.lineType)
-        res.render("board/board_line", { list: result.list, start:result.start, page: result.pageresult })
-        console.log("board ctrl result:", result)
+        const data = await ser.boardRead.line (req.body.start, req.body.lineType)
+        console.log("line up", data)
+        res.render("board/board", { list: data, start :data.start, page: data.pageresult })
+        //console.log("board ctrl result:", result)
         
-        return result;
+        return data;
     },
     data : async(req, res)=>{
         //const data= await ser.boardRead.data(req.params.P_TITLE);
@@ -72,7 +74,10 @@ const process= {
     write : async (req, res) => { //게시글 작성
         //console.log("ctrl: ",req.body)
         const msg = await ser.boardInsert.write(req.body, req.session.username);
-        res.send(msg)
+        res.send(msg);
+        
+        
+        
     },
     modify : async(req, res) => { 
         console.log('board ctrl',req.body);
