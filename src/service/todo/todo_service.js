@@ -2,19 +2,19 @@ const dao= require("../../database/todo/todo_dao")
 const serCom = require("../ser_common")
 
 const todoRead= {
-    list : async() => {
-        let todo = await dao.todoRead.list();
+    list : async(username) => {
+        let todo = await dao.todoRead.list(username);
         // console.log('service',todo)
         return todo;
     }
 }
 const todoInsert= { //투두리스트 작성
-    write : async(body) => {
+    write : async(body, username) => {
         let msg, url;
-        const  result = await dao.todoWrite.write(body);
+        const  result = await dao.todoWrite.write(body, username);
         if(result !==0){
             msg = "등록 성공";
-            url = "";
+            url = "/todo";
         }else{
             msg = "등록 실패";
             url = "";
