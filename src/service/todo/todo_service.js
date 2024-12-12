@@ -28,6 +28,36 @@ const todoUpdate= {
     },
     modify : () => { //투두리스트 수정
 
+    },
+    pUpdate : async (body, username) =>{
+        //기존 이름과 제목이 똑같은 것만 업데이트하고,
+        //업데이트 한 후에는 다시 리스트를 불러와서 보여준다
+        let result;
+        let list;
+            result = await dao.todoUpdate.priority (body, username)
+        if (result ==1){
+            list = await dao.todoRead (username);
+            return list;
+        }else {
+            let msg = "수정 실패"
+            let url = "/todo"
+            return serCom.getMessage(msg, url);
+        }
+
+    },
+    complete : async (body, username) => {
+       let result;
+       let list;
+       result = await dao.todoWrite.complete (body, username) 
+
+       if (result == 1){
+        list = await dao.todoRead (username);
+        return list;
+       }else {
+        let msg = "체크 실패"
+        let url = "/todo"
+        return serCom.getMessage(msg, url);
+       }
     }
 }
 module.exports= {todoRead, todoInsert, todoUpdate}

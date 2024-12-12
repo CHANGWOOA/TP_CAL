@@ -19,6 +19,14 @@ const process= {
     },
     modify : () => {
 
+    },
+    pUpdate : async (req, res) => {
+        const result = await ser.todoUpdate.pUpdate (req.session.username)
+
+    },
+    complete : async (req, res) => {
+        const result = await ser.todoUpdate.complete (req.body, req.username)
+        res.send("업데이트 완료")
     }
 }
 module.exports= {views, process}

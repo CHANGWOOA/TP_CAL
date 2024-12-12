@@ -9,4 +9,6 @@ router.post("/newtodo", ctrl.process.write);
 //router.post("/write", ctrl.process.write);
 router.get("/", ctrl.views.list);
 
+router.post("/update", ctrl.process.pUpdate); //중요도 업데이트 기능
+
 module.exports=router;

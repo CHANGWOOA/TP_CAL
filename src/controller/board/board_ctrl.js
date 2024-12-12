@@ -58,7 +58,7 @@ const views={
     line : async (req, res) => {
         //console.log("board ctrl lineType:", req.body.lineType)
         const data = await ser.boardRead.line (req.body.start, req.body.lineType)
-        console.log("line up", data)
+        //console.log("line up", data)
         res.render("board/board", { list: data, start :data.start, page: data.pageresult })
         //console.log("board ctrl result:", result)
         
