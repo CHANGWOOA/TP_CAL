@@ -1,36 +1,37 @@
 <script>
-    const isChecked=(box)=>{
-        console.log(box);
+    const isChecked=(todo)=>{
+        console.log('todo',todo);
 
         const title=document.getElementById('title');
         const btn=document.getElementById('label_btn');
-        if (! box.checked){
-            btn.innerHTML=`
-<style>
-    #label_btnc {
-        margin-left:15px;
-    }
-    div[name='title'] {
-        font-style:normal;
-        color: black;
-}
-</style>`
+//         if (! box.checked){
+//             btn.innerHTML=`
+// <style>
+//     #label_btnc {
+//         margin-left:15px;
+//     }
+//     div[name='title'] {
+//         font-style:normal;
+//         color: black;
+// }
+// </style>`
 
-        }else{
-            btn.innerHTML=`
-<style>
-    #label_btnc {
-        margin-left:0;
-    }
-    div[name='title'] {
-        font-style: italic;
-        color: rgb(100, 100, 100);
-}
-</style>`
+//         }else{
+//             btn.innerHTML=`
+// <style>
+//     #label_btnc {
+//         margin-left:0;
+//     }
+//     div[name='title'] {
+//         font-style: italic;
+//         color: rgb(100, 100, 100);
+// }
+// </style>`
 
-        }
-        console.log(box.checked);
+//         }
+        
     }
+
 </script>
 
 
@@ -52,6 +53,8 @@
             <input type="submit" value="등록">
         </form>
             <% for (i=0;i<todo.length;i++) { %>
+
+
                 <div id="todolist" >
                     <div id="todo_wrap">
                         <div id="context"> 
@@ -60,6 +63,8 @@
                                 <div id="label_btn"></div>
                             </div>
                         </label>
+                    <% console.log(todo[i])%>
+                            <input type="checkbox" id="todo_checkbox" onclick="isChecked(<% todo[i] %>)">
                         <div>
                         <% if(todo[i]['priority']=='1') { %>
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +83,8 @@
                                 </svg>
                         <% } %>
                         </div>
-                            <div name="title" id=`todo_title`><%= todo[i]['title'] %></div>
-                        <input type="checkbox" name="<%= todo[i]['pk'] %>" id="todo_checkbox" onclick="isChecked(this)">
+                        <div name="title" id=`todo_title`><%= todo[i]['title'] %></div>
+                    
                         </div>
                         <div class="icon">
                             <a href="/todo/modify">
