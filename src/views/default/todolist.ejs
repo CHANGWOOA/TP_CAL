@@ -1,34 +1,40 @@
 <script>
-    const isChecked=(todo)=>{
+    const isChecked=(box,todo)=>{
         console.log('todo',todo);
 
         const title=document.getElementById('title');
+        const list=document.getElementById('todo_warp');
         const btn=document.getElementById('label_btn');
-//         if (! box.checked){
-//             btn.innerHTML=`
-// <style>
-//     #label_btnc {
-//         margin-left:15px;
-//     }
-//     div[name='title'] {
-//         font-style:normal;
-//         color: black;
-// }
-// </style>`
 
-//         }else{
-//             btn.innerHTML=`
-// <style>
-//     #label_btnc {
-//         margin-left:0;
-//     }
-//     div[name='title'] {
-//         font-style: italic;
-//         color: rgb(100, 100, 100);
-// }
-// </style>`
 
-//         }
+        if (! box.checked){
+            btn.innerHTML=`
+<style>
+    #label_btn {
+        margin-left:0;
+
+    }
+    div[name='title'] {
+        font-style:normal;
+        color: black;
+}
+    #list: {
+    }
+</style>`
+
+        }else{
+            btn.innerHTML=`
+<style>
+    #label_btn {
+        margin-left:15px;
+    }
+    div[name='title'] {
+        font-style: italic;
+        color: rgb(100, 100, 100);
+}
+</style>`
+
+        }
         
     }
 
@@ -63,8 +69,9 @@
                                 <div id="label_btn"></div>
                             </div>
                         </label>
-                    <% console.log(todo[i])%>
-                            <input type="checkbox" id="todo_checkbox" onclick="isChecked(<% todo[i] %>)">
+                        <% console.log(i,'todo',todo[i]) %>
+
+                            <input type="checkbox" id="todo_checkbox" onclick="isChecked(this,'<%= todo %>')">
                         <div>
                         <% if(todo[i]['priority']=='1') { %>
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -12,7 +12,8 @@ router.post('/newtodo',(req,res)=>{
 router.get('/',async(req,res)=>{
     let todolist=await ctrl.views.data();
     // console.log('zz',todolist);
-    res.render('todo/todo',{todo:todolist})
+    let members=['aaa','bbb','ccc']
+    res.render('todo/todo',{todo:todolist, members:members})
 });
 
 module.exports=router;
