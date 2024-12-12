@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/todolist.css">
-
+    <script>
+        const popup=()=>{
+            let msg='밥 먹어';
+            Document.getElementById('msg').innerHTML=msg;
+        }
+    </script>
 </head>
 <body>
     <div id="wrap">
         <%- include ('./default/header') %>
+        <div id="msg" onload="popup()"></div>
         <div id="inside_wrap">
             <%- include ('./default/todolist') %>
             <div id="left">
@@ -19,7 +25,6 @@
                 <%- include ('./default/calendar') %>
                 <div id="board">
                     <div name="title">Borad</div>
-
                 </div>
             </div>
         </div>

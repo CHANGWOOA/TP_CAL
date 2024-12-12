@@ -21,6 +21,7 @@ const timeModify = ( list ) => { //날짜데이터를 localeString 형식으로 
         
     })
     return list;
+
 }
 const dateSimple = ( list ) => { //날짜 데이터를 간단한 형식으로 돌려주는 함수
     list = list.map ( data => {
@@ -34,3 +35,4 @@ const dateSimple = ( list ) => { //날짜 데이터를 간단한 형식으로 �
 
 
 module.exports={sessionCheck, getMessage, timeModify, dateSimple}
+

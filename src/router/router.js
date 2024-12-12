@@ -4,13 +4,22 @@ module.exports=(app)=>{
     app.use(express.json());
 
     const router=require('express').Router();
-    
+
     const bodyParser = require("body-parser")
     app.use(bodyParser.urlencoded({ extended:true }))//bodyParser에 extended:true 추가
     app.use(bodyParser.json())
     
     const memberRouter = require("./member/member_router")
+    const todoRouter=require("./todo/todo_router")
+    const boardRouter = require("./board/board_router");
+    // const calRouter=require('./calendar/calendar_router');
+
+
+
     app.use("/member", memberRouter)
+    app.use("/todo",todoRouter)
+    app.use("/board", boardRouter)
+
 
     router.get("/database", async(req,res) =>{
         let connection;
@@ -18,11 +27,6 @@ module.exports=(app)=>{
         const result = await connection.execute("select * from ALLUSER")
         res.json(result.rows);
     })
-    
-
-    const boardRouter = require("./board/board_router");
-    app.use("/board", boardRouter)
-    
     router.get('/calendar',(req,res)=>{
         res.render('calendar')
     })
@@ -39,25 +43,36 @@ module.exports=(app)=>{
     })
 
     const todolist=[
-        {title:'바보',
-            memo:'멍청이',
-            date:'집에 보내줘'
-        }
-    ]
-    const boardList=[
         {
-            title:'board',
-            url:'/zzz'
+            title:'프로젝트 마무리 하기',
+            priority: '1',
+            pk:'aaa'
+        },
+        {
+            title:'체크박스 함께 움직임',
+            priority: '2',
+            pk:'bbb'
+        },
+        {
+            title:'수정 필요',
+            priority: '0',
+            pk:'ccc'
+
         }
-    ]
+    ];
+    const boardList=[{
+        title:'boardtitle',
+        url:'aaa'
+    }];
+
+    const todo_ctrl=require('../controller/todo/todo_ctrl')
     router.post('/main',(req,res)=>{
-        res.render('index',{todolist:todolist,boardList:boardList})
+        res.render('index',{todo:todolist,boardList:boardList})
     })
 
     router.get('/main',(req,res)=>{
-        res.render('index',{todolist:todolist,boardList:boardList})
+        res.render('index',{todo:todolist,boardList:boardList})
     })
-
 
     return router;
 }
