@@ -54,7 +54,18 @@ const todoWrite = {
     delete : async ( body ) => { //단순 삭제
         const sql = `delete from TODOLIST where T_TITLE = '${body.title}'`
     }
-    
-
 }
-module.exports = { todoRead, todoWrite }
+
+    const todoUpdate = { // to do list 수정, 삭제
+        delete : async ( body ) =>{
+            //console.log("dao todo 데이터", body);
+            const sql = `delete from TODOLIST where T_TITLE='${body.T_TITLE}'`;
+            return (await con).execute( sql );
+        },
+        modify : async ( body )=>{
+            const sql = `update TODOLIST set T_TITLE='${body.T_TITLE}', T_PRIORITY='${body.T_PRIORITY}' WHERE T_id=${body.T_ID} `;
+            return (await con).execute( sql );
+        }
+    }
+
+module.exports = { todoRead, todoWrite, todoUpdate }

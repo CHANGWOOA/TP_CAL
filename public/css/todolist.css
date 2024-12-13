@@ -73,6 +73,12 @@
     }
     .icon{
         margin-left: 80%;
+        & > form{
+            display: inline;
+            background-color: rgba(255, 255, 255, 0);
+            margin: 0;
+            padding: 0;
+        }
     }
 }
 

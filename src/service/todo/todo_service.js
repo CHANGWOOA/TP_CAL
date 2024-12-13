@@ -22,12 +22,14 @@ const todoInsert= { //투두리스트 작성
         return serCom.getMessage(msg, url);
     }
 }
-const todoUpdate= {
-    delete : () => { //투두리스트 삭제
-
+const todoUpdate= { //to do list 수정, 삭제
+    modify : async(body) => {
+        console.log('sevice modify', body)
+        await dao.todoUpdate.modify(body);
     },
-    modify : () => { //투두리스트 수정
-
+    delete : async(body) => {
+        //console.log("todoservice data : ", body);
+        await dao.todoUpdate.delete(body);
     }
 }
 module.exports= {todoRead, todoInsert, todoUpdate}
