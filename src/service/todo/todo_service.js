@@ -4,7 +4,7 @@ const serCom = require("../ser_common")
 const todoRead= {
     list : async(username) => {
         let todo = await dao.todoRead.list(username);
-        // console.log('service',todo)
+        //console.log('service',todo)
         return todo;
     }
 }
@@ -30,6 +30,37 @@ const todoUpdate= { //to do list 수정, 삭제
     delete : async(body) => {
         //console.log("todoservice data : ", body);
         await dao.todoUpdate.delete(body);
+
+    },
+    pUpdate : async (body, username) =>{
+        //기존 이름과 제목이 똑같은 것만 업데이트하고,
+        //업데이트 한 후에는 다시 리스트를 불러와서 보여준다
+        let result;
+        let list;
+            result = await dao.todoUpdate.priority (body, username)
+        if (result ==1){
+            list = await dao.todoRead (username);
+            return list;
+        }else {
+            let msg = "수정 실패"
+            let url = "/todo"
+            return serCom.getMessage(msg, url);
+        }
+
+    },
+    complete : async (body, username) => {
+       let result;
+       let list;
+       result = await dao.todoWrite.complete (body, username) 
+
+       if (result == 1){
+        list = await dao.todoRead (username);
+        return list;
+       }else {
+        let msg = "체크 실패"
+        let url = "/todo"
+        return serCom.getMessage(msg, url);
+       }
     }
 }
 module.exports= {todoRead, todoInsert, todoUpdate}
