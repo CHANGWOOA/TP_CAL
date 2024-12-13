@@ -106,7 +106,7 @@
             <input type="submit" value="등록">
         </form>
             <% console.log (todo) %>
-            <% for (i=0;i<todo.rows.length;i++) { %>
+            <% for (i=0;i<todo.length;i++) { %>
                 <div id="todolist" >
                     <div id="todo_wrap">
                         <div id="context"> 
@@ -115,20 +115,20 @@
                                 <div id="label_btn"></div>
                             </div>
                         </label>
-                        <% if(todo.rows[i]['T_PRIORITY']=='1') { %>
+                        <% if(todo[i]['T_PRIORITY']=='1') { %>
                             !
-                        <% } else if(todo.rows[i]['T_PRIORITY']=='2'){ %>
+                        <% } else if(todo[i]['T_PRIORITY']=='2'){ %>
                             !! 
-                        <% } else if(todo.rows[i]['T_PRIORITY']=='3') { %>
+                        <% } else if(todo[i]['T_PRIORITY']=='3') { %>
                             !!!
                             <%  } else { %>
                             <% } %>
-                        <div name="title" id="todo_title-<%= todo.rows[i].T_ID %>"checked><%= todo.rows[i]['T_TITLE'] %></div>
-                        <input type="checkbox" name="<%= todo.rows[i]['T_ID'] %>" id="todo_checkbox" onclick="isChecked()">
+                        <div name="title" id="todo_title-<%= todo[i].T_ID %>"checked><%= todo[i]['T_TITLE'] %></div>
+                        <input type="checkbox" name="<%= todo[i]['T_ID'] %>" id="todo_checkbox" onclick="isChecked()">
                     </div></div>
                     
                     <div class="icon">
-                        <button id="edit-btn-<%= todo.rows[i]['T_ID'] %>" onclick="enableEdit(<%= todo.rows[i]['T_ID'] %>)">
+                        <button id="edit-btn-<%= todo[i]['T_ID'] %>" onclick="enableEdit(<%= todo[i]['T_ID'] %>)">
                             <svg  width="13px" height="13px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" >
                                 <path d="M8.29289 3.70711L1 11V15H5L12.2929 7.70711L8.29289 3.70711Z" fill="rgb(100, 100, 100)"/>
                                 <path d="M8.29289 3.70711L1 11V15H5L12.2929 7.70711L8.29289 3.70711Z" fill="rgb(100, 100, 100)"/>
