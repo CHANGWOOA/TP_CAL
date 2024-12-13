@@ -48,33 +48,14 @@
     function saveEdit(todoId) {
         const todoTitle = document.getElementById(`todo_title-${todoId}`);
         const newTitle = todoTitle.textContent; // 수정된 텍스트 가져오기
-<<<<<<< HEAD
-=======
-        // const selectedInput = document.getElementById(`todo_title-${todoId}':checked`);
-        // // const selectedInput = document.querySelector(`input[id='todo_title-${todoId}']:checked`);
-        // console.log('id todo',document.getElementById(`todo_title-${todoId}:checked`));
-        // console.log('seletedInput',selectedInput);
->>>>>>> origin/FE_todolist
-
-
-        // if (selectedInput) {
-        // const newPriority = selectedInput.value;
-        // console.log(newPriority);
-        // } else {
-        // console.log("선택된 항목이 없습니다.");
-        // }
-        // 수정된 내용을 서버로 전송
+//수정된 내용을 서버로 전송
         fetch('/todo/modify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 T_ID: todoId,
-<<<<<<< HEAD
-
                 T_TITLE: newTitle
-=======
-                T_TITLE: newTitle,
->>>>>>> origin/FE_todolist
+
                 // T_PRIORITY: newPriority
             })
         })
@@ -177,5 +158,6 @@
             </div>
 
             <% } %>
+
         </div>
-        </div>
+    </div>
