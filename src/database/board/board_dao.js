@@ -32,14 +32,14 @@ const boardRead = {
     },
     serTeam : async ( searchKey ) =>{//Team 명으로 검색하는 기능
         
-        const sql = `select * from POST where T_ID = '${ searchKey }'`
+        const sql = `select * from POST where T_ID = '%${ searchKey }%'`
         const result = await (await con).execute( sql );
         //console.log(result)
             return result;
         }
     ,
     serUID : async ( searchKey ) => { //유저의 아이디로 검색하는 기능
-        const sql = `select * from POST where U_ID = '${searchKey}'`
+        const sql = `select * from POST where U_ID = '%${searchKey}%'`
         //console.log(sql)
         const result = await (await con).execute (sql);
         //console.log("board dao:", result)

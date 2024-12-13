@@ -1,9 +1,19 @@
 <script>
+<<<<<<< HEAD
+=======
+    function isChecked() {
+        const todo=<%- JSON.stringify(todo) %>;
+        console.log('todo',todo);
+    }
+>>>>>>> origin/FE_todolist
     // 수정 상태로 전환
     function enableEdit(todoId) {
         const todoTitle = document.getElementById(`todo_title-${todoId}`);
         const editBtn = document.getElementById(`edit-btn-${todoId}`);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/FE_todolist
         const deleteBtn = document.getElementById(`delete-btn-${todoId}`);
 
         console.log(editBtn)
@@ -16,7 +26,11 @@
 
         try {
             editBtn.innerHTML = `
+<<<<<<< HEAD
             <svg width="13px" height="13px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+=======
+            <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+>>>>>>> origin/FE_todolist
     <g>
         <path fill="none" d="M0 0h24v24H0z"/>
         <path fill="rgb(100, 100, 100)" d="M18 21v-8H6v8H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h13l4 4v13a1 1 0 0 1-1 1h-2zm-2 0H8v-6h8v6z"/>
@@ -34,15 +48,33 @@
     function saveEdit(todoId) {
         const todoTitle = document.getElementById(`todo_title-${todoId}`);
         const newTitle = todoTitle.textContent; // 수정된 텍스트 가져오기
+<<<<<<< HEAD
+=======
+        // const selectedInput = document.getElementById(`todo_title-${todoId}':checked`);
+        // // const selectedInput = document.querySelector(`input[id='todo_title-${todoId}']:checked`);
+        // console.log('id todo',document.getElementById(`todo_title-${todoId}:checked`));
+        // console.log('seletedInput',selectedInput);
+>>>>>>> origin/FE_todolist
 
+
+        // if (selectedInput) {
+        // const newPriority = selectedInput.value;
+        // console.log(newPriority);
+        // } else {
+        // console.log("선택된 항목이 없습니다.");
+        // }
         // 수정된 내용을 서버로 전송
         fetch('/todo/modify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 T_ID: todoId,
+<<<<<<< HEAD
 
                 T_TITLE: newTitle
+=======
+                T_TITLE: newTitle,
+>>>>>>> origin/FE_todolist
                 // T_PRIORITY: newPriority
             })
         })
@@ -57,7 +89,6 @@
                 try {
                     editBtn.innerHTML = `
 <svg width="13px" height="13px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    
     <title>save-floppy</title>
     <desc>Created with Sketch Beta.</desc>
     <defs>
@@ -77,7 +108,6 @@
         } catch (error) {
             console.log(error)
         }
-    
             } else {
                 alert("수정 실패!");
             }
@@ -93,18 +123,19 @@
 
             <select name="T_PRIORITY" id="priority" required >
                 <option value="priority" selected disabled hidden>우선순위</option>
+
                 <option value="0">없음</option>
                 <option value="1">낮음</option>
                 <option value="2">중간</option>
                 <option value="3">높음</option>
             </select>
             <input type="hidden" name="U_ID" value="U_ID">
-
             <input type="hidden" name="T_CHECK" value="T_CHECK">
             <input type="submit" value="등록">
         </form>
             <% console.log (todo) %>
             <% for (i=0;i<todo.length;i++) { %>
+
                 <div id="todolist" >
                     <div id="todo_wrap">
                         <div id="context"> 
@@ -127,6 +158,7 @@
                     
                     <div class="icon">
                         <button id="edit-btn-<%= todo[i]['T_ID'] %>" onclick="enableEdit(<%= todo[i]['T_ID'] %>)">
+
                             <svg  width="13px" height="13px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" >
                                 <path d="M8.29289 3.70711L1 11V15H5L12.2929 7.70711L8.29289 3.70711Z" fill="rgb(100, 100, 100)"/>
                                 <path d="M8.29289 3.70711L1 11V15H5L12.2929 7.70711L8.29289 3.70711Z" fill="rgb(100, 100, 100)"/>

@@ -112,7 +112,7 @@ const boardInsert={ //게시글 작성
     const  result = await dao.boardInsert.write(body, username);
     
     const num = await dao.boardInsert.latest();
-    console.log ("최신숫자", num.rows[0].LATEST)
+    //console.log ("최신숫자", num.rows[0].LATEST)
     
     if(result !==0){
         msg = "등록 성공";
@@ -133,7 +133,7 @@ const boardUpdate= {
         await dao.boardUpdate.delete(body);
     },
     modify : async(body) => { //수정
-        console.log('sevice modify',body)
+        //console.log('sevice modify',body)
         await dao.boardUpdate.modify(body);
     }
 }

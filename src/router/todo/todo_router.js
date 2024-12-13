@@ -9,8 +9,6 @@ router.post("/newtodo", ctrl.process.write);
 //router.post("/write", ctrl.process.write);
 router.get("/", ctrl.views.list);
 
-
-
 router.post("/delete", ctrl.process.delete); //to do list 삭제
 router.post("/modify", ctrl.process.modify); //to do list 수정
 

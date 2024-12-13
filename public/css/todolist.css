@@ -79,7 +79,12 @@
     }
     & .icon{
         margin: 5px 0 0 70% ;
-        & svg {
+        & button {
+            width: 15px; height: 15px;
+            background-color: rgba(255, 255, 255, 0);
+            border-style: none;
+        }
+        & > svg {
             padding: 5px;
             &:hover path{
                 fill: black;

@@ -58,7 +58,7 @@ const views={
     line : async (req, res) => {
         //console.log("board ctrl lineType:", req.body.lineType)
         const data = await ser.boardRead.line (req.body.start, req.body.lineType)
-        console.log("line up", data)
+        //console.log("line up", data)
         res.render("board/board", { list: data, start :data.start, page: data.pageresult })
         //console.log("board ctrl result:", result)
         
@@ -80,7 +80,7 @@ const process= {
         
     },
     modify : async(req, res) => { 
-        console.log('board ctrl',req.body);
+        //console.log('board ctrl',req.body);
         await ser.boardUpdate.modify(req.body)
         res.redirect("/board/detail/"+req.body.P_ID);
 
@@ -91,7 +91,7 @@ const process= {
     //     res.redirect("/board")
     // }
     delete: async (req, res) => {
-        console.log("삭제 요청 P_ID:", req.params.P_ID);  // P_ID 값을 확인
+        //console.log("삭제 요청 P_ID:", req.params.P_ID);  // P_ID 값을 확인
         const P_ID = req.params.P_ID;  // URL에서 P_ID 가져오기
     
         try {
