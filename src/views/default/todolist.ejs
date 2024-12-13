@@ -19,7 +19,7 @@
 
         try {
             editBtn.innerHTML = `
-            <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="13px" height="13px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <g>
         <path fill="none" d="M0 0h24v24H0z"/>
         <path fill="rgb(100, 100, 100)" d="M18 21v-8H6v8H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h13l4 4v13a1 1 0 0 1-1 1h-2zm-2 0H8v-6h8v6z"/>
@@ -37,25 +37,14 @@
     function saveEdit(todoId) {
         const todoTitle = document.getElementById(`todo_title-${todoId}`);
         const newTitle = todoTitle.textContent; // 수정된 텍스트 가져오기
-        // const selectedInput = document.getElementById(`todo_title-${todoId}':checked`);
-        // // const selectedInput = document.querySelector(`input[id='todo_title-${todoId}']:checked`);
-        // console.log('id todo',document.getElementById(`todo_title-${todoId}:checked`));
-        // console.log('seletedInput',selectedInput);
 
-
-        // if (selectedInput) {
-        // const newPriority = selectedInput.value;
-        // console.log(newPriority);
-        // } else {
-        // console.log("선택된 항목이 없습니다.");
-        // }
         // 수정된 내용을 서버로 전송
         fetch('/todo/modify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 T_ID: todoId,
-                T_TITLE: newTitle,
+                T_TITLE: newTitle
                 // T_PRIORITY: newPriority
             })
         })
@@ -70,7 +59,7 @@
 
                 try {
                     editBtn.innerHTML = `
-<svg width="15px" height="15px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="13px" height="13px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     
     <title>save-floppy</title>
     <desc>Created with Sketch Beta.</desc>
@@ -116,7 +105,7 @@
             <input type="hidden" name="T_CHECK" value="T_CHECK">
             <input type="submit" value="등록">
         </form>
-            
+            <% console.log (todo) %>
             <% for (i=0;i<todo.rows.length;i++) { %>
                 <div id="todolist" >
                     <div id="todo_wrap">
