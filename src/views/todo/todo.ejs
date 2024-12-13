@@ -14,7 +14,15 @@
 
         <div id="inside_wrap">
             <%- include ('../default/todolist') %>
-            <div></div>
+            <div>
+                <input list="mem" id="mem_todolist" name="mem-choice" />
+
+                <datalist id="mem">
+                    <% for (i=0;i<members.length;i++) { %>
+                        <option value="<%=  members[i] %>"></option>
+                        <% } %>
+                </datalist>
+            </div>
         </div>
 
     </div>
