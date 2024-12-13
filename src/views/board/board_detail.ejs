@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <link rel="stylesheet" href="/css/boardDetail.css" />
+  </head>
+  <body>
+    <div class="board_container">
+      <div class="board_top">
+        <div class="board_title">Amazon</div>
+        <div class="board_search_box">
+          <form
+            action="/board/search"
+            method="post"
+            class="board_search_box_form"
+          >
+            <input
+              type="text"
+              name="searchKey"
+              id="searchKey"
+              placeholder="search"
+              class="board_search_box_input"
+            />
+            <select
+              class="board_search_box_select"
+              name="searchType"
+              id="searchType"
+            >
+              <option value="T_ID" id="T_ID">팀 명</option>
+              <option value="U_ID" id="U_ID">아이디</option>
+              <option value="P_TITLE" id="P_TITLE">글제목</option>
+              <option value="P_CONTENT" id="P_CONTENT">글내용</option>
+            </select>
+            <button type="submit" class="board_search_box_btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.8rem"
+                height="1.8rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M18.319 14.433A8.001 8.001 0 0 0 6.343 3.868a8 8 0 0 0 10.564 11.976l.043.045l4.242 4.243a1 1 0 1 0 1.415-1.415l-4.243-4.242zm-2.076-9.15a6 6 0 1 1-8.485 8.485a6 6 0 0 1 8.485-8.485"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+      <%- include ('../default/navBar') %>
+      <div class="board_main">
+        <div class="board_blank"></div>
+        <div class="board_content">
+          <div class="boardDetail_upper">
+            <div class="boardDetail_info">
+              <%= data[0].P_ID %>번
+              <hr />
+              <%= data[0].U_ID %>
+              <hr />
+              <%= data[0].P_DATE %>
+            </div>
+            <div class="boardDetail_controller">
+              <input
+                type="button"
+                onclick="location.href='/board/modify_form/<%= data[0].P_ID %>'"
+                value="수정하기"
+              />
+              <input
+                type="button"
+                onclick="location.href='/board/delete/<%= data[0].P_ID %>'"
+                value="삭제하기"
+              />
+              <input
+                type="button"
+                onclick="location.href='/board'"
+                value="리스트로 돌아가기"
+              />
+            </div>
+          </div>
+          <div class="boardDetail_contentBox">
+            <div><%= data[0].P_TITLE %></div>
+            <div><%= data[0].P_CONTENT %></div>
+          </div>
+          <div class="boardDetail_commented">
+            <!--댓글 테이블 예시 , 없으면 안 보이게도 추가해야 함-->
+            <div class="boardDetail_info">
+              
+              <table border="1" style="width: 100%; border-collapse: collapse;"> <!--댓글 리스트-->
+                <% if (replyList.length==0) { %>
+                  <tr><!--만약에 댓글에 관한 리스트의 길이가 0이면 x-->
+                    <td colspan="2">데이터가 없습니다</td>
+                  </tr>
+                <% } else { %>
+                <% replyList.forEach(replyList => { %>
+                  <!--댓글 리스트가 있으면-->
+                  <tr>
+                    <td colspan="2"><%= replyList.R_CONTENT %></td>
+                  </tr>
+                  <tr>
+                    <td>작성자 : <%= replyList.U_ID %></td>
+                    <td>작성일 : <%= replyList.R_DATE %></td>
+                  </tr>
+                <% })
+              }; %>
+              </table>
+            </div>
+            <!-- 여기까지-->    
+          </div>
+          <div class="boardDetail_commentBox">
+            <form method="post" action="/board/detail/<%= data[0].P_ID %>/register">
+              <!-- 보드/디테일/게시글 번호 /레디스터(댓글 등록 라우터) -->
+              <textarea
+                class="boarDetail_comment_input"
+                name="content"
+                id="commentContent"
+                rows="4"
+                placeholder="댓글 내용을 입력하세요..."
+                required
+              ></textarea><!-- name: content 내용을 받아옴-->
+              <button class="boardDetail_commentBtn">
+              댓글 작성
+              </button>
+            </form>
+            
+          </div>
+        </div>
+        <div class="board_blank"></div>
+      </div>
+    </div>
+  </body>
+</html>

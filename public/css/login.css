@@ -1,0 +1,82 @@
+/*전체 스타일 - 여백 제거*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+/*로그인 페이지 CSS*/
+.login_container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.login_inform {
+  height: 100vh;
+  width: 60%;
+}
+.login_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 40%;
+  background-color: green;
+}
+.login_main {
+  width: 70%;
+  height: 80%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.login_title {
+  width: 100%;
+  font-size: 6vh;
+  font-weight: bolder;
+  color: green;
+  text-align: center;
+}
+.login_form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_input {
+  width: 20rem;
+  height: 4rem;
+  border-radius: 20px;
+  margin: 1rem 0;
+  font-size: larger;
+  padding-left: 1rem;
+}
+.login_button {
+  width: 20rem;
+  height: 4rem;
+  border-radius: 20px;
+  font-size: large;
+}
+.login_form .login_button:nth-child(3) {
+  background-color: green;
+  color: white;
+  border: none;
+}
+.login_form .login_button:nth-child(3):hover {
+  background-color: rgb(0, 98, 0);
+}
+.login_form .login_button:nth-child(4) {
+  margin-top: 1rem;
+  background-color: white;
+  color: green;
+  border: 2px solid green;
+}
+.login_form .login_button:nth-child(4):hover {
+  background-color: rgba(0, 128, 0, 0.311);
+}

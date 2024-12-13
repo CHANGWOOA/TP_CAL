@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="main">
+<div style="width:300px; margin: 0 auto;">
+    <form action="/board/modify" enctype="multipart/form-data" method="post" >
+        <% console.log('data',data) %>
+        <input type="hidden" name="P_ID" value="<%= data[0].P_ID %>">
+        제목	<input type="text" size="30" name="title" value="<%= data[0].P_TITLE %>"><hr>
+        내용	<textarea rows="5" cols="30" name="content"><%=data[0].P_CONTENT%></textarea>
+        <hr>
+        <input type="submit" value="수정하기">
+        <input type="button" onclick="history.back()" value="이전으로 돌아가기">
+    </form>
+</div>
+</div>
+
+</body>
+</html>

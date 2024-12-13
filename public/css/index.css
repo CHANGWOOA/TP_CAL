@@ -1,0 +1,50 @@
+#left{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#calendar {
+    width: 30vw; height: 65vh;
+    border-radius: 30px;
+    background-color: white;
+    padding: 15px;
+}
+
+#rate {
+    width: 40vw; height: 100px;
+    background-color:white;
+    padding: 10px; margin-bottom: 50px;
+    border-radius: 10px;
+
+}
+
+#bar {
+    width: 1%; height: 40px; background-color: blue;
+    border-radius: 50px;
+    margin: 10px auto 0 auto;
+    transition: 1s;
+    &:hover{
+        width: 50%;
+    }
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    width: 20vw; height: 30vh;
+    background-color: rgb(235, 235, 235);
+    border-radius: 50px;
+    margin: auto auto 0 auto;
+    & > .content{       
+        border-radius: 50px 50px 50px 0;
+        background-color: rgb(66, 189, 62);
+        padding: 10px;
+        margin: 5px 20px;
+    }
+    & > div[name="title"]{
+        text-align: center;
+        font-size: 30px; font-weight: 600;
+        margin: 20px auto;
+
+    }
+}

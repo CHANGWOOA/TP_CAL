@@ -1,0 +1,42 @@
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <!-- 회원가입 제목 -->
+    <h2>Sign Up</h2>
+    <!-- 회원가입 폼 -->
+    <form action="/member/register" method="post" class="signup-form">
+      <input type="text" id="id" name="id" placeholder="아이디" required />
+      <input
+        id="ppassword"
+        type="password"
+        name="password"
+        placeholder="비밀번호"
+        required
+      />
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="비밀번호 확인"
+        required
+      />
+      <span id="passwordMatchMessage" class="password-message"></span>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="010-1234-5678"
+        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+        required
+      />
+      <input
+        type="text"
+        id="name"
+        name="username"
+        placeholder="정일형"
+        required
+      />
+      <!-- 회원가입 성공시 main페이지로 화면 이동 -->
+      <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="boardDetail_info">
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <% data.forEach(function(item) { %>
+      <tr>
+        <td colspan="2"><%= item.R_CONENT %></td>
+      </tr>
+      <tr>
+        <td>작성자 : <%= item.U_ID %></td>
+        <td>작성일 : <%= item.R_DATE %></td>
+      </tr>
+    <% }); %>
+  </table>
+</div>

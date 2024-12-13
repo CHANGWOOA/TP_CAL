@@ -1,0 +1,37 @@
+const con = require("../db_common");
+
+const repInsert= {
+    register : async({ P_ID, U_ID, content }) => {
+        const sql = `
+        INSERT INTO REPLY (R_ID, P_ID, U_ID, R_CONTENT, R_DATE)
+        VALUES (Post_seq.nextval, :P_ID, :U_ID, :content, SYSDATE)
+    `;
+    const binds = { P_ID, U_ID, content }; // 바인딩 데이터
+    const conn = await con;
+    const result = await conn.execute(sql, binds);
+    //console.log(binds)
+    return result;
+    }
+}
+const repRead = {
+    data : async(P_ID) => {
+        
+        const sql = `select * from REPLY where P_ID = ${ P_ID }`
+        
+        const replylist = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
+        //console.log("dao res: ", replylist.rows)
+        return replylist;
+    }
+}
+
+const repCtrl = {
+    delete : async ( R_ID ) =>{ 
+        const sql = `delete from REPLY where R_ID='${R_ID}'`;
+        (await con).execute( sql );
+    },
+    modify : async ( body )=>{ 
+        const sql = `update post set R_CONTENT='${body.content}' where R_ID=${body.id}; `;
+        return (await con).execute( sql, body );
+    }
+}
+module.exports= {repRead, repInsert, repCtrl}

@@ -1,0 +1,31 @@
+
+<script>
+</script>
+
+<div id="inside_wrap">
+    <div id="todo">
+        <div name="title">To-Do</div>
+        <div class="list">
+            <form action="#" method="get">
+                <textarea name="title" id="todo_title" maxlength="20" placeholder="제목"></textarea>
+                <textarea name="memo" id="todo_memo" maxlength="100"placeholder="메모"></textarea>
+                <input type="datetime-local" id="todo_datetime">
+                <select name="" id="">
+                    <option value="1st">중요</option>
+                    <option value="2nd">그다음으로 중요</option>
+                    <option value="3th">중요하지 않음</option>
+                </select><br>
+                <input type="submit">
+            </form>
+        </div>
+
+            <% for (i=0;i<todolist.length;i++) { %>
+                <div class="todo">
+                <input type="checkbox" name="" id="">
+                <div name="title"><%= todolist[i]['title'] %></div>
+                <div name="memo"><%= todolist[i]['memo'] %></div>
+                <%= todolist[i]['date'] %>까지</div>
+            <% } %>
+        </div>
+
+

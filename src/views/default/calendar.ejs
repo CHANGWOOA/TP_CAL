@@ -1,0 +1,31 @@
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script>
+    const schedule=[
+        {
+            title:'aaa',
+            url:window.location.href+'/aaa',
+            start:'2024-12-02'
+        },
+        {
+            title:'bbb',
+            start:'2024-12-06',
+            end:'2024-12-10'
+        },
+        {
+            title:'ggg',
+            start:'2024-12-20',
+            end:'2024-12-25'
+        }
+    ]
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar')
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+    events: schedule
+})
+    calendar.render()
+  })
+
+</script>
+<div id='calendar'></div>
