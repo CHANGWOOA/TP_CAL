@@ -86,17 +86,17 @@ const boardRead={
         
         let resultList;
         if(lineType == "P_HITD"){//조회수 많은 순
-            resultList = await dao.boardRead.lineHitDesc(start)
+            resultList = await dao.boardRead.lineHitDesc(startNum)
         }else if(lineType =="P_HITA"){//조회수 적은 순
-            resultList = await dao.boardRead.lineHitAsc(start)
+            resultList = await dao.boardRead.lineHitAsc(startNum)
         }else if (lineType =="P_REPD"){//댓글 많은 순
-            resultList = await dao.boardRead.lineReplyDesc(start)
+            resultList = await dao.boardRead.lineReplyDesc(startNum)
         }else if (lineType =="P_REPA"){//댓글 적은 순
-            resultList = await dao.boardRead.lineReplyAsc(start)
+            resultList = await dao.boardRead.lineReplyAsc(startNum)
         }else if (lineType =="P_DATEN"){//작성일자 최신 순
-            resultList = await dao.boardRead.lineDateNew(start)
+            resultList = await dao.boardRead.lineDateNew(startNum)
         }else if (lineType =="P_DATEO"){//작성일자 오래된 순
-            resultList = await dao.boardRead.lineDateOld(start)
+            resultList = await dao.boardRead.lineDateOld(startNum)
         } 
         resultList = serCom.dateSimple(resultList.rows)
     
