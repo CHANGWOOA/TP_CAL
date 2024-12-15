@@ -1,7 +1,10 @@
 
 const ser=require("../../service/board/board_service")
+const repSer = require("../../service/board/board_reply_service")
 const serCom= require("../../service/ser_common")
+const repCtrl = require("./board_reply_ctrl")
 // const { user } = require("../../../config/database/db_config")
+
 
 const views={
     list : async (req, res)=>{ //게시글 기본 리스트 가져오는 기능
@@ -29,7 +32,8 @@ const views={
 
         const data = contentList //dao를 거쳐 온 P_ID글고유번호에 대한 해당 글의 정보 리스트를 배열형식으로 받아 data 변수에 저장
         const uphit = await ser.boardRead.data(req.params.P_ID)
-        res.render("board/board_detail", { data }) //data를 ejs로 보낸다->ejs 사용하지 않고 data[0].P_ID 형식으로 바로 정보 받을 수 있음
+        const repResult = await repCtrl.views.data(req.params.P_ID)
+        res.render("board/board_detail", { data: data, replyList : repResult.rows }) //data를 ejs로 보낸다->ejs 사용하지 않고 data[0].P_ID 형식으로 바로 정보 받을 수 있음
         //console.log("b ctrl detail:", data)
 
     },

@@ -13,12 +13,13 @@ module.exports=(app)=>{
     const todoRouter=require("./todo/todo_router")
     const boardRouter = require("./board/board_router");
     // const calRouter=require('./calendar/calendar_router');
-
+    const boardReplyRouter = require("./board/board_reply_router")
 
 
     app.use("/member", memberRouter)
     app.use("/todo",todoRouter)
     app.use("/board", boardRouter)
+    app.use('/board/detail', boardReplyRouter);
 
     const todoCtrl=require('../controller/todo/todo_ctrl');
     // router.post('/main',(req,res)=>{

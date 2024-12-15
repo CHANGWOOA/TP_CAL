@@ -87,21 +87,51 @@
             <div><%= data[0].P_TITLE %></div>
             <div><%= data[0].P_CONTENT %></div>
           </div>
-          <div class="boardDetail_commented">댓글 보일 공간</div>
+          <div class="boardDetail_commented">
+            <!--댓글 테이블 예시 , 없으면 안 보이게도 추가해야 함-->
+            <div class="boardDetail_info">
+              
+              <table border="1" style="width: 100%; border-collapse: collapse;"> <!--댓글 리스트-->
+                <!-- <%= console.log(replyList) %> -->
+                <% if (replyList.length==0) { %>
+                  <tr><!--만약에 댓글에 관한 리스트의 길이가 0이면 x-->
+                    <td colspan="2">데이터가 없습니다</td>
+                  </tr>
+                <% } else { %>
+                <% replyList.forEach(replyList => { %>
+                  <!--댓글 리스트가 있으면-->
+                  <tr>
+                    <td colspan="2"><%= replyList.R_CONTENT %></td>
+                  </tr>
+                  <tr>
+                    <td>작성자 : <%= replyList.U_ID %></td>
+                    <td>작성일 : <%= replyList.R_DATE %></td>
+                  </tr>
+                <% })
+              }; %>
+              </table>
+            </div>
+            <!-- 여기까지-->    
+          </div>
           <div class="boardDetail_commentBox">
-            <form class="boardDetail_commentForm">
+            <form method="post" action="/board/detail/<%= data[0].P_ID %>/register">
+              <!-- 보드/디테일/게시글 번호 /레디스터(댓글 등록 라우터) -->
+               
               <textarea
                 class="boarDetail_comment_input"
+                name="content"
                 id="commentContent"
                 rows="4"
                 placeholder="댓글 내용을 입력하세요..."
                 required
-              ></textarea>
-              <button class="boardDetail_commentBtn" onclick="submitComment()">
-                댓글 작성
+              ></textarea><!-- name: content 내용을 받아옴-->
+              <button class="boardDetail_commentBtn">
+              댓글 작성
               </button>
             </form>
+            
           </div>
+          
         </div>
         <div class="board_blank"></div>
       </div>
