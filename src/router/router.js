@@ -27,8 +27,9 @@ module.exports=(app)=>{
     //     res.render('index',{todo:todo_ctrl.views.list() ,boardList:boardList})
     // })
 
-
+ 
     router.get('/main', todoCtrl.views.data)
+    //!!! calCtrl 아니고 todoCtrl로
 
     router.get("/database", async(req,res) =>{
         let connection;
