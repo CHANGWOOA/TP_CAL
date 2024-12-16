@@ -54,7 +54,29 @@ nav a{
 }
 
 
-form{
+.wrap {
+        margin-top: 20px;
+        float: right;
+        overflow: scroll;
+        width: 50vmin; height: 80vh;
+        background-color: white;
+        border-radius: 50px;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgb(235, 235, 235);
+        }
+        & > .mainTitle{
+            text-align: center;
+            font-size: 30px; font-weight: 600;
+            margin: 20px auto;
+    
+        }
+    
+}
+.form {
     padding: 20px 30px;
     margin: 0 auto 10px auto;
     width: 70%;
@@ -98,3 +120,31 @@ form{
         padding: 5px 10px;
     }
 }
+.content {
+    & > * {
+        margin: 15px auto 0 auto;
+    }
+    & > button {
+        border-radius: 20px;
+        border: 0;
+        background-color:white;
+        margin-bottom: 5px;
+        margin: 10px 10px 0 0;
+        padding: 5px 10px;
+    }
+
+    & input[type='checkbox'] {
+        display:none ;
+    }
+
+    background-color: rgb(200, 200, 200);
+    border-radius: 0px 30px 30px 30px;
+    
+    & > .title {
+        word-break: keep-all;
+        padding-right: 10px;
+        margin-left: 5px;
+        font-size: 2vmax;
+    }
+
+} 

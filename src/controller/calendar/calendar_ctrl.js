@@ -5,7 +5,6 @@ const memSer = require("../../service/member/member_service")
 const views={
     data: async(req, res)=>{
         const data= await ser.calRead.data(req.session.username)
-        // console.log('ctrl views',data)
         res.render("calendar/calendar", {calendar:data.rows})
     }
 }
@@ -21,7 +20,8 @@ const process={
         res.redirect("/calendar");  
         },
     
-    delete : async (req, res) => {     
+    delete : async (req, res) => {    
+        console.log('delete',req.body)
         await ser.calUpdate.delete(req.body);
         res.redirect('/calendar');
         }

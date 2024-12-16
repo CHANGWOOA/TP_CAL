@@ -25,6 +25,22 @@
     font-size: 1vmax;
 }
 
+.todo_label {
+    & > #lebel_bg {
+        width: 30px; height: 15px;
+        background-color: white;
+        padding: 2px;
+        margin: 0 10px;
+        border-radius: 50px;
+        & #label_btn {
+            width: 15px; height: 15px;
+            background-color: rgb(100, 100, 100);
+            border-radius: 100%;
+        }
+        
+    }
+}
+
 #todolist {
     /* todo 목록 */
     padding: 10px;
