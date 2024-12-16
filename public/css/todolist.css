@@ -13,7 +13,7 @@
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
     }
-    & > #todo_title{
+    & > #todolist_title{
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
@@ -24,6 +24,7 @@
 *::placeholder{
     font-size: 1vmax;
 }
+
 #todolist {
     /* todo 목록 */
     padding: 10px;
@@ -35,8 +36,6 @@
 
     & > * {
         margin: 15px auto 0 auto;
-
-
     }
     & > button {
         border-radius: 20px;

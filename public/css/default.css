@@ -57,13 +57,21 @@ form{
         border: 0;
         background-color:white;
         margin-bottom: 5px;
+        padding: 2%;
+    }
+    & textarea {
+        resize: none;
     }
     & select{
         width: 40%;
     }
     & #title_form{
-        width: 80%; height: 40px;
-        padding-left: 10px;
+        width: 80%; height: 30px;
+        padding: 10px;
+    }
+    & #subtitle_form{
+        width: 80%; height: 30px;
+        padding: 10px;
     }
     & #memo{
         width: 80%; height: 40px;
@@ -76,7 +84,7 @@ form{
     }
 
     & input[type="submit"]{
-        margin: 10px 10px 0 0;
+        margin: 10px 10px 0 20px;
         padding: 5px 10px;
     }
 }
