@@ -1,19 +1,14 @@
 <script>
-<<<<<<< HEAD
-=======
+
     function isChecked() {
         const todo=<%- JSON.stringify(todo) %>;
         console.log('todo',todo);
     }
->>>>>>> origin/FE_todolist
     // 수정 상태로 전환
     function enableEdit(todoId) {
         const todoTitle = document.getElementById(`todo_title-${todoId}`);
         const editBtn = document.getElementById(`edit-btn-${todoId}`);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/FE_todolist
         const deleteBtn = document.getElementById(`delete-btn-${todoId}`);
 
         console.log(editBtn)
@@ -26,11 +21,8 @@
 
         try {
             editBtn.innerHTML = `
-<<<<<<< HEAD
             <svg width="13px" height="13px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-=======
-            <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
->>>>>>> origin/FE_todolist
+
     <g>
         <path fill="none" d="M0 0h24v24H0z"/>
         <path fill="rgb(100, 100, 100)" d="M18 21v-8H6v8H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h13l4 4v13a1 1 0 0 1-1 1h-2zm-2 0H8v-6h8v6z"/>
