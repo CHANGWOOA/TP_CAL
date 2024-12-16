@@ -1,5 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script>
+  const schedule = <%- JSON.stringify(calendar) %>;
     let title, start,end;
     var list=[{}];
     for (i=0;i<schedule.length;i++) {

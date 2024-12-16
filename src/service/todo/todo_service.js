@@ -2,7 +2,7 @@ const dao= require("../../database/todo/todo_dao")
 const serCom = require("../ser_common")
 
 const todoRead= {
-    list : async(username) => {
+    list : async(username) => { //투두 읽어오기
         let todo = await dao.todoRead.list(username);
         //console.log('service',todo)
         return todo;

@@ -19,10 +19,10 @@ const repRead={
 }
 
 const repCtrl={
-    delete : (R_ID)=>{//답글 삭제
+    delete : (R_ID)=>{//답글 삭제(미완성)
         dao.repUpdate.delete(R_ID);
     },
-    modify : (body)=>{//답글 수정
+    modify : (body)=>{//답글 수정(미완성)
         dao.repUpdate.modify(body);
     }
 }

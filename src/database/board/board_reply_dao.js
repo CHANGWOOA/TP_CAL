@@ -1,7 +1,7 @@
 const con = require("../db_common");
 
 const repInsert= {
-    register : async({ P_ID, U_ID, content }) => {
+    register : async({ P_ID, U_ID, content }) => { //댓글 등록
         const sql = `
         INSERT INTO REPLY (R_ID, P_ID, U_ID, R_CONTENT, R_DATE)
         VALUES (Post_seq.nextval, :P_ID, :U_ID, :content, TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI'))
@@ -14,7 +14,7 @@ const repInsert= {
     }
 }
 const repRead = {
-    data : async(P_ID) => {
+    data : async(P_ID) => { //댓글 불러오기
         
         const sql = `SELECT R_ID, P_ID, U_ID, R_CONTENT, TO_CHAR(R_DATE, 'YYYY-MM-DD HH24:MI') AS R_DATE FROM REPLY WHERE P_ID = ${P_ID}`;
 
@@ -25,8 +25,8 @@ const repRead = {
     }
 }
 
-const repCtrl = {
-    delete : async ( R_ID ) =>{ 
+const repCtrl = { // 댓글 삭제 및 수정(미완성)
+    delete : async ( R_ID ) =>{  
         const sql = `delete from REPLY where R_ID='${R_ID}'`;
         (await con).execute( sql );
     },

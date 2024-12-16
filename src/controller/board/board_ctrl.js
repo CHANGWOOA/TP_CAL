@@ -16,7 +16,7 @@ const views={
     
     }, //결과값을 data로 정의함
     writeForm : (req, res) => {
-        const msg = serCom.sessionCheck(req.session);
+        const msg = serCom.sessionCheck(req.session); //세션과 같은지 체크
         if(msg == 0){
             return res.send(msg);
         }
@@ -36,7 +36,7 @@ const views={
         //console.log("b ctrl detail:", data)
 
     },
-    modifyForm : async (req, res) => {
+    modifyForm : async (req, res) => { //게시글 수정
         const data= await ser.boardRead.detail(req.params.P_ID);
         //const data=[{}];
         console.log('modify form : ',data)
@@ -46,24 +46,30 @@ const views={
     search : async( req, res ) =>{ //글 검색하는 기능
         //console.log("board ctrl search:", req.body.searchKey)
         const result = await ser.boardRead.search( req.body.searchType, req.body.searchKey ) 
-        //console.log("board ctrl search:", result.rows[0]);
+        //console.log("board ctrl search:", result);
         
-        if(result.rows[0] == undefined){
+        if(result == undefined){ //검색 결과가 없으면
             msg ="해당하는 정보가 없습니다.";
             url =`/board`
             let message = serCom.getaMessage(msg,url);
             res.send(message);
         }else{
-            return result;
+            res.render("board/board", {list:result, start: result.start, page: result.page})
         }
     },
     line : async (req, res) => {
         //console.log("board ctrl lineType:", req.body.lineType)
-        const result = await ser.boardRead.line (req.body.start, req.body.lineType)
-        res.render("board/board_line", { list: result.list, start:result.start, page: result.pageresult })
-        console.log("board ctrl result:", result)
+        const data = await ser.boardRead.line (req.body.start, req.body.lineType)
+        //console.log("line up", data)
+        res.render("board/board", { list: data, start :data.start, page: data.pageresult })
+        //console.log("board ctrl result:", result)
         
-        return result;
+        return data;
+    },
+    data : async(req, res)=>{
+        //const data= await ser.boardRead.data(req.params.P_TITLE);
+        const P_HIT= req.session.P_TITLE;
+        res.render("board/detail", {data:data, P_TITLE});
     }
 }
 const process= {
