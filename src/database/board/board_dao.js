@@ -128,7 +128,7 @@ const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 
          (await con).execute( sql );
     },
     delete : async ( body ) =>{ //게시글 삭제 기능, 게시글의 고유번호를 받아와서 고유번호 일치하는 글을 삭제함
-        console.log(body)
+        //console.log(body)
         const sql = `delete from post where P_ID=${body}`;
         (await con).execute( sql );
     },
