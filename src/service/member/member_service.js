@@ -1,20 +1,20 @@
 //member_service.js
 const dao = require("../../database/member/member_dao")
 
-const getMessage = (msg, url) => {
+const getMessage = (msg, url) => { //로그인 후 알림
 
     return `<script>
                 alert("${msg}");location.href='${url}';
             </script>`;
 }
 
-const getList = async () => {
+const getList = async () => { //이것도 어디서 쓰는 거임?
     const result = await dao.getList();
     //console.log("result from service : ", result)
     return result.rows;
 }
 
-const getMember = async( id ) => {
+const getMember = async( id ) => { //멤버 읽어올 때
     const user = await dao.loginCheck( id );
     return user.rows[0]
 }
@@ -33,7 +33,7 @@ const loginCheck = async( body, req, res ) => {
         msg = "존재하지 않는 ID입니다."
         url = "/"
     }else{
-       if(result.rows[0].U_PW == body.pwd){
+       if(result.rows[0].U_PW == body.pwd){ //로그인 성공 시 세션 생성
             
             req.session.username = body.id;
             req.session.name = result.rows[0].U_NAME

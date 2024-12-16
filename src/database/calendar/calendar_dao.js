@@ -2,8 +2,11 @@
 const con = require("../db_common");
 
 const calRead={
-    data: async ( username ) => {//작성한 것 불러오기
-            const sql = `select * from CAL where U_ID = '${ username }' ORDER BY C_ENDDATE ASC`;
+        data: async (username) => { // 작성한 것 불러오기
+            const sql = `select C_ID, U_ID, C_TITLE, C_CONTENT, 
+                                TO_CHAR(C_STARTDATE, 'YYYY-MM-DD HH24:MI') AS C_STARTDATE, 
+                                TO_CHAR(C_ENDDATE, 'YYYY-MM-DD HH24:MI') AS C_ENDDATE 
+                         from CAL where U_ID = '${username}' ORDER BY C_ENDDATE ASC`;
             let cal;
             try {
                 cal =  await(await con).execute( sql ); 
@@ -13,11 +16,12 @@ const calRead={
             return cal;
         }
 }
+
 const calInsert={
     write: async(body, username)=>{//캘린더 작성
         const sql= `INSERT INTO CAL (C_ID, U_ID, C_TITLE, C_CONTENT, C_STARTDATE, C_ENDDATE)
         VALUES (cal_seq.nextval, '${username}', '${body.C_TITLE}','${body.C_CONTENT}', 
-                TO_DATE('${body.C_STARTDATE}'), TO_DATE('${body.C_ENDDATE}'))`;
+               TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD HH24:MI'), TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD HH24:MI'))`;
 
         //console.log("cal dao", sql)
         let result = 0;
@@ -35,7 +39,12 @@ const calUpdate= {
         return (await con).execute( sql );
     },
     modify : async ( body )=>{
-        const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_content}',C_STARTDATE=TO_DATE('${body.C_STARTDATE}') , C_ENDDATE=TO_DATE('${body.C_ENDDATE}') where C_ID=${body.C_ID}`;
+        const sql = `UPDATE CAL 
+                     SET C_TITLE = '${body.C_TITLE}', C_CONTENT = '${body.C_CONTENT}', 
+                         C_STARTDATE = TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD HH24:MI'), 
+                         C_ENDDATE = TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD HH24:MI') 
+                     WHERE C_ID = ${body.C_ID}`;
+
         return (await con).execute( sql );
 }
 }

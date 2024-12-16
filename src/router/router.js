@@ -20,6 +20,9 @@ module.exports=(app)=>{
     app.use("/board", boardRouter)
     app.use("/calendar", calRouter)
 
+    const boardReplyRouter = require('./board/board_reply_router'); // 라우터 파일 경로
+    app.use('/board/detail', boardReplyRouter);
+
     const todoCtrl=require('../controller/todo/todo_ctrl');
     // router.post('/main',(req,res)=>{
     //     console.log('session post',req.session.username)

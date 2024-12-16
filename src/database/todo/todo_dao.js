@@ -56,7 +56,7 @@ const todoWrite = {
             return (await con).execute( sql );
         },
         modify : async ( body )=>{
-            const sql = `update TODOLIST set T_TITLE='${body.T_TITLE}', T_PRIORITY='${body.T_PRIORITY}' WHERE T_id=${body.T_ID} `;
+            const sql = `update TODOLIST set T_TITLE='${body.T_TITLE}' WHERE T_id=${body.T_ID} `;
             return (await con).execute( sql );
         },
         priority : async ( body, username ) => { //중요도 추후에 수정하기
