@@ -10,7 +10,7 @@ const calRead={
 }
 const calInsert={
     write: async (body, username)=>{
-        //console.log("ser:", )
+        console.log("ser:", body)
         let msg, url;
         const result= await dao.calInsert.write(body, username);
             if(result !==0){
