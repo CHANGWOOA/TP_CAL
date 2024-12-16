@@ -13,15 +13,18 @@
 
         list.push(schedules)
     }
-    console.log('list',list)
     document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar')
+    
     const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
     events: list
 })
     calendar.render()
   })
+  
+
+  
 
 </script>
 <div id='calendar'></div>

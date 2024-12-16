@@ -59,7 +59,7 @@
             margin-left: 5px;
             font-size: 1vmax;
         }
-        }
+        
 
     & label[for='todo_checkbox'] {
         & > #lebel_bg {
@@ -76,32 +76,5 @@
             
         }
     }
-<<<<<<< HEAD
-    & .icon{
-        margin: 5px 0 0 70% ;
-        & button {
-            width: 15px; height: 15px;
-            background-color: rgba(255, 255, 255, 0);
-            border-style: none;
-        }
-        & > svg {
-=======
-    .icon{
-        margin-left: 80%;
-        & > form{
-            display: inline;
-            background-color: rgba(255, 255, 255, 0);
-            margin: 0;
-            padding: 0;
-
-        & svg {
->>>>>>> BE_HUH
-            padding: 5px;
-            &:hover path{
-                fill: black;
-            }
-
-        }
-    }
+} 
 }
-
