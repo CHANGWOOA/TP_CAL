@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/board.css" />
     <link rel="stylesheet" href="/css/navBar.css" />
     <link rel="stylesheet" href="/css/boardDetail.css" />
+    <link rel="stylesheet" href="/css/reply.css" />
   </head>
   <body>
     <div class="board_container">
@@ -59,11 +60,11 @@
         <div class="board_content">
           <div class="boardDetail_upper">
             <div class="boardDetail_info">
-              <%= data[0].P_ID %>번
+              <%= data[0].P_ID %>번&nbsp;
               <hr />
-              <%= data[0].U_ID %>
+              &nbsp;<%= data[0].U_ID %> &nbsp;
               <hr />
-              <%= data[0].P_DATE %>
+              &nbsp;<%= data[0].P_DATE %>
             </div>
             <div class="boardDetail_controller">
               <input
@@ -90,25 +91,22 @@
           <div class="boardDetail_commented">
             <!--댓글 테이블 예시 , 없으면 안 보이게도 추가해야 함-->
             <div class="boardDetail_info">
-              
-              <table border="1" style="width: 100%; border-collapse: collapse;"> <!--댓글 리스트-->
+              <div class="reply-section"> <!--댓글 리스트-->
                 <% if (replyList.length==0) { %>
-                  <tr><!--만약에 댓글에 관한 리스트의 길이가 0이면 x-->
-                    <td colspan="2">데이터가 없습니다</td>
-                  </tr>
+                  <!--만약에 댓글에 관한 리스트의 길이가 0이면 x-->
+                  <div class="none data">현재 댓글이 없습니다.</div>
                 <% } else { %>
-                <% replyList.forEach(replyList => { %>
+                  <% replyList.forEach(replyList => { %>
                   <!--댓글 리스트가 있으면-->
-                  <tr>
-                    <td colspan="2"><%= replyList.R_CONTENT %></td>
-                  </tr>
-                  <tr>
-                    <td>작성자 : <%= replyList.U_ID %></td>
-                    <td>작성일 : <%= replyList.R_DATE %></td>
-                  </tr>
+                  <div class="reply-card">
+                    <%= replyList.R_CONTENT %><br>
+                    <div class="reply-data">
+                    <span>작성자 : <%= replyList.U_ID %></span>
+                    <span>작성일 : <%= replyList.R_DATE %></span>
+                  </div>
+              </div>
                 <% })
               }; %>
-              </table>
             </div>
             <!-- 여기까지-->    
           </div>
@@ -127,7 +125,6 @@
               댓글 작성
               </button>
             </form>
-            
           </div>
         </div>
         <div class="board_blank"></div>

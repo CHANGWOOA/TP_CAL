@@ -4,7 +4,7 @@ const repInsert= {
     register : async({ P_ID, U_ID, content }) => {
         const sql = `
         INSERT INTO REPLY (R_ID, P_ID, U_ID, R_CONTENT, R_DATE)
-        VALUES (Post_seq.nextval, :P_ID, :U_ID, :content, SYSDATE)
+        VALUES (Post_seq.nextval, :P_ID, :U_ID, :content, TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI'))
     `;
     const binds = { P_ID, U_ID, content }; // 바인딩 데이터
     const conn = await con;
@@ -16,7 +16,8 @@ const repInsert= {
 const repRead = {
     data : async(P_ID) => {
         
-        const sql = `select * from REPLY where P_ID = ${ P_ID }`
+        const sql = `SELECT R_ID, P_ID, U_ID, R_CONTENT, TO_CHAR(R_DATE, 'YYYY-MM-DD HH24:MI') AS R_DATE FROM REPLY WHERE P_ID = ${P_ID}`;
+
         
         const replylist = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
         //console.log("dao res: ", replylist.rows)
