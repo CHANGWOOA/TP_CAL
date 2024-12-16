@@ -29,13 +29,13 @@ const calInsert={
     }
 }
 const calUpdate= {
-    delete : async(body)=>{
-        const sql= `delete from CAL where C_TITLE`='${body.C_TITLE}'`;
+    delete : async (body) => {
+        const sql= `delete from CAL where C_TITLE='${body.C_TITLE}'`;
         return (await con).execute( sql );
     },
     modify : async ( body )=>{
-                const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_content}',C_STARTDATE=sysdate , C_ENDDATE=sysdate where C_ID=${body.C_ID}`;
-                return (await con).execute( sql );
+        const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_content}',C_STARTDATE=sysdate , C_ENDDATE=sysdate where C_ID=${body.C_ID}`;
+        return (await con).execute( sql );
 }
 }
 module.exports={calRead, calInsert, calUpdate}

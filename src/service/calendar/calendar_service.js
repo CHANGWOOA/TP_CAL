@@ -4,7 +4,7 @@ const serCom= require("../ser_common")
 const calRead={
     data: async (username)=>{
        let cal= await dao.calRead.data(username);
-       //console.log('service',cal)
+       console.log('service',cal)
        return cal;
     }
 }
