@@ -33,11 +33,16 @@ const calInsert={
     }
 }
 const calUpdate= {
+<<<<<<< HEAD
     delete : async (body) => {
         const sql= `delete from CAL where C_ID='${body.C_ID}'`;
+=======
+    delete : async (body) => { //캘린더 삭제
+        const sql= `delete from CAL where C_TITLE='${body.C_TITLE}'`;
+>>>>>>> ca15a13532bec25fefae4449117a2b0994ad76d5
         return (await con).execute( sql );
     },
-    modify : async ( body )=>{
+    modify : async ( body )=>{ //캘린더 수정
         const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_content}',C_STARTDATE=${body.C_STARTDATE} , C_ENDDATE=${body.C_ENDDATE} where C_ID=${body.C_ID}`;
         return (await con).execute( sql );
 }

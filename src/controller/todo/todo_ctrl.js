@@ -5,7 +5,7 @@ const memSer = require("../../service/member/member_service")
 
 const views = {
 
-    list : async(req,res) => {
+    list : async(req,res) => { //투두 읽어오기
         
         //console.log('session',req.session)
         const data= await ser.todoRead.list(req.session.username)
@@ -27,11 +27,11 @@ const views = {
 }
 
 const process= {
-    write : async(req, res) => {
+    write : async(req, res) => { //투두 작성
         const msg= await ser.todoInsert.write(req.body, req.session.username);
         res.send(msg)
     },
-    modify : async(req, res) => { 
+    modify : async(req, res) => { //투두 수정(미완성)
         //console.log('todo ctrl',req.body);
         try {
             await ser.todoUpdate.modify(req.body);
@@ -44,7 +44,7 @@ const process= {
 
     },
 
-    delete : async (req, res) => {
+    delete : async (req, res) => { //투두 삭제
     
         try {
             //console.log("삭제 요청 데이터", req.body);  

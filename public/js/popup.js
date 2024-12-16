@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const updateMessage = (text, color) => {
     message.textContent = text;
     message.style.color = color;
-    message.style.display = text ? "inline-block" : "none";
+    message.style.display = text ? "inline-block" : "none"; //일치 불일치 판별 후 색깔 구분해서 출력
   };
 
   password.addEventListener("input", checkPasswordMatch);

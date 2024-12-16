@@ -3,7 +3,7 @@ const dbConfig = require("../../../config/database/db_config");
 oracledb.autoCommit = true;
 oracledb.outFormat = oracledb.OBJECT;
 
-const loginCheck = async (U_ID) => {
+const loginCheck = async (U_ID) => { //로그인 체크
     //db근거 로그인 체크
     //console.log("memdao loginCheck", U_ID)
     const sql = `select * from ALLUSER where U_ID='${U_ID}'`; //쿼리문에 id를 U_ID로 수정했습니다.
@@ -19,7 +19,7 @@ const loginCheck = async (U_ID) => {
     return user;
 }
 
-const getList = async () => {
+const getList = async () => { //이거 어디서 쓰는지 아는 사람? 알면 주석 고치기
     const sql = `select * from ALLUSER`;
     let result;
     try{
@@ -32,7 +32,7 @@ const getList = async () => {
 }
 
 
-const register = async ( body ) => {
+const register = async ( body ) => { //회원가입
     //회원가입 db등록
     //console.log("memdao회원가입 body", body)
     const sql = `insert into ALLUSER values('${body.id}', '${body.password}', '${body.username}',' ${body.phone}')`;
@@ -49,7 +49,7 @@ const register = async ( body ) => {
     return result;
 }
 
-const U_del = async( U_ID ) => {
+const U_del = async( U_ID ) => { //유저 삭제(미완성)
     const sql = `delete from ALLUSER where U_ID='${ U_ID }'`;
     try{
         const con = await oracledb.getConnection( dbConfig );
@@ -59,7 +59,7 @@ const U_del = async( U_ID ) => {
     }
 }
 
-const U_modify = async( body ) => {
+const U_modify = async( body ) => { //유저 수정(미완성)
     const sql = `update ALLUSER set U_PW=:U_PW, U_NAME=:U_NAME, U_TEL=:U_TEL where U_ID=:U_ID`;
     try{
         const con = await oracledb.getConnection( dbConfig );
