@@ -4,13 +4,13 @@ const serCom= require("../ser_common")
 const calRead={
     data: async (username)=>{
        let cal= await dao.calRead.data(username);
-       console.log('service',cal)
+       //console.log('service',cal)
        return cal;
     }
 }
 const calInsert={
     write: async (body, username)=>{
-        console.log("ser:", body)
+        //console.log("ser:", body)
         let msg, url;
         const result= await dao.calInsert.write(body, username);
             if(result !==0){
@@ -27,7 +27,7 @@ const calInsert={
 }
 const calUpdate= {
     modify : async(body)=>{
-        console.log('service modify', body)
+        //console.log('service modify', body)
         await dao.calUpdate.modify(body);
     },
     delete : async(body)=>{
