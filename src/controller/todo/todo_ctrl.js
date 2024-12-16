@@ -16,7 +16,7 @@ const views = {
         //todolist.ejs에서 같은 형식을 사용할 수 있습니다.
 
     },
-    data: async(req,res)=>{
+    data: async(req,res)=>{//메인 페이지에서 캘린더 및 보드 목록과 함께 투두 리스트를 렌더링하는 함수
         
         //console.log("todoctrl session name", req.session )
         //let user=req.session.username

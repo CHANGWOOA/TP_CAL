@@ -76,16 +76,14 @@
             }
             
         }
-    }
-    .icon{
-        margin-left: 80%;
-        & > form{
-            display: inline;
+    & .icon{
+        margin: 5px 0 0 70% ;
+        & button {
+            width: 15px; height: 15px;
             background-color: rgba(255, 255, 255, 0);
-            margin: 0;
-            padding: 0;
-
-        & svg {
+            border-style: none;
+        }
+        & > svg {
             padding: 5px;
             &:hover path{
                 fill: black;

@@ -15,4 +15,8 @@ router.post("/modify", ctrl.process.modify); //to do list 수정
 
 router.post("/update", ctrl.process.pUpdate); //중요도 업데이트 기능
 
+router.post("/modify",(req,res)=>{
+    res.send(req.body)
+})
+
 module.exports=router;

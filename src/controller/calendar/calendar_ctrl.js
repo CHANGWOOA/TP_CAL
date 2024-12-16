@@ -1,6 +1,5 @@
 const ser= require("../../service/calendar/calendar_service")
 const serCom= require("../../service/ser_common")
-const memSer = require("../../service/member/member_service")
 
 const views={
     data: async(req, res)=>{
@@ -9,7 +8,6 @@ const views={
         res.render("calendar/calendar", {calendar:data.rows})
     }
 }
-
 const process={
     write : async(req, res) => {
         const msg= await ser.calInsert.write(req.body, req.session.username)

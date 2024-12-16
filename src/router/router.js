@@ -71,6 +71,7 @@ module.exports=(app)=>{
         url:'aaa'
     }];
 
+    const todo_ctrl=require('../controller/todo/todo_ctrl')
     router.post('/main',(req,res)=>{
         res.render('index',{todo:todolist,boardList:boardList})
     })
