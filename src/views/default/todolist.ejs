@@ -1,21 +1,44 @@
 <script>
 
-    function isChecked(todoId) {
+    function isChecked(todoId,userId) {
         const checkbox=document.getElementById(`checkbox-${todoId}`);
         const todo_checkbox=document.getElementById(`todo_checkbox-${todoId}`);
+        const title=document.getElementById(`todo_title-${todoId}`)
+        const button=document.getElementById(`label_btn-${todoId}`)
 
-        console.log(checkbox)
-        console.log(todo_checkbox)
-        
+
+        // console.log(checkbox)
+        // console.log(todo_checkbox)
+        let result;
         if (checkbox.checked) {
             console.log(checkbox.checked)
+            button.style.cssText=`
+                            width: 15px; height: 15px;
+                background-color: rgb(100, 100, 100);
+                border-radius: 100%;
+                margin-left: 15px `
+                result='true'
         }
         else {
-            todo_checkbox.setAttribute('style', `{margin-left: 10px}`);
-
+            console.log(checkbox.checked)
+            button.style.cssText=`
+                            width: 15px; height: 15px;
+                background-color: rgb(100, 100, 100);
+                border-radius: 100%;
+                margin-left: 0px `
+                result='false'
         }
 
-        todo_checkbox.innerHTML
+        fetch('/todo/complete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                T_ID: todoId,
+                U_ID: userId,
+                T_CHECK: result
+            })
+        })
+        .then(res => res.json())
         
     }
     // 수정 상태로 전환
@@ -137,10 +160,10 @@
                         <div id="context"> 
                         <label for="checkbox-<%= todo.rows[i]['T_ID'] %>" id="todo_checkbox-<%= todo.rows[i]['T_ID'] %>" class="todo_label">
                             <div id="lebel_bg">
-                                <div id="label_btn-<%= todo.rows[i]['T_ID'] %>"></div>
+                                <div id="label_btn-<%= todo.rows[i]['T_ID'] %>" class="label_btn"></div>
                             </div>
                         </label>
-                        <input type="checkbox" name="checkbox-<%= todo.rows[i]['T_ID'] %>" id="checkbox-<%= todo.rows[i]['T_ID'] %>" onclick="isChecked(<%= todo.rows[i]['T_ID'] %>)">
+                        <input type="checkbox" name="checkbox-<%= todo.rows[i]['T_ID'] %>" id="checkbox-<%= todo.rows[i]['T_ID'] %>" onclick="isChecked(<%= todo.rows[i]['T_ID'] %>,'<%= todo.rows[i]['U_ID'] %>')">
                         <% if(todo.rows[i]['T_PRIORITY']=='1') { %>
                             !
                         <% } else if(todo.rows[i]['T_PRIORITY']=='2'){ %>
