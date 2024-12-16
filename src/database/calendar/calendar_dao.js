@@ -11,7 +11,9 @@ const calRead={
                 console.log(err)
             }
             return cal;
-        }
+
+        },
+
 }
 const calInsert={
     write: async(body, username)=>{//캘린더 작성
@@ -20,6 +22,7 @@ const calInsert={
                 TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD HH24:MI:SS'))`;
 
         console.log("cal dao", sql)
+
         let result = 0;
                 try{
                     result = await(await con).execute(sql);
@@ -40,3 +43,4 @@ const calUpdate= {
 }
 }
 module.exports={calRead, calInsert, calUpdate}
+
