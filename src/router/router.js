@@ -12,17 +12,21 @@ module.exports=(app)=>{
     const memberRouter = require("./member/member_router")
     const todoRouter=require("./todo/todo_router")
     const boardRouter = require("./board/board_router");
-    const calRouter= require("./calendar/calendar_router")
+    // const calRouter=require('./calendar/calendar_router');
+
 
 
     app.use("/member", memberRouter)
     app.use("/todo",todoRouter)
     app.use("/board", boardRouter)
-    app.use("/calendar", calRouter)
 
     const todoCtrl=require('../controller/todo/todo_ctrl');
+    // router.post('/main',(req,res)=>{
+    //     console.log('session post',req.session.username)
+    //     console.log(todo_ctrl.views.list())
+    //     res.render('index',{todo:todo_ctrl.views.list() ,boardList:boardList})
+    // })
 
-    const calCtrl= require('../controller/calendar/calendar_ctrl');
 
     router.get('/main', todoCtrl.views.data)
 
@@ -32,6 +36,11 @@ module.exports=(app)=>{
         const result = await connection.execute("select * from ALLUSER")
         res.json(result.rows);
     })
+    router.get('/calendar',(req,res)=>{
+        res.render('calendar')
+    })
+    //캘린더 라우터 아직 만들어지지 않아서 그대로 두겠습니다.
+    //이후 캘린더 라우터 만들어지면 옮기겠습니다.
 
     router.get('/logout', (req,res) => {
         res.session = null;
@@ -42,9 +51,9 @@ module.exports=(app)=>{
         res.render('login', {id : req.session.username})
     })
 
-    router.get('/mypage',todoCtrl.views.data)
+    
 
+    
 
-
-     return router;
+    return router;
 }
