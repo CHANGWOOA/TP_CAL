@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/todolist.css">
-
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
-<body>
+    <body>
     <div id="wrap">
         <%- include ('./default/header') %>
         <div id="inside_wrap">
             <%- include ('./default/todolist') %>
             <div id="left">
+        <%- include ('./default/header') %>
+        <%- include ('./default/calendar') %>
+        <div id='calendar'></div>
                 <div id="rate"></div><br>
-                <%- include ('./default/calendar') %>
                 <div id="board">
                     <div name="title">Borad</div>
-
                 </div>
             </div>
         </div>
     </div>
-</body>
+    </body>
 </html>

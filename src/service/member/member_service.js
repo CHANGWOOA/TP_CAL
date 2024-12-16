@@ -52,7 +52,7 @@ const loginCheck = async( body, req, res ) => {
 
 const register = async(body) => {
     let result = await dao.register(body)
-    console.log("memser result:",result)
+    //console.log("memser result:",result)
     let msg=``,url;
     //회원가입 진행했을 때의 결과
     if(result){

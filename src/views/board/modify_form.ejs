@@ -1,24 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-<div id="main">
-<div style="width:300px; margin: 0 auto;">
-    <form action="/board/modify" enctype="multipart/form-data" method="post" >
-        <% console.log('data',data) %>
-        <input type="hidden" name="P_ID" value="<%= data[0].P_ID %>">
-        제목	<input type="text" size="30" name="title" value="<%= data[0].P_TITLE %>"><hr>
-        내용	<textarea rows="5" cols="30" name="content"><%=data[0].P_CONTENT%></textarea>
-        <hr>
-        <input type="submit" value="수정하기">
-        <input type="button" onclick="history.back()" value="이전으로 돌아가기">
-    </form>
-</div>
-</div>
-
-</body>
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <link rel="stylesheet" href="/css/boardWrite.css" />
+  </head>
+  <body>
+    <div class="board_container">
+      <div class="board_top">
+        <div class="board_title">Amazon</div>
+        <div class="board_search_box">
+          <form
+            action="/board/search"
+            method="post"
+            class="board_search_box_form"
+          >
+            <input
+              type="text"
+              name="searchKey"
+              id="searchKey"
+              placeholder="search"
+              class="board_search_box_input"
+            />
+            <select
+              class="board_search_box_select"
+              name="searchType"
+              id="searchType"
+            >
+              <option value="T_ID" id="T_ID">팀 명</option>
+              <option value="U_ID" id="U_ID">아이디</option>
+              <option value="P_TITLE" id="P_TITLE">글제목</option>
+              <option value="P_CONTENT" id="P_CONTENT">글내용</option>
+            </select>
+            <button type="submit" class="board_search_box_btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.8rem"
+                height="1.8rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M18.319 14.433A8.001 8.001 0 0 0 6.343 3.868a8 8 0 0 0 10.564 11.976l.043.045l4.242 4.243a1 1 0 1 0 1.415-1.415l-4.243-4.242zm-2.076-9.15a6 6 0 1 1-8.485 8.485a6 6 0 0 1 8.485-8.485"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+      <%- include ('../default/navBar') %>
+      <div class="board_main">
+        <div class="board_blank"></div>
+        <div class="board_content">
+          <div>
+            <form
+              action="/board/modify"
+              method="post"
+              class="boardWrite_content"
+              id="modifyForm"
+            >
+              <% console.log('data',data) %>
+              <input type="hidden" name="P_ID" value="<%=data[0].P_ID%>" />
+              <input
+                type="text"
+                size="30"
+                name="title"
+                value="<%=data[0].P_TITLE%>"
+              />
+              <hr />
+              <textarea rows="5" cols="30" name="content">
+            <%=data[0].P_CONTENT%></textarea
+              >
+              <hr />
+              <input
+                type="button"
+                onclick="history.back()"
+                value="이전으로 돌아가기"
+              />
+            </form>
+          </div>
+          <div class="boardWrite_bottom">
+            <span>
+              <a href="#">미리보기</a>
+              <hr />
+              <a href="#">맞춤법 검사</a>
+              <hr />
+              <a href="#">이미지 불러오기</a>
+            </span>
+            <button form="modifyForm" type="submit" class="boardWrite_btn">
+              수정
+            </button>
+          </div>
+        </div>
+        <div class="board_blank"></div>
+      </div>
+    </div>
+  </body>
 </html>

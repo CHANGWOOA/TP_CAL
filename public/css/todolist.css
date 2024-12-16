@@ -1,8 +1,9 @@
-#todo {
+#todo { 
+    /* todo 위젯 전체 */
     margin-top: 20px;
     float: right;
     overflow: scroll;
-    width: 15vw; height: 80vh;
+    width: 50vmin; height: 80vh;
     background-color: white;
     border-radius: 50px;
     &::-webkit-scrollbar {
@@ -12,7 +13,7 @@
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
     }
-    & > div[name="title"]{
+    & > #todolist_title{
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
@@ -20,54 +21,60 @@
     }
 
 }
-
-form{
-    padding: 20px 10px;
-    margin: 0 auto 20px auto;
-    width: 90%;
-    border-radius: 50px 50px 50px 0 ;
-    background-color: rgb(66, 189, 62);
-    text-align: center;
-    & > * {
-        border-radius: 10px;
-        border: 0;
-        background-color:white;
-    }
-    & #todo_title{
-        width: 80%; height: 20px;
-        padding-left: 10px;
-    }
-    & #todo_memo{
-        width: 80%; height: 40px;
-        padding-left: 10px;
-
-    }
-    & #todo_datetime{
-        width: 50%; height: 20px;
-        margin: 10px 10px 10px 0;
-    }
-    & select{
-        width: 20%; 
-    }
-
-    & input[type="submit"]{
-        margin: 10px 10px 0 0;
-        padding: 5px 10px;
-    }
+*::placeholder{
+    font-size: 1vmax;
 }
 
-.todo {
+#todolist {
+    /* todo 목록 */
     padding: 10px;
     margin: 0 auto 10px auto;
     width: 80%;
     text-align: center;
     border-radius: 50px 50px 0 50px;
-
     background-color: rgb(200, 200, 200);
 
-    & > div[name="title"],input{
-        display: inline-block;
-        color: black;
-
+    & > * {
+        margin: 15px auto 0 auto;
     }
+    & > button {
+        border-radius: 20px;
+        border: 0;
+        background-color:white;
+        margin-bottom: 5px;
+        margin: 10px 10px 0 0;
+        padding: 5px 10px;
+    }
+
+    & input[type='checkbox'] {
+        display:none ;
+    }
+
+    & #todo_wrap > #context {
+        display: flex;
+
+        & > div[name="title"]{
+            word-break: keep-all;
+            padding-right: 10px;
+            margin-left: 5px;
+            font-size: 1vmax;
+        }
+        
+
+    & label[for='todo_checkbox'] {
+        & > #lebel_bg {
+            width: 30px; height: 15px;
+            background-color: white;
+            padding: 2px;
+            margin: 0 10px;
+            border-radius: 50px;
+            & #label_btn {
+                width: 15px; height: 15px;
+                background-color: rgb(100, 100, 100);
+                border-radius: 100%;
+            }
+            
+        }
+    }
+} 
 }
