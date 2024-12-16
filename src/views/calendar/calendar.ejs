@@ -91,10 +91,10 @@
 </head>
 <body>
     <div id="wrap">
-        <%- include ('./default/header') %>
+        <%- include ('../default/header') %>
         <div id="inside_wrap">
-            <%- include ('./default/calendar') %>
-            <form action="/newScedule" method="post" id="scedule_form">
+            <%- include ('../default/calendar') %>
+            <form action="/calendar/write" method="post" id="scedule_form">
                 <textarea name="C_TITLE" id="title"  maxlength="20" placeholder="title"></textarea>
                 <textarea name="C_CONTENT" id="cal_content" placeholder="content"></textarea>
                 시작

@@ -4,7 +4,7 @@ const serCom = require("../ser_common")
 const todoRead= {
     list : async(username) => {
         let todo = await dao.todoRead.list(username);
-        // console.log('service',todo)
+        //console.log('service',todo)
         return todo;
     }
 }
@@ -22,11 +22,14 @@ const todoInsert= { //투두리스트 작성
         return serCom.getMessage(msg, url);
     }
 }
-const todoUpdate= {
-    delete : () => { //투두리스트 삭제
-
+const todoUpdate= { //to do list 수정, 삭제
+    modify : async(body) => {
+        console.log('sevice modify', body)
+        await dao.todoUpdate.modify(body);
     },
-    modify : () => { //투두리스트 수정
+    delete : async(body) => {
+        //console.log("todoservice data : ", body);
+        await dao.todoUpdate.delete(body);
 
     },
     pUpdate : async (body, username) =>{

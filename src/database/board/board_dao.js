@@ -57,14 +57,13 @@ const boardRead = {
         return data;
     },
     lineHitDesc : async ( start ) => { //조회 수 많은 순으로 정렬
-        const sql = `select * from POST order by P_HIT desc
-                    offset ${start} rows fetch next 10 rows only`
+        
+        const sql = `SELECT * FROM POST ORDER BY TO_NUMBER(P_HIT) DESC offset ${ start } rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;   
     },
     lineHitAsc : async ( start ) => { //조회 수 적은 순으로 정렬
-        const sql = `select * from POST order by P_HIT asc
-                    offset ${start} rows fetch next 10 rows only` 
+        const sql = `SELECT * FROM POST ORDER BY TO_NUMBER(P_HIT) ASC offset ${ start } rows fetch next 10 rows only` 
         const data = await (await con).execute(sql);
         return data;            
     },
