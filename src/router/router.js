@@ -37,48 +37,31 @@ module.exports=(app)=>{
         const result = await connection.execute("select * from ALLUSER")
         res.json(result.rows);
     })
-    //캘린더 라우터 아직 만들어지지 않아서 그대로 두겠습니다.
-    //이후 캘린더 라우터 만들어지면 옮기겠습니다.
 
     router.get('/logout', (req,res) => {
         res.session = null;
         res.redirect('/');
     })
-
+    router.get('/mypage', (req,res) => {
+        const zzz=require('../controller/calendar/calendar_ctrl')
+        res.render('mypage',{calendar:zzz.views.data['rows']});
+    })
     router.get('/',(req,res)=>{
         res.render('login', {id : req.session.username})
     })
-    const todolist=[
-        {
-            title:'프로젝트 마무리 하기',
-            priority: '1',
-            pk:'aaa'
-        },
-        {
-            title:'체크박스 함께 움직임',
-            priority: '2',
-            pk:'bbb'
-        },
-        {
-            title:'수정 필요',
-            priority: '0',
-            pk:'ccc'
 
-        }
-    ];
     const boardList=[{
         title:'boardtitle',
         url:'aaa'
     }];
 
     const todo_ctrl=require('../controller/todo/todo_ctrl')
-    router.post('/main',(req,res)=>{
+
+    router.get('/main',(req,res)=>{
+        let todolist=todo_ctrl.views.data;
         res.render('index',{todo:todolist,boardList:boardList})
     })
 
-    router.get('/main',(req,res)=>{
-        res.render('index',{todo:todolist,boardList:boardList})
-    })
 
 
      return router;

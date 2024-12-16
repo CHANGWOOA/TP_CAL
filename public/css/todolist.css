@@ -13,7 +13,7 @@
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
     }
-    & > #todo_title{
+    & > #todolist_title{
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
@@ -24,6 +24,23 @@
 *::placeholder{
     font-size: 1vmax;
 }
+
+.todo_label {
+    & > #lebel_bg {
+        width: 30px; height: 15px;
+        background-color: white;
+        padding: 2px;
+        margin: 0 10px;
+        border-radius: 50px;
+        & #label_btn {
+            width: 15px; height: 15px;
+            background-color: rgb(100, 100, 100);
+            border-radius: 100%;
+        }
+        
+    }
+}
+
 #todolist {
     /* todo 목록 */
     padding: 10px;
@@ -35,8 +52,6 @@
 
     & > * {
         margin: 15px auto 0 auto;
-
-
     }
     & > button {
         border-radius: 20px;
@@ -60,7 +75,7 @@
             margin-left: 5px;
             font-size: 1vmax;
         }
-        }
+        
 
     & label[for='todo_checkbox'] {
         & > #lebel_bg {
@@ -76,6 +91,7 @@
             }
             
         }
+<<<<<<< HEAD
     & .icon{
         margin: 5px 0 0 70% ;
         & button {
@@ -93,3 +109,8 @@
     }
 }
 
+=======
+    }
+} 
+}
+>>>>>>> 27bf4a39b2d99a4758201197f78fb5f5dd73e68f
