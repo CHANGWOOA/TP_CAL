@@ -24,7 +24,7 @@ const todoInsert= { //투두리스트 작성
 }
 const todoUpdate= { //to do list 수정, 삭제
     modify : async(body) => {
-        console.log('sevice modify', body)
+        //console.log('sevice modify', body)
         await dao.todoUpdate.modify(body);
     },
     delete : async(body) => {

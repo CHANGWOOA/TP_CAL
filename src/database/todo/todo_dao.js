@@ -42,10 +42,6 @@ const todoWrite = {
             console.log(err)
         }
         return result;
-    },
-    
-    delete : async ( body ) => { //단순 삭제
-        const sql = `delete from TODOLIST where T_TITLE = '${body.title}'`
     }
 }
 
@@ -53,6 +49,8 @@ const todoWrite = {
         delete : async ( body ) =>{
             //console.log("dao todo 데이터", body);
             const sql = `delete from TODOLIST where T_TITLE='${body.T_TITLE}'`;
+
+            //const sql = `delete from TODOLIST where T_TITLE='${body.T_TITLE}' AND T_ID='${body.T_ID}'`;
             return (await con).execute( sql );
         },
         modify : async ( body )=>{

@@ -36,7 +36,8 @@ const process= {
         //console.log('todo ctrl',req.body);
         try {
             await ser.todoUpdate.modify(req.body);
-            res.redirect("/todo");
+            res.send(req.body);
+            // res.redirect("/todo");
         } catch (error) {
             console.error("수정 오류 : ", error);
             res.status(500).json({error: "수정 실패"});
