@@ -1,9 +1,8 @@
-#todo { 
+.todo_wrap { 
     /* todo 위젯 전체 */
-    margin-top: 20px;
     float: right;
     overflow: scroll;
-    width: 50vmin; height: 80vh;
+    width: 50vw; height: 80vh;
     background-color: white;
     border-radius: 50px;
     &::-webkit-scrollbar {
@@ -13,16 +12,13 @@
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
     }
-    & > #todolist_title{
-        text-align: center;
-        font-size: 30px; font-weight: 600;
-        margin: 20px auto;
-
-    }
 
 }
-*::placeholder{
-    font-size: 1vmax;
+
+
+
+.todo_priority {
+    margin: 0 10px;
 }
 
 .todo_label {
@@ -40,71 +36,3 @@
         
     }
 }
-
-#todolist {
-    /* todo 목록 */
-    padding: 10px;
-    margin: 0 auto 10px auto;
-    width: 80%;
-    text-align: center;
-    border-radius: 50px 50px 0 50px;
-    background-color: rgb(200, 200, 200);
-
-    & > * {
-        margin: 15px auto 0 auto;
-    }
-    & > button {
-        border-radius: 20px;
-        border: 0;
-        background-color:white;
-        margin-bottom: 5px;
-        margin: 10px 10px 0 0;
-        padding: 5px 10px;
-    }
-
-    & input[type='checkbox'] {
-        display:none ;
-    }
-
-    & #todo_wrap > #context {
-        display: flex;
-
-        & > div[name="title"]{
-            word-break: keep-all;
-            padding-right: 10px;
-            margin-left: 5px;
-            font-size: 1vmax;
-        }
-        
-
-    & label[for='todo_checkbox'] {
-        & > #lebel_bg {
-            width: 30px; height: 15px;
-            background-color: white;
-            padding: 2px;
-            margin: 0 10px;
-            border-radius: 50px;
-            .label_btn {
-                width: 15px; height: 15px;
-                background-color: rgb(100, 100, 100);
-                border-radius: 100%;
-            }
-            
-        }
-    & .icon{
-        margin: 5px 0 0 70% ;
-        & button {
-            width: 15px; height: 15px;
-            background-color: rgba(255, 255, 255, 0);
-            border-style: none;
-        }
-        & > svg {
-            padding: 5px;
-            &:hover path{
-                fill: black;
-            }
-
-        }
-    }
-}
-

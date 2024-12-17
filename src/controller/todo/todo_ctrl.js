@@ -46,7 +46,7 @@ const process= {
     },
     delete : async (req, res) => { //투두 삭제
         try {
-            //console.log("삭제 요청 데이터", req.body);  
+            console.log("삭제 요청 데이터", req.body);  
             await ser.todoUpdate.delete(req.body);
             res.redirect('/todo');
     
