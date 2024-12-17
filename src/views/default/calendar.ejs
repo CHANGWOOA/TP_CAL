@@ -8,9 +8,11 @@
 
         schedules['title']=schedule[i].C_TITLE;
         schedules['start']=schedule[i].C_STARTDATE;
-        schedules['end']=schedule[i].C_ENDDATE;
+        let endDate = new Date(schedule[i].C_ENDDATE);
+        endDate.setDate(endDate.getDate() + 1); // 종료일 하루 더 추가
+        schedules['end'] = endDate.toISOString().split('T')[0];
         console.log('schedules',schedules)
-
+        
         list.push(schedules)
     }
     document.addEventListener('DOMContentLoaded', function() {
