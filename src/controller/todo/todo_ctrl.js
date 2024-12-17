@@ -6,10 +6,8 @@ const memSer = require("../../service/member/member_service")
 const views = {
 
     list : async(req,res) => {
-        
-        //console.log('session',req.session)
         const data= await ser.todoRead.list(req.session.username)
-        console.log('todo ctrl',data.rows)
+        // console.log('todo ctrl',data.rows)
         res.render("todo/todo",{ todo: data })
         //data.rows에서 data로 수정하였습니다.
         //밑에 data 함수와 return 값을 동일하게 지정해야
@@ -45,9 +43,8 @@ const process= {
     },
 
     delete : async (req, res) => {
-    
         try {
-            //console.log("삭제 요청 데이터", req.body);  
+            console.log("삭제 요청 데이터", req.body);  
             await ser.todoUpdate.delete(req.body);
             res.redirect('/todo');
     

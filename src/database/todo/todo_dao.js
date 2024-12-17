@@ -51,8 +51,8 @@ const todoWrite = {
 
     const todoUpdate = { // to do list 수정, 삭제
         delete : async ( body ) =>{
-            //console.log("dao todo 데이터", body);
-            const sql = `delete from TODOLIST where T_TITLE='${body.T_TITLE}'`;
+            console.log("dao todo 데이터", body);
+            const sql = `delete from TODOLIST where T_ID='${body.T_ID}'`;
             return (await con).execute( sql );
         },
         modify : async ( body )=>{
@@ -66,7 +66,7 @@ const todoWrite = {
             //성공적으로 수정되면 결과는 1이 될 것
         },
         checkbox : async ( body, username ) => { //완료 체크하기
-            const sql = `update TODOLIST set T_CHECK = 'V' where U_ID='${username} AND T_TITLE = '${body.title}'`
+            const sql = `update TODOLIST set T_CHECK = 'V' where U_ID='${username} AND T_TITLE = '${body.T_TITLE}'`
             const result = await (await con).execute ( sql );
             // 업데이트 수정시 결과는 1이 될 것
         }

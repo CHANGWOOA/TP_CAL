@@ -120,19 +120,15 @@ nav a{
         padding: 5px 10px;
     }
 }
+
+.icon {
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+}
 .content {
     & > * {
         margin: 15px auto 0 auto;
-        /* overflow: auto; */
 
-    }
-    & > button {
-        border-radius: 20px;
-        border-style: none;
-        background-color:rgba(255, 255, 255, 0);
-        margin-bottom: 5px;
-        margin: 10px 10px 0 0;
-        padding: 5px 10px;
     }
 
     & input[type='checkbox'] {
@@ -143,11 +139,26 @@ nav a{
     border-radius: 0px 30px 30px 30px;
     
     & > .title {
-        /* word-wrap: break-word; */
-        /* word-break: keep-all; */
-        padding-right: 10px;
-        margin-left: 5px;
-        font-size: 2vmax;
+        word-wrap: break-word;
     }
 
 } 
+
+.icon{
+    margin-left: 80%;
+    & > form{
+        display: inline;
+        background-color: rgba(255, 255, 255, 0);
+        margin: 0;
+        padding: 0;
+
+    & svg {
+
+        padding: 5px;
+        &:hover path{
+            fill: black;
+        }
+
+    }
+}
+}
