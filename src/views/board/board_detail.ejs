@@ -106,7 +106,7 @@
                   </div>
                   <% if (replyList.U_ID == username) { %>
                     <div class="reply-actions">
-                      <button>수정</button>
+                      <button type="submit" class="modify-button">수정</button>
                       <form method="POST" action="/board/detail/<%= data[0].P_ID %>/delete/<%= replyList.R_ID %>">
                         <button type="submit" class="delete-button">삭제</button>
                       </form>
