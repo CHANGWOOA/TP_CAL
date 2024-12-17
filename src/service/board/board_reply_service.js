@@ -1,26 +1,33 @@
-const dao= require("../../database/board/board_reply_dao")
-const repInsert= {
-    register : async(body) => { //코멘트 작성
-        const result= await dao.repInsert.register(body)
-        return result.rowsAffected; //rowsAffected (영향을 받은 행의 수)를 반환
-    }
-}
-const common= require("../ser_common");
-const repRead={
-    data : async(R_ID)=>{// 답글 번호 받아와 데이터 조회
-        let result= await dao.repRead.data(R_ID);//조회한 댓글 데이터 시간 수정
-        result= common.timeModify(result.rows);
-        return result;
-    }
-}
-const repUpdate={
-    delete : (R_ID)=>{//답글 삭제
-        dao.repUpdate.delete(R_ID);
-    },
-    modify : (body)=>{//답글 수정
-        dao.repUpdate.modify(body);
+const dao = require("../../database/board/board_reply_dao");
 
+const repInsert = {
+  register: async ({ P_ID, U_ID, content }) => {
+    //코멘트 작성
+    //console.log({ P_ID, U_ID, content })
+    return await dao.repInsert.register({ P_ID, U_ID, content });
+  },
+};
+const common = require("../ser_common");
 
-    }
-}
-module.exports= {repRead, repInsert, repUpdate}
+const repRead = {
+  data: async (P_ID) => {
+    // 답글 번호 받아와 데이터 조회
+
+    const replyList = await dao.repRead.data(P_ID); //조회한 댓글 데이터 시간 수정
+    //console.log("서비스 : ", replyList)
+
+    return replyList;
+  },
+};
+
+const repCtrl = {
+  delete: async (R_ID) => {
+    console.log(R_ID);
+    const result = await dao.repCtrl.delete(R_ID);
+  },
+  modify: (body) => {
+    //답글 수정(미완성)
+    dao.repUpdate.modify(body);
+  },
+};
+module.exports = { repRead, repInsert, repCtrl };

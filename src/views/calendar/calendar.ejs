@@ -23,7 +23,7 @@
         // calendar_title을 수정 가능하게 만듬
         calTitle.contentEditable = true;
         calContent.contentEditable = true;
-        console.log(calStartdate.textContent.substr(0,10))
+        //console.log(calStartdate.textContent.substr(0,10))
         calStartdate.innerHTML=`
             <input type='date' value='${calStartdate.textContent.substr(0,10)}'>
         `
@@ -53,8 +53,8 @@
         function saveEdit(calId) {
             const newTitle = document.getElementById(`calendar_title-${calId}`).textContent;
             const newContent = document.getElementById(`calendar_content-${calId}`).textContent;
-            const newStartdate = document.getElementById(`calendar_startdate-${calId}`).querySelector('input').value;
-            const newEnddate = document.getElementById(`calendar_enddate-${calId}`).querySelector('input').value;
+            const newStartdate = document.getElementById(`calendar_startdate-${calId}`).querySelector("input").value;
+            const newEnddate = document.getElementById(`calendar_enddate-${calId}`).querySelector("input").value;
 
             console.log('id', calId)
             console.log('title',newTitle)
@@ -77,6 +77,7 @@
             console.log('data',data)
             if (data) {
                 alert("수정 완료!");
+                const calTitle = document.getElementById(`calendar_title-${calId}`);
                 calTitle.contentEditable = false; // 수정 불가 상태로 변경
                 calTitle.style.backgroundColor = ''; // 배경 색상 초기화
                 const editBtn = document.getElementById(`edit-btn-${calId}`);

@@ -47,7 +47,7 @@ const todoWrite = {
 
     const todoUpdate = { // to do list 수정, 삭제
         delete : async ( body ) =>{
-            console.log("dao todo 데이터", body.T_ID);
+            //console.log("dao todo 데이터", body);
             const sql = `delete from TODOLIST where T_ID='${body.T_ID}'`;
             return (await con).execute( sql );
         },

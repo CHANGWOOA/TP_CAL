@@ -2,7 +2,7 @@ const dao= require("../../database/todo/todo_dao")
 const serCom = require("../ser_common")
 
 const todoRead= {
-    list : async(username) => {
+    list : async(username) => { //투두 읽어오기
         let todo = await dao.todoRead.list(username);
         //console.log('service',todo)
         return todo;
@@ -24,7 +24,7 @@ const todoInsert= { //투두리스트 작성
 }
 const todoUpdate= { //to do list 수정, 삭제
     modify : async(body) => {
-        console.log('sevice modify', body)
+        //console.log('sevice modify', body)
         await dao.todoUpdate.modify(body);
     },
     delete : async(body) => {

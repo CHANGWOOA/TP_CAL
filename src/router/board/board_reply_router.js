@@ -1,9 +1,11 @@
-const router= require("express").Router();
+const router = require("express").Router();
+const ctrl = require("../../controller/board/board_reply_ctrl");
 
-const ctrl= require("../../controller/board/board_reply_ctrl");
-router.post("/register", ctrl.process.register)
-router.get("/:R_ID", ctrl.views.data)
+router.post("/modify", ctrl.process.modify);
 
-router.post("/modify", ctrl.process.modify)
+router.post("/:P_ID", ctrl.views.data);
 
-module.exports=router;
+router.post("/:P_ID/register", ctrl.process.repRegister);
+//댓글 삭제 라우터 연결
+router.post("/:P_ID/delete/:R_ID", ctrl.process.delete);
+module.exports = router;

@@ -32,14 +32,14 @@ const boardRead = {
     },
     serTeam : async ( searchKey ) =>{//Team 명으로 검색하는 기능
         
-        const sql = `select * from POST where T_ID = '%${ searchKey }%'`
+        const sql = `select * from POST where T_ID like '%${ searchKey }%'`
         const result = await (await con).execute( sql );
         //console.log(result)
             return result;
         }
     ,
     serUID : async ( searchKey ) => { //유저의 아이디로 검색하는 기능
-        const sql = `select * from POST where U_ID = '%${searchKey}%'`
+        const sql = `select * from POST where U_ID like '%${searchKey}%'`
         //console.log(sql)
         const result = await (await con).execute (sql);
         //console.log("board dao:", result)
@@ -67,26 +67,26 @@ const boardRead = {
         const data = await (await con).execute(sql);
         return data;            
     },
-    lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬 -> 댓글세는 DB만들어야함
+    lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬
         const sql = `select * from POST order by ${댓글수} desc
                     offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;  
     },
     
-    lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 -> 댓글세는 DB만들어야함
+    lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 
         const sql = `select * from POST order by ${댓글수} asc
                     offset ${start} rows fetch next 10 rows only` 
         const data = await (await con).execute(sql);
         return data;  
     },
-    lineDateNew : async ( start ) =>{
+    lineDateNew : async ( start ) =>{ // 날짜 최신 순으로 정렬
         const sql = `select * from POST order by P_DATE desc
                     offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;
     },
-    lineDateOld : async ( start ) => {
+    lineDateOld : async ( start ) => { //날짜 오래된 순으로 정렬
         const sql = `select * from POST order by P_DATE asc 
                     offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute( sql );
@@ -96,7 +96,7 @@ const boardRead = {
 };
 
 const boardInsert = {
-    write : async (body, username) => {
+    write : async (body, username) => { //새 게시글 작성
         //console.log("ddd: ", username)
         const sql = `INSERT INTO Post (P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, P_DATE)
     VALUES (Post_seq.nextval, null, '${username}', '${body.title}', '0','${body.content}', sysdate)`
@@ -112,7 +112,7 @@ const boardInsert = {
         }
         return result;
   },
-  latest : async ( ) => {
+  latest : async ( ) => { // 게시글 작성 후, 제일 최신 글(본인 글)로 작성
     const sql = `SELECT MAX(P_ID) AS latest FROM Post`
     const latestNum = await(await con).execute(sql);
     console.log(latestNum)
@@ -128,7 +128,7 @@ const boardUpdate = { //게시물 수정, 게시물 삭제, 게시물 클릭시 
          (await con).execute( sql );
     },
     delete : async ( body ) =>{ //게시글 삭제 기능, 게시글의 고유번호를 받아와서 고유번호 일치하는 글을 삭제함
-        console.log(body)
+        //console.log(body)
         const sql = `delete from post where P_ID=${body}`;
         (await con).execute( sql );
     },

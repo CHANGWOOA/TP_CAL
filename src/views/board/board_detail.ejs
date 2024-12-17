@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/board.css" />
     <link rel="stylesheet" href="/css/navBar.css" />
     <link rel="stylesheet" href="/css/boardDetail.css" />
+    <link rel="stylesheet" href="/css/reply.css" />
   </head>
   <body>
     <div class="board_container">
@@ -19,7 +20,7 @@
             class="board_search_box_form"
           >
             <input
-              type="text"
+              type="text" 
               name="searchKey"
               id="searchKey"
               placeholder="search"
@@ -59,11 +60,11 @@
         <div class="board_content">
           <div class="boardDetail_upper">
             <div class="boardDetail_info">
-              <%= data[0].P_ID %>번
+              <%= data[0].P_ID %>번&nbsp;
               <hr />
-              <%= data[0].U_ID %>
+              &nbsp;<%= data[0].U_ID %> &nbsp;
               <hr />
-              <%= data[0].P_DATE %>
+              &nbsp;<%= data[0].P_DATE %>
             </div>
             <div class="boardDetail_controller">
               <input
@@ -87,18 +88,48 @@
             <div><%= data[0].P_TITLE %></div>
             <div><%= data[0].P_CONTENT %></div>
           </div>
-          <div class="boardDetail_commented">댓글 보일 공간</div>
+          <div class="boardDetail_commented">
+            <!--댓글 테이블 예시 , 없으면 안 보이게도 추가해야 함-->
+            <div class="boardDetail_info">
+              <div class="reply-section"> <!--댓글 리스트-->
+                <% if (replyList.length==0) { %>
+                  <!--만약에 댓글에 관한 리스트의 길이가 0이면 x-->
+                  <div class="none data">현재 댓글이 없습니다.</div>
+                <% } else { %>
+                  <% replyList.forEach(replyList => { %>
+                  <!--댓글 리스트가 있으면-->
+                  <div class="reply-card">
+                    <%= replyList.R_CONTENT %><br>
+                    <div class="reply-data">
+                    <span>작성자 : <%= replyList.U_ID %></span>
+                    <span>작성일 : <%= replyList.R_DATE %></span>
+                  </div>
+                  <% if (replyList.U_ID == username) { %>
+                    <div class="reply-actions">
+                      <button>수정</button>
+                      <form method="POST" action="/board/detail/<%= data[0].P_ID %>/delete/<%= replyList.R_ID %>">
+                        <button type="submit" class="delete-button">삭제</button>
+                      </form>
+                    </div>
+                  <% } %>
+                </div>
+              <% }) %>
+            <% } %>
+          </div>
+        </div>
           <div class="boardDetail_commentBox">
-            <form class="boardDetail_commentForm">
+            <form method="post" action="/board/detail/<%= data[0].P_ID %>/register">
+              <!-- 보드/디테일/게시글 번호 /레디스터(댓글 등록 라우터) -->
               <textarea
                 class="boarDetail_comment_input"
+                name="content"
                 id="commentContent"
                 rows="4"
                 placeholder="댓글 내용을 입력하세요..."
                 required
-              ></textarea>
-              <button class="boardDetail_commentBtn" onclick="submitComment()">
-                댓글 작성
+              ></textarea><!-- name: content 내용을 받아옴-->
+              <button class="boardDetail_commentBtn">
+              댓글 작성
               </button>
             </form>
           </div>

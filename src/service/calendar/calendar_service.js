@@ -2,7 +2,7 @@ const dao= require("../../database/calendar/calendar_dao")
 const serCom= require("../ser_common")
 
 const calRead={
-    data: async (username)=>{
+    data: async (username)=>{ //캘린더 읽어오기
        let cal= await dao.calRead.data(username);
        return cal;
     }
@@ -14,8 +14,7 @@ const calInsert={
         const result= await dao.calInsert.write(body, username);
             if(result !==0){
                 msg = "등록 성공";
-                url = "/calendar";
-                
+                url = "/calendar";    
             }else{
                 msg = "등록 실패";
                 url = "";
