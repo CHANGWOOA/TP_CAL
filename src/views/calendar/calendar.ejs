@@ -23,7 +23,7 @@
         // calendar_title을 수정 가능하게 만듬
         calTitle.contentEditable = true;
         calContent.contentEditable = true;
-        console.log(calStartdate.textContent.substr(0,10))
+        //console.log(calStartdate.textContent.substr(0,10))
         calStartdate.innerHTML=`
             <input type='date' value='${calStartdate.textContent.substr(0,10)}'>
         `
@@ -53,8 +53,8 @@
         function saveEdit(calId) {
             const newTitle = document.getElementById(`calendar_title-${calId}`).textContent;
             const newContent = document.getElementById(`calendar_content-${calId}`).textContent;
-            const newStartdate = document.getElementById(`calendar_startdate-${calId}`);
-            const newEnddate = document.getElementById(`calendar_enddate-${calId}`);
+            const newStartdate = document.getElementById(`calendar_startdate-${calId}`).querySelector("input").value;
+            const newEnddate = document.getElementById(`calendar_enddate-${calId}`).querySelector("input").value;
 
             console.log('id', calId)
             console.log('title',newTitle)
@@ -77,6 +77,7 @@
             console.log('data',data)
             if (data) {
                 alert("수정 완료!");
+                const calTitle = document.getElementById(`calendar_title-${calId}`);
                 calTitle.contentEditable = false; // 수정 불가 상태로 변경
                 calTitle.style.backgroundColor = ''; // 배경 색상 초기화
                 const editBtn = document.getElementById(`edit-btn-${calId}`);
@@ -106,6 +107,7 @@
                 alert("수정 실패!");
             }
         });
+        location.reload(true);
     }
     function deleteBtn(calId) {
         fetch('/calendar/delete', {
@@ -144,8 +146,8 @@
                     <% for (i=0;i<calendar.length;i++) { %>
                         <div id="schedule_wrap" class="content">
                             <div name="C_TITLE" id="calendar_title-<%= calendar[i].C_ID %>"checked class="title"><%= calendar[i]['C_TITLE'] %></div>                        <div name="C_CONTENT" id="calendar_content-<%= calendar[i].C_ID %>"checke class="content"><%= calendar[i]['C_CONTENT'] %></div>
-                            <div name="C_STARTDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
-                            <div name="C_ENDDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div>
+                            <div name="C_STARTDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
+                            <div name="C_ENDDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div>
                         
                             <div class="icon">
                                 <button id="edit-btn-<%= calendar[i]['C_ID'] %>" onclick="enableEdit(<%= calendar[i]['C_ID'] %>)">

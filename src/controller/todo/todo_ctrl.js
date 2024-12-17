@@ -9,22 +9,20 @@ const views = {
         
         //console.log('session',req.session)
         const data= await ser.todoRead.list(req.session.username)
-        //console.log('todo ctrl',data.rows)
+        console.log('todo ctrl',data.rows)
         res.render("todo/todo",{ todo: data })
         //data.rows에서 data로 수정하였습니다.
         //밑에 data 함수와 return 값을 동일하게 지정해야
         //todolist.ejs에서 같은 형식을 사용할 수 있습니다.
 
     },
-
-    data: async(req,res)=>{ // 투두 읽어오는 자료형
-        
+    data: async(req,res)=>{
         //console.log("todoctrl session name", req.session )
         //let user=req.session.username
         const data= await ser.todoRead.list(req.session.username)
+        const calendar=[]
         const boardList = await serBoard.boardRead.list(req.start)
-        //console.log('todo ctrl data',data)
-        res.render('index',{todo:data, boardList:boardList})
+        res.render('index',{todo:data, boardList:boardList,calendar:calendar})
     }
 }
 
@@ -33,7 +31,7 @@ const process= {
         const msg= await ser.todoInsert.write(req.body, req.session.username);
         res.send(msg)
     },
-    modify : async(req, res) => { //투두 수정(미완성)
+    modify : async(req, res) => { //투두 수정
         //console.log('todo ctrl',req.body);
         try {
             await ser.todoUpdate.modify(req.body);
@@ -45,9 +43,7 @@ const process= {
         
 
     },
-
     delete : async (req, res) => { //투두 삭제
-    
         try {
             //console.log("삭제 요청 데이터", req.body);  
             await ser.todoUpdate.delete(req.body);

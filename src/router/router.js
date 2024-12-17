@@ -12,13 +12,12 @@ module.exports=(app)=>{
     const memberRouter = require("./member/member_router")
     const todoRouter=require("./todo/todo_router")
     const boardRouter = require("./board/board_router");
-    const calRouter= require("./calendar/calendar_router")
-
-
+    const calRouter=require('./calendar/calendar_router');
+    
+    app.use("/calendar", calRouter)
     app.use("/member", memberRouter)
     app.use("/todo",todoRouter)
     app.use("/board", boardRouter)
-    app.use("/calendar", calRouter)
 
     const boardReplyRouter = require('./board/board_reply_router'); // 라우터 파일 경로
     app.use('/board/detail', boardReplyRouter);
@@ -30,9 +29,9 @@ module.exports=(app)=>{
     //     res.render('index',{todo:todo_ctrl.views.list() ,boardList:boardList})
     // })
 
-    const calCtrl= require('../controller/calendar/calendar_ctrl');
-    router.get('/main', calCtrl.views.data)
+ 
     router.get('/main', todoCtrl.views.data)
+    //!!! calCtrl 아니고 todoCtrl로
 
     router.get("/database", async(req,res) =>{
         let connection;
@@ -40,32 +39,24 @@ module.exports=(app)=>{
         const result = await connection.execute("select * from ALLUSER")
         res.json(result.rows);
     })
+    router.get('/calendar',(req,res)=>{
+        res.render('calendar')
+    })
+    //캘린더 라우터 아직 만들어지지 않아서 그대로 두겠습니다.
+    //이후 캘린더 라우터 만들어지면 옮기겠습니다.
 
     router.get('/logout', (req,res) => {
         res.session = null;
         res.redirect('/');
     })
-    router.get('/mypage', (req,res) => {
-        const zzz=require('../controller/calendar/calendar_ctrl')
-        res.render('mypage',{calendar:zzz.views.data['rows']});
-    })
+
     router.get('/',(req,res)=>{
         res.render('login', {id : req.session.username})
     })
 
-    const boardList=[{
-        title:'boardtitle',
-        url:'aaa'
-    }];
+    
 
-    const todo_ctrl=require('../controller/todo/todo_ctrl')
+    
 
-    router.get('/main',(req,res)=>{
-        let todolist=todo_ctrl.views.data;
-        res.render('index',{todo:todolist,boardList:boardList})
-    })
-
-
-
-     return router;
+    return router;
 }

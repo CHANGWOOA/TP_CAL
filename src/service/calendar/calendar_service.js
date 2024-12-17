@@ -8,14 +8,13 @@ const calRead={
     }
 }
 const calInsert={
-    write: async (body, username)=>{ //캘린더 작성
-        console.log("ser:", body)
+    write: async (body, username)=>{
+
         let msg, url;
         const result= await dao.calInsert.write(body, username);
             if(result !==0){
                 msg = "등록 성공";
-                url = "/calendar";
-                
+                url = "/calendar";    
             }else{
                 msg = "등록 실패";
                 url = "";
@@ -24,14 +23,14 @@ const calInsert={
 
     }
 }
+
 const calUpdate= {
-    modify : async(body)=>{ //캘린더 수정(미완성)
+    modify : async(body)=>{
         console.log('service modify', body)
         await dao.calUpdate.modify(body);
     },
-    delete : async(body)=>{ //캘린더 삭제(미완성)
+    delete : async(body)=>{
         await dao.calUpdate.delete(body);
     }
 }
 module.exports={calRead, calInsert, calUpdate}
-

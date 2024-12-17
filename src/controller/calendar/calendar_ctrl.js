@@ -16,11 +16,10 @@ const process={
         res.send(msg)
     },
     modify : async(req, res) => { //캘린더 수정(미완성)
+       console.log("cal ctrl", req.body)
         await ser.calUpdate.modify(req.body);
         res.redirect("/calendar");  
         },
-    
-
     delete : async (req, res) => { //캘린더 삭제
         await ser.calUpdate.delete(req.body);
         res.redirect('/calendar');
