@@ -23,7 +23,7 @@ const calInsert={
     write: async(body, username)=>{//캘린더 작성
         const sql= `INSERT INTO CAL (C_ID, U_ID, C_TITLE, C_CONTENT, C_STARTDATE, C_ENDDATE)
         VALUES (cal_seq.nextval, '${username}', '${body.C_TITLE}','${body.C_CONTENT}', 
-               TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD HH24:MI'), TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD HH24:MI'))`;
+               TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD'), TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD'))`;
         console.log("cal dao", sql)
         let result = 0;
                 try{
@@ -43,8 +43,8 @@ const calUpdate= {
         const sql = `UPDATE CAL 
                      SET C_TITLE = '${body.C_TITLE}', 
                      C_CONTENT = '${body.C_CONTENT}', 
-                     C_STARTDATE = TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD HH24:MI'), 
-                     C_ENDDATE = TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD HH24:MI') 
+                     C_STARTDATE = TO_DATE('${body.C_STARTDATE}', 'YYYY-MM-DD'), 
+                     C_ENDDATE = TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD') 
                      WHERE C_ID = ${body.C_ID}`;
 
         return (await con).execute( sql );
