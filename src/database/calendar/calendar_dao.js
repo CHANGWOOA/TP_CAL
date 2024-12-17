@@ -36,7 +36,7 @@ const calInsert={
 }
 const calUpdate= {
     delete : async (body) => {
-        const sql= `delete from CAL where C_ID='${body.C_ID}'`;
+        const sql= `delete from CAL where C_ID=${body.C_ID}`;
         return (await con).execute( sql );
     },
     modify : async ( body )=>{
