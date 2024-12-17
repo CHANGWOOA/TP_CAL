@@ -104,12 +104,19 @@
                     <span>작성자 : <%= replyList.U_ID %></span>
                     <span>작성일 : <%= replyList.R_DATE %></span>
                   </div>
-              </div>
-                <% })
-              }; %>
-            </div>
-            <!-- 여기까지-->    
+                  <% if (replyList.U_ID == username) { %>
+                    <div class="reply-actions">
+                      <button>수정</button>
+                      <form method="POST" action="/board/detail/<%= data[0].P_ID %>/delete/<%= replyList.R_ID %>">
+                        <button type="submit" class="delete-button">삭제</button>
+                      </form>
+                    </div>
+                  <% } %>
+                </div>
+              <% }) %>
+            <% } %>
           </div>
+        </div>
           <div class="boardDetail_commentBox">
             <form method="post" action="/board/detail/<%= data[0].P_ID %>/register">
               <!-- 보드/디테일/게시글 번호 /레디스터(댓글 등록 라우터) -->
