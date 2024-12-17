@@ -17,8 +17,8 @@ const boardRead={
         let list = await dao.boardRead.list (startNum);
         //console.log("board ser list:", list.rows)
          
-        list = serCom.dateSimple(list.rows) //시간 형식을 바꿔서 다시 리스트로 만들어주는 함수
-        //console.log("board ser list수정후:", list)
+
+        console.log("board ser list수정후:", list)
         //console.log("start", start)
         //console.log("page", page)
         //console.log("list.length", list.rows.length)
@@ -45,8 +45,8 @@ const boardRead={
             start = 1;
         start = Number(start);
 
-        const totalCnt = await dao.boardRead.totalCnt(); ///dao에서 post table의 게시물 총 갯수를 세어온다.
-        const num = totalCnt.rows[0]['COUNT(*)']; //{'COUNT(*)':8}에서 8만 추출하는 것
+        const serCnt = await dao.boardRead.serCnt( searchType, searchKey ); ///dao에서 post table의 해당게시물 개수를 세어온다
+        const num = serCnt.rows[0]['COUNT(*)']; //{'COUNT(*)':8}에서 8만 추출하는 것
         const result = (num % 5 ==0)? 0:1;
         const page = parseInt(num/5 +result);
 
@@ -55,19 +55,17 @@ const boardRead={
         //console.log("board serv ser type:", searchType)
         //console.log("board serv ser key:", searchKey)
         let resultList;
-        if(searchType == "T_ID"){
-            resultList = await dao.boardRead.serTeam( searchKey )
-        }else if(searchType == "U_ID" ){
-            resultList = await dao.boardRead.serUID( searchKey )
+        if(searchType == "U_ID" ){
+            resultList = await dao.boardRead.serUID( startNum, searchKey )
         }else if(searchType == "P_TITLE" ){
-            resultList = await dao.boardRead.serTitle( searchKey )
+            resultList = await dao.boardRead.serTitle( startNum, searchKey )
         }else if(searchType == "P_CONTENT" ){
-            resultList = await dao.boardRead.serContent (searchKey)
+            resultList = await dao.boardRead.serContent (startNum, searchKey)
         }
+        console.log("rows형식 되니?", resultList)
         
-        resultList = serCom.dateSimple(resultList.rows)
-        //console.log(resultList)
-        return resultList;
+        
+        return {list: resultList, start:startNum, page:page};
         
     },
     line : async (start, lineType) => {
@@ -98,7 +96,7 @@ const boardRead={
         }else if (lineType =="P_DATEO"){//작성일자 오래된 순
             resultList = await dao.boardRead.lineDateOld(startNum)
         } 
-        resultList = serCom.dateSimple(resultList.rows)
+        
     
         
          return resultList;

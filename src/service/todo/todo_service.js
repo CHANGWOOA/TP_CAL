@@ -48,13 +48,13 @@ const todoUpdate= { //to do list 수정, 삭제
         }
 
     },
-    complete : async (body, username) => {
+    complete : async (T_ID, U_ID, T_CHECK) => {
        let result;
        let list;
-       result = await dao.todoWrite.complete (body, username) 
+       result = await dao.todoUpdate.checkbox (T_ID, T_CHECK) 
 
        if (result == 1){
-        list = await dao.todoRead (username);
+        list = await dao.todoRead (U_ID);
         return list;
        }else {
         let msg = "체크 실패"

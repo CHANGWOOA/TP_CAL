@@ -81,11 +81,11 @@
                 <th>날짜</th>
                 <th>조회수</th>
               </tr>
-              <% if (list.length == 0) { %>
+              <% if (list.rows.length == 0) { %>
               <tr>
                 <th colspan="7">등록된 글이 없습니다</th>
               </tr>
-              <% } else { list.forEach(data => { %>
+              <% } else { list.rows.forEach(data => { %>
               <tr>
                 <td><%= data.P_ID %></td>
                 <td><%= data.U_ID %></td>

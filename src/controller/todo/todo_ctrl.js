@@ -61,7 +61,7 @@ const process= {
 
     },
     complete : async (req, res) => {
-        const result = await ser.todoUpdate.complete (req.body, req.username)
+        const result = await ser.todoUpdate.complete (req.body.T_ID, req.body.U_ID, req.body.T_CHECK)
         res.send("업데이트 완료")
     }
 }

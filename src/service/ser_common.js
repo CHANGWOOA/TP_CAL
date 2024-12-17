@@ -20,15 +20,17 @@ const timeModify = ( list ) => { //날짜데이터를 localeString 형식으로 
         return data;
         
     })
+    console.log("sercom timeMo", list)
     return list;
 
 }
 const dateSimple = ( list ) => { //날짜 데이터를 간단한 형식으로 돌려주는 함수
     list = list.map ( data => {
         
-        data['P_DATE']= data['P_DATE'].toLocaleDateString('ko-KR'); // YYYY-MM-DD 형식
+        data['P_DATE']= data['P_DATE'].toLocaleString('ko-KR'); // YYYY-MM-DD 형식
         return data;
     })
+    console.log("sercom dateSim", list)
     return list;
 }
 
