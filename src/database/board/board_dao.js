@@ -6,17 +6,17 @@ const boardRead = {
         //5줄 정렬, 나중에 필요하면 숫자를 바꾸면 되고, 오름차순으로 해두었습니다.
         //START는 현재페이지를 계산하는 수식에서 나온 변수임.
         
-        const sql = `select * from Post order by P_ID desc
-                    offset ${start} rows fetch next 10 rows only`;
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post order by P_ID desc
+                    offset ${start} rows fetch next 10 rows only `;
         
         const list = await (await con).execute( sql )
-        //console.log("board dao list:" ,list) rows형식으로 가져옴!!!
+        //console.log("board dao list:" ,list) //rows형식으로 가져옴!!!
         
         return list;
       
     },
     detail: async ( P_ID ) => { //한 제목을 클릭했을때 글을 불러오는 요소 작성 필요 //일단 받아오는 것을 string으로 지정해둠
-        const sql = `select * from POST where P_ID = ${ P_ID }`;
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post where P_ID = ${P_ID}`;
         const contentList = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
         return contentList;
     },
@@ -30,65 +30,77 @@ const boardRead = {
         }
         return cnt;
     },
-    serTeam : async ( searchKey ) =>{//Team 명으로 검색하는 기능
-        
-        const sql = `select * from POST where T_ID like '%${ searchKey }%'`
-        const result = await (await con).execute( sql );
-        //console.log(result)
-            return result;
+    serCnt: async( searchType, searchKey ) =>{
+        let cnt=0;
+        if(searchType == "U_ID" ){
+            cnt= await (await con).execute(`select count(*) from post where U_ID='%{searchKey}%'`)
+        }else if(searchType == "P_TITLE" ){
+            cnt= await (await con).execute(`select count(*) from post where P_TITLE='%{searchKey}%'`)
+        }else if(searchType == "P_CONTENT" ){
+            cnt= await (await con).execute(`select count(*) from post where P_CONTENT='%{searchKey}%'`)
         }
-    ,
-    serUID : async ( searchKey ) => { //유저의 아이디로 검색하는 기능
-        const sql = `select * from POST where U_ID like '%${searchKey}%'`
+        return cnt;
+    },
+    // serTeam : async ( searchKey ) =>{//Team 명으로 검색하는 기능
+        
+    //     const sql = `select * from POST where T_ID like '%${ searchKey }%'`
+    //     const result = await (await con).execute( sql );
+    //     //console.log(result)
+    //         return result;
+    //     }
+    // ,
+    serUID : async ( start, searchKey ) => { //유저의 아이디로 검색하는 기능
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post where U_ID like '%${searchKey}%' order by P_DATE desc offset ${start} rows fetch next 10 rows only`;
+       
         //console.log(sql)
         const result = await (await con).execute (sql);
-        //console.log("board dao:", result)
+        console.log("board dao serUID:", result)
         return result;
 
     },
-    serTitle : async ( searchKey ) =>{ // 제목에 해당 key가 포함된 경우 검색하는 기능 
-        const sql = `select * from POST where P_TITLE like '%${searchKey}%'`
+    serTitle : async ( start, searchKey ) =>{ // 제목에 해당 key가 포함된 경우 검색하는 기능 
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post where P_TITLE like '%${searchKey}%' order by P_DATE desc offset ${start} rows fetch next 10 rows only`
+        
         const data = (await con).execute( sql ); //반환값은 array 형식이 될 것 같다.
+        
         return data;
     },
-    serContent : async ( searchKey ) =>{ //내용검색: 내용에 해당 key가 포함된 경우 검색하는 기능
-        const sql = `select * from POST where P_CONTENT like '%${searchKey}%'`
+    serContent : async ( start, searchKey ) =>{ //내용검색: 내용에 해당 key가 포함된 경우 검색하는 기능
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post where U_ID like '%${searchKey}%' order by P_DATE desc offset ${start} rows fetch next 10 rows only`
         const data = (await con).execute( sql );
         return data;
     },
     lineHitDesc : async ( start ) => { //조회 수 많은 순으로 정렬
         
-        const sql = `SELECT * FROM POST ORDER BY TO_NUMBER(P_HIT) DESC offset ${ start } rows fetch next 10 rows only`
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post order by TO_NUMBER(P_HIT) desc offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;   
     },
     lineHitAsc : async ( start ) => { //조회 수 적은 순으로 정렬
-        const sql = `SELECT * FROM POST ORDER BY TO_NUMBER(P_HIT) ASC offset ${ start } rows fetch next 10 rows only` 
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post order by TO_NUMBER(P_HIT) asc offset ${start} rows fetch next 10 rows only` 
         const data = await (await con).execute(sql);
         return data;            
     },
-    lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬
-        const sql = `select * from POST order by ${댓글수} desc
-                    offset ${start} rows fetch next 10 rows only`
-        const data = await (await con).execute(sql);
-        return data;  
-    },
+    // lineReplyDesc : async ( start ) => { //댓글 수 많은 순으로 정렬
+    //     const sql = `select * from POST order by ${댓글수} desc
+    //                 offset ${start} rows fetch next 10 rows only`
+    //     const data = await (await con).execute(sql);
+    //     return data;  
+    // },
     
-    lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 
-        const sql = `select * from POST order by ${댓글수} asc
-                    offset ${start} rows fetch next 10 rows only` 
-        const data = await (await con).execute(sql);
-        return data;  
-    },
+    // lineReplyAsc : async ( start ) => { //댓글 수 적은 순으로 정렬 
+    //     const sql = `select * from POST order by ${댓글수} asc
+    //                 offset ${start} rows fetch next 10 rows only` 
+    //     const data = await (await con).execute(sql);
+    //     return data;  
+    // },
     lineDateNew : async ( start ) =>{ // 날짜 최신 순으로 정렬
-        const sql = `select * from POST order by P_DATE desc
-                    offset ${start} rows fetch next 10 rows only`
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post order by P_DATE desc offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute(sql);
         return data;
     },
     lineDateOld : async ( start ) => { //날짜 오래된 순으로 정렬
-        const sql = `select * from POST order by P_DATE asc 
-                    offset ${start} rows fetch next 10 rows only`
+        const sql = `select P_ID, T_ID, U_ID, P_TITLE, P_HIT, P_CONTENT, TO_CHAR(P_DATE, 'YYYY-MM-DD HH24:MI') AS P_DATE from Post order by P_DATE asc offset ${start} rows fetch next 10 rows only`
         const data = await (await con).execute( sql );
         return data;
     }

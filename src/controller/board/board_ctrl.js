@@ -37,9 +37,10 @@ const views={
 
     },
     modifyForm : async (req, res) => { //게시글 수정
+        //console.log("board ctrl", req.params.P_ID)
         const data= await ser.boardRead.detail(req.params.P_ID);
-        //const data=[{}];
-        console.log('modify form : ',data)
+        
+        //console.log('modify form : ',data)
         res.render("board/modify_form", {data:data});
 
     },
@@ -54,7 +55,7 @@ const views={
             let message = serCom.getaMessage(msg,url);
             res.send(message);
         }else{
-            res.render("board/board", {list:result, start: result.start, page: result.page})
+            res.render("board/board", {list:result.list, start: result.start, page: result.page})
         }
     },
     line : async (req, res) => {
@@ -79,13 +80,14 @@ const process= {
         res.send(msg)
     },
     modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+        //console.log("ctrl modify", req.body)
         ser.boardUpdate.modify(req.body)
-        console.log(req.body)
-        res.redirect("/board/board_detail/"+req.body.P_ID);
+        
+        res.redirect("/board/detail/"+req.body.P_ID);
 
     },
     delete : (req, res) => { //게시글 삭제
-        console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
+        //console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
         ser.boardUpdate.delete(req.params.P_ID);
         res.redirect("/board")
     }

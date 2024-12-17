@@ -6,7 +6,7 @@ router.get("/", ctrl.views.list);
 router.post("/delete", ctrl.process.delete); //to do list 삭제
 router.post("/modify", ctrl.process.modify); //to do list 수정
 
-router.post("/update", ctrl.process.pUpdate); //중요도 업데이트 기능
+router.post("/complete", ctrl.process.complete); //todolist 완료 시 체크박스
 
 
 module.exports=router;

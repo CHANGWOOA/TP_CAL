@@ -122,7 +122,7 @@
 
     
     function deleteBtn(todoId) {
-        fetch('/calendar/delete', {
+        fetch('/todo/delete', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -163,7 +163,7 @@
                                 <div id="label_btn-<%= todo.rows[i]['T_ID'] %>" class="label_btn"></div>
                             </div>
                         </label>
-                        <input type="checkbox" name="checkbox-<%= todo.rows[i]['T_ID'] %>" id="checkbox-<%= todo.rows[i]['T_ID'] %>" onclick="isChecked(<%= todo.rows[i]['T_ID'] %>)">
+                        <input type="checkbox" name="checkbox-<%= todo.rows[i]['T_ID'] %>" id="checkbox-<%= todo.rows[i]['T_ID'] %>" onclick="isChecked(<%= todo.rows[i]['T_ID'] %>, '<%=todo.rows[i]['U_ID'] %>')">
 
                         <% if(todo.rows[i]['T_PRIORITY']=='1') { %>
                             !

@@ -16,7 +16,7 @@ const repInsert= {
 const repRead = {
     data : async(P_ID) => { //댓글 불러오기
         
-        const sql = `SELECT R_ID, P_ID, U_ID, R_CONTENT, TO_CHAR(R_DATE, 'YYYY-MM-DD HH24:MI') AS R_DATE FROM REPLY WHERE P_ID = ${P_ID}`;
+        const sql = `SELECT R_ID, P_ID, U_ID, R_CONTENT, TO_CHAR(R_DATE, 'YYYY-MM-DD HH24:MI') AS R_DATE FROM REPLY WHERE P_ID = ${P_ID} order by R_DATE asc` ;
 
         
         const replylist = await ( await con ).execute( sql ); //해당 글과 관련된 데이터를 list형식으로 받아옴
