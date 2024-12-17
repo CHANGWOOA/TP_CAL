@@ -41,8 +41,7 @@
   width: 100%;
   justify-content: end;
 }
-.delete-button,
-.modify-button {
+.delete-button{
   margin: 5px 2px;
   border-radius: 10px;
   border: 1px solid rgb(196, 196, 196);
@@ -54,7 +53,4 @@
   background-color: rgb(222, 127, 127);
   color: white;
 }
-.modify-button {
-  background-color: rgb(124, 124, 246);
-  color: white;
-}
+

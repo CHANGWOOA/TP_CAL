@@ -3,7 +3,7 @@ const con = require("../db_common");
 
 const calRead={
     data: async ( username ) => {//작성한 것 불러오기
-            const sql = `select * from CAL where U_ID = '${ username }'`;
+            const sql = `select C_ID, T_ID, U_ID, C_TITLE, C_CONTENT, TO_CHAR(C_STARTDATE, 'YYYY-MM-DD HH24:MI') AS C_STARTDATE, TO_CHAR(C_ENDDATE, 'YYYY-MM-DD HH24:MI') AS C_ENDDATE  from CAL where U_ID = '${ username }'`;
             let cal;
             try {
                 cal =  await(await con).execute( sql ); 

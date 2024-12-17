@@ -108,7 +108,7 @@
     </g>
 </svg>
 `; // 버튼 텍스트를 '수정'으로 변경
-        editBtn.setAttribute('onclick', `enableEdit(${todoId})`); // 다시 수정 버튼으로 전환
+                editBtn.setAttribute('onclick', `enableEdit(${todoId})`); // 다시 수정 버튼으로 전환
 
         } catch (error) {
             console.log(error)
@@ -162,6 +162,7 @@
                                     <div id="label_btn-<%= todo.rows[i]['T_ID'] %>" class="label_btn"></div>
                                 </div>
                             </label>
+                            <input type="checkbox" name="checkbox-<%= todo.rows[i]['T_ID'] %>" id="checkbox-<%= todo.rows[i]['T_ID'] %>" onclick="isChecked(<%= todo.rows[i]['T_ID'] %>, '<%=todo.rows[i]['U_ID'] %>')">
                             <% if(todo.rows[i]['T_PRIORITY']=='1') { %>
                                 !
                             <% } else if(todo.rows[i]['T_PRIORITY']=='2'){ %>
