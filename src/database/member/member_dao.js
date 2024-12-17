@@ -31,6 +31,18 @@ const getList = async () => {
     return result;
 }
 
+const getUser = async (U_ID) => {
+    const sql = `select * from ALLUSER where U_ID='${U_ID}'`;
+    let result;
+    try{
+        const con = await oracledb.getConnection( dbConfig );
+        result = await con.execute( sql, body );
+    }catch(err){
+        console.log( err )
+    }
+    return result;
+}
+
 
 const register = async ( body ) => {
     //회원가입 db등록
@@ -46,7 +58,7 @@ const register = async ( body ) => {
     } catch (err) {
         console.log( err )
     }
-    return result;
+    return result;s
 }
 
 const U_del = async( U_ID ) => {
@@ -69,4 +81,4 @@ const U_modify = async( body ) => {
     }
 }
 
-module.exports = { loginCheck, getList, register, U_del, U_modify };
+module.exports = { loginCheck, getList, register, U_del, U_modify ,getUser};

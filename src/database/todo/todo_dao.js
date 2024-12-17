@@ -42,21 +42,17 @@ const todoWrite = {
             console.log(err)
         }
         return result;
-    },
-    
-    delete : async ( body ) => { //단순 삭제
-        const sql = `delete from TODOLIST where T_TITLE = '${body.title}'`
     }
 }
 
     const todoUpdate = { // to do list 수정, 삭제
         delete : async ( body ) =>{
-            console.log("dao todo 데이터", body);
+            console.log("dao todo 데이터", body.T_ID);
             const sql = `delete from TODOLIST where T_ID='${body.T_ID}'`;
             return (await con).execute( sql );
         },
         modify : async ( body )=>{
-            const sql = `update TODOLIST set T_TITLE='${body.T_TITLE}', T_PRIORITY='${body.T_PRIORITY}' WHERE T_id=${body.T_ID} `;
+            const sql = `update TODOLIST set T_TITLE='${body.T_TITLE}' WHERE T_id=${body.T_ID} `;
             return (await con).execute( sql );
         },
         priority : async ( body, username ) => { //중요도 추후에 수정하기

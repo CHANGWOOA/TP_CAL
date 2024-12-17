@@ -2,6 +2,7 @@ const ser= require("../../service/todo/todo_service")
 const serBoard = require("../../service/board/board_service")
 const serCom= require("../../service/ser_common")
 const memSer = require("../../service/member/member_service")
+const calSer = require("../../service/calendar/calendar_service")
 
 const views = {
 
@@ -18,9 +19,10 @@ const views = {
         //console.log("todoctrl session name", req.session )
         //let user=req.session.username
         const data= await ser.todoRead.list(req.session.username)
-        const calendar=[]
+        const calendar= await calSer.calRead.data(req.session.username)
         const boardList = await serBoard.boardRead.list(req.start)
-        res.render('index',{todo:data, boardList:boardList,calendar:calendar})
+        console.log(calendar)
+        res.render('index',{todo:data, boardList:boardList,calendar:calendar.rows})
     }
 }
 

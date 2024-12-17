@@ -9,7 +9,7 @@ const views={
     }
 }
 
-const process={
+const process={ 
     write : async(req, res) => {
         const msg= await ser.calInsert.write(req.body, req.session.username)
         //console.log('cal ctrl write', req.body);

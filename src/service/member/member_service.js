@@ -14,6 +14,11 @@ const getList = async () => {
     return result.rows;
 }
 
+const getUser = async( U_ID ) => {
+    const user = await dao.getUser( U_ID );
+    return user.rows[0]
+}
+
 const getMember = async( id ) => {
     const user = await dao.loginCheck( id );
     return user.rows[0]
@@ -76,4 +81,4 @@ const U_modify = (body) => {
     dao.U_modify(body)
 }
 
-module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify}
+module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify,getUser}

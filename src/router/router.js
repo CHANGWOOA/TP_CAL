@@ -41,8 +41,18 @@ module.exports=(app)=>{
         res.render('login', {id : req.session.username})
     })
 
-    router.get('/mypage',todoCtrl.views.data)
-
+    router.get('/mypage',(req,res)=>{
+        member=[
+            {
+                U_ID:'654132',
+                U_PWD:'0000',
+                U_TEL:'010-1324-8745',
+                U_NAME:'헝은미',
+            }
+        ]
+        res.render('mypage',{member:member[0]})
+    })
+    const memCtrl=require('../controller/member/member_ctrl');
 
 
      return router;

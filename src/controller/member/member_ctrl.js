@@ -13,4 +13,9 @@ const register = async (req, res) => {
   res.send(msg);
 };
 
-module.exports = { loginCheck, logout, register };
+const getUser = async (req, res) => {
+  let msg = await ser.getUser(req.session.username);
+  res.render('mypage',msg)
+};
+
+module.exports = { loginCheck, logout, register,getUser };
