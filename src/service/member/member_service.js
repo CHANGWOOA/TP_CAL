@@ -76,4 +76,4 @@ const U_modify = (body) => {
     dao.U_modify(body)
 }
 
-module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify,getUser}
+module.exports = {getList, getMessage, getMember, loginCheck, register, U_del, U_modify}
