@@ -22,7 +22,6 @@ module.exports=(app)=>{
 
     const todoCtrl=require('../controller/todo/todo_ctrl');
 
-    const calCtrl= require('../controller/calendar/calendar_ctrl');
 
     router.get('/main', todoCtrl.views.data)
 

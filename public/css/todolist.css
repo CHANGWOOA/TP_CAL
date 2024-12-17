@@ -17,7 +17,6 @@
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
-
     }
 
 }
@@ -50,18 +49,7 @@
     border-radius: 50px 50px 0 50px;
     background-color: rgb(200, 200, 200);
 
-    & > * {
-        margin: 15px auto 0 auto;
-    }
-    & > button {
-        border-radius: 20px;
-        border: 0;
-        background-color:white;
-        margin-bottom: 5px;
-        margin: 10px 10px 0 0;
-        padding: 5px 10px;
-    }
-
+    
     & input[type='checkbox'] {
         display:none ;
     }
@@ -70,7 +58,7 @@
         display: flex;
 
         & > div[name="title"]{
-            word-break: keep-all;
+            /* word-break: keep-all; */
             padding-right: 10px;
             margin-left: 5px;
             font-size: 1vmax;
