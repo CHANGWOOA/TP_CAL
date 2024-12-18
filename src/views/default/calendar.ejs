@@ -2,35 +2,45 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/ko.global.min.js"></script>
 
 <script>
-  const schedule = <%- JSON.stringify(calendar) %>;
-    let title, start,end;
+  //fullcalendar라는 라이브러리를 사용해서 기본 달력 위젯 제작
+    
+    //서버에서 일정을 받아옴
+    const schedule = <%- JSON.stringify(calendar) %>;
+    
+    let title,start,end;
     var list=[{}];
+
+    //일정을 라이브러리가 인식할 수 있는 배열 형태로 배치
     for (i=0;i<schedule.length;i++) {
         var schedules={};
-
         schedules['title']=schedule[i].C_TITLE;
         schedules['start']=schedule[i].C_STARTDATE;
         let endDate = new Date(schedule[i].C_ENDDATE);
-        endDate.setDate(endDate.getDate() + 1); // 종료일 하루 더 추가
+        // 기존의 달력에서는 종료일이 하루 일찍 끝나는 걸로 표시되는 문제가 있었음.
+        // 종료일 하루 더 추가
+        endDate.setDate(endDate.getDate() + 1); 
         schedules['end'] = endDate.toISOString().split('T')[0];
         
         list.push(schedules)
     }
     document.addEventListener('DOMContentLoaded', function() {
+    //Id가 'calendar'인 요소에 적용
     const calendarEl = document.getElementById('calendar')
     
     const calendar = new FullCalendar.Calendar(calendarEl, {
+    //달력 형태
       initialView: 'dayGridMonth',
-    events: list,
+    //일정 전송
+      events: list,
+    //한국어로 로컬화
     locale:'ko'
 
 })
     calendar.render()
   })
-  
-
-  
 
 </script>
 <style></style>
+
+<%# 달력 표시 %>
 <div id='calendar'></div>

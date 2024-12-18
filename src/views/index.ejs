@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <%# 비슷한 양식을 사용할 일이 많았기 때문에 form이나 content_wrap 클래스 등 공통적인 요소는 default.css에서 작업 %>
+    <%# 그때그때 달라지는 요소들은 추가로 css 파일을 만들어서 보기 편하게 %>
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/todolist.css">
@@ -12,11 +15,16 @@
 
 </head>
     <body>
+        <%# 메뉴부분과 다른 부분을 합치기 위한 div %>
     <div id="main_wrap">
+        <%# 껍질 미리 깐 메뉴 %>
         <%- include ('./default/header') %>
         <div id="inside_wrap">
+        <%# 껍질 미리 깐 캘린더%>
         <%- include ('./default/calendar') %>
+        
         <div id="middle">
+        <%# 내 일정에 적어놓은 메모까지 볼 수 있는 위젯. 단 수정,삭제는 불가 %>
         <div id="calender_list" class="wrap">
             <div class="mainTitle">일정</div>
             <div id="content">
@@ -35,6 +43,7 @@
         </div>
 
     </div>
+        <%# 껍질 미리 깐 투두리스트%>
         <%- include ('./default/todolist') %>
    
 

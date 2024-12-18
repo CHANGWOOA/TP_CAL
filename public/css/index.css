@@ -10,6 +10,13 @@
     word-break: keep-all;
     border-radius: 30px;
     padding: 15px;
+
+    &   .content {
+        font-size: 12px;
+    }    
+    & #prty_form {
+        font-size: 12px;
+    }
 }
 
 #rate {

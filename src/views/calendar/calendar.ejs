@@ -20,19 +20,17 @@
 
         console.log(editBtn)
         
-        // calendar_title을 수정 가능하게 만듬
+
         calTitle.contentEditable = true;
         calContent.contentEditable = true;
-        //console.log(calStartdate.textContent.substr(0,10))
+
+        //기존의 날짜가 미리 선택되어있음
         calStartdate.innerHTML=`
             <input type='date' value='${calStartdate.textContent.substr(0,10)}'>
         `
         calEnddate.innerHTML=`
             <input type='date' value='${calEnddate.textContent.substr(0,10)}'>
         `
-        // calTitle.style.backgroundColor = '#f0f0f0'; // 수정할 때 배경 색상 변경/
-
-        // 버튼 텍스트를 '저장'으로 변경
 
         try {
             editBtn.innerHTML = `
@@ -78,8 +76,7 @@
             if (data) {
                 alert("수정 완료!");
                 const calTitle = document.getElementById(`calendar_title-${calId}`);
-                calTitle.contentEditable = false; // 수정 불가 상태로 변경
-                calTitle.style.backgroundColor = ''; // 배경 색상 초기화
+                calTitle.contentEditable = false;
                 const editBtn = document.getElementById(`edit-btn-${calId}`);
                 try {
                     editBtn.innerHTML = `
@@ -130,11 +127,16 @@
         <div id="inside_wrap">
             <%- include ('../default/calendar') %>
             <div id="calendar_wrap" class="wrap">
+            <%# 위젯 이름%>
             <div class="mainTitle">새 일정</div>
+            <%# 새로운 일정 추가 폼 %>
             <form action="/calendar/write" method="post" id="calendar_form" class="form">
+                <%# 달력에 표시될 일정 입력 %>
                 <textarea name="C_TITLE" class="title_form"  maxlength="20" placeholder="제목"></textarea>
+                <%# 자세한 일정 메모 입력%>
                 <textarea name="C_CONTENT" id="cal_content" class="content_form" placeholder="내용"></textarea>
                 <div class="date_label">시작 |
+                <%# 시작 날짜 & 종료 날짜 입력%>
                 <input type="date" name="C_STARTDATE" id="cal_startDate">
                 </div>
                 <div class="date_label">종료 |
@@ -146,14 +148,21 @@
                 <div id="content">
                     <% for (i=0;i<calendar.length;i++) { %>
                         <div id="content_wrap" class="content">
-                            <div name="C_TITLE" id="calendar_title-<%= calendar[i].C_ID %>"checked class="title"><%= calendar[i]['C_TITLE'] %></div>                        <div name="C_CONTENT" id="calendar_content-<%= calendar[i].C_ID %>"checke class="content"><%= calendar[i]['C_CONTENT'] %></div>
+                            <%# 달력에 표시 될 일정 %>
+                            <div name="C_TITLE" id="calendar_title-<%= calendar[i].C_ID %>"checked class="title"><%= calendar[i]['C_TITLE'] %></div>
+                            <%# 자세한 일정 메모%>
+                            <div name="C_CONTENT" id="calendar_content-<%= calendar[i].C_ID %>"checke class="content"><%= calendar[i]['C_CONTENT'] %></div>
+                            <%# 일정의 시작날짜%>
                             <div class="date_label">
                                 시작 |<div name="C_STARTDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
                         </div>
+                            <%# 일정의 종료 날짜 %>
                             <div class="date_label">
                                 종료 |<div name="C_ENDDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div></div>
                         
                             <div class="icon_wrap">
+                                
+                                <%# 수정 버튼%>
                                 <button id="edit-btn-<%= calendar[i]['C_ID'] %>" onclick="enableEdit(<%= calendar[i]['C_ID'] %>)" class="icon">
                                     <svg  width="13px" height="13px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" >
                                         <path d="M8.29289 3.70711L1 11V15H5L12.2929 7.70711L8.29289 3.70711Z" fill="rgb(100, 100, 100)"/>
@@ -162,14 +171,15 @@
                                         <path d="M9.70711 2.29289L13.7071 6.29289L15.1716 4.82843C15.702 4.29799 16 3.57857 16 2.82843C16 1.26633 14.7337 0 13.1716 0C12.4214 0 11.702 0.297995 11.1716 0.828428L9.70711 2.29289Z" fill="rgb(100, 100, 100)"/>
                                         </svg>
                                 </button>
+                                <%# 삭제 버튼 %>
                                 <button id="deleteBtn-<%= calendar[i]['C_ID'] %>" onclick="deleteBtn(<%= calendar[i]['C_ID'] %>)" class="icon">
                                 <button id="deleteBtn-<%= calendar[i]['C_ID'] %>" onclick="deleteBtn(<%= calendar[i]['C_ID'] %>)" class="icon">
                                     <svg width="13px" height="13px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 2H1V4H15V2H12V0H4V2Z" fill="rgb(100, 100, 100)"/>
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6H13V16H3V6ZM7 9H9V13H7V9Z" fill="rgb(100, 100, 100)"/>
                                         </svg>
-                                        </button>
-                                        </form>
+                                </button>
+                                        
                             </div>
                     </div>
                 <% } %>

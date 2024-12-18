@@ -15,7 +15,8 @@ const register = async (req, res) => { //회원가입
 
 const getUser = async (req, res) => {
   let msg = await ser.getUser(req.session.username);
-  res.render('mypage',msg)
+  console.log(msg)
+  res.render('mypage', {list: msg})
 };
 
 module.exports = { loginCheck, logout, register,getUser };

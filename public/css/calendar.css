@@ -53,6 +53,9 @@ input[type="date"] {
     --fc-button-border-color: rgb(66, 189, 62);
     --fc-button-hover-bg-color: rgb(66, 189, 62);
     --fc-button-hover-border-color: white;
-
+    --fc-event-bg-color: rgb(66, 189, 62);
+    --fc-event-border-color: rgb(66, 189, 62);
+    --fc-event-text-color: white;
+        
     
 }
