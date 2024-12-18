@@ -41,7 +41,7 @@ const calUpdate= {
         const sql= `delete from CAL where C_ID='${body.C_ID}'`;
         return (await con).execute( sql );
     },
-    modify : async ( body )=>{//캘린더 수정
+    modify : async ( body )=>{
         const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_CONTENT}',
         C_STARTDATE=TO_DATE('${body.C_STARTDATE}' , 'YYYY-MM-DD'), 
         C_ENDDATE=TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD') 

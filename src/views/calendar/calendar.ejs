@@ -124,7 +124,7 @@
     </script>
 </head>
 <body>
-    <div id="wrap">
+    <div id="main_wrap">
         <%- include ('../default/header') %>
 
         <div id="inside_wrap">
@@ -147,8 +147,11 @@
                     <% for (i=0;i<calendar.length;i++) { %>
                         <div id="content_wrap" class="content">
                             <div name="C_TITLE" id="calendar_title-<%= calendar[i].C_ID %>"checked class="title"><%= calendar[i]['C_TITLE'] %></div>                        <div name="C_CONTENT" id="calendar_content-<%= calendar[i].C_ID %>"checke class="content"><%= calendar[i]['C_CONTENT'] %></div>
-                            <div name="C_STARTDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
-                            <div name="C_ENDDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div>
+                            <div class="date_label">
+                                시작 |<div name="C_STARTDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
+                        </div>
+                            <div class="date_label">
+                                종료 |<div name="C_ENDDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div></div>
                         
                             <div class="icon_wrap">
                                 <button id="edit-btn-<%= calendar[i]['C_ID'] %>" onclick="enableEdit(<%= calendar[i]['C_ID'] %>)" class="icon">

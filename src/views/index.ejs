@@ -6,17 +6,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/default.css">
-
     <link rel="stylesheet" href="css/todolist.css">
+    <link rel="stylesheet" href="css/board_index.css">
     <link rel="stylesheet" href="css/index.css">
 
 </head>
     <body>
-    <div id="wrap">
+    <div id="main_wrap">
         <%- include ('./default/header') %>
         <div id="inside_wrap">
         <%- include ('./default/calendar') %>
+        <div id="middle">
+        <div id="calender_list" class="wrap">
+            <div class="mainTitle">일정</div>
+            <div id="content">
+                <% for (i=0;i<calendar.length;i++) { %>
+                    <div id="content_wrap" class="content">
+                        <div name="C_TITLE" id="calendar_title-<%= calendar[i].C_ID %>"checked class="title"><%= calendar[i]['C_TITLE'] %></div>                        <div name="C_CONTENT" id="calendar_content-<%= calendar[i].C_ID %>"checke class="content"><%= calendar[i]['C_CONTENT'] %></div>
+                        <div class="date_label">
+                            시작 |<div name="C_STARTDATE" id="calendar_startdate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_STARTDATE'] %></div>
+                    </div>
+                        <div class="date_label">
+                            종료 |<div name="C_ENDDATE" id="calendar_enddate-<%= calendar[i].C_ID %>"checked class="date"><%= calendar[i]['C_ENDDATE'] %></div></div>
+                </div>
+            <% } %>
+           
+            </div>
+        </div>
+
+    </div>
         <%- include ('./default/todolist') %>
+   
+
+
         </div>
     </body>
 </html>

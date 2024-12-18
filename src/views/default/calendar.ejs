@@ -1,4 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/ko.global.min.js"></script>
+
 <script>
   const schedule = <%- JSON.stringify(calendar) %>;
     let title, start,end;
@@ -11,7 +13,6 @@
         let endDate = new Date(schedule[i].C_ENDDATE);
         endDate.setDate(endDate.getDate() + 1); // 종료일 하루 더 추가
         schedules['end'] = endDate.toISOString().split('T')[0];
-        console.log('schedules',schedules)
         
         list.push(schedules)
     }
@@ -21,6 +22,7 @@
     const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
     events: list,
+    locale:'ko'
 
 })
     calendar.render()
@@ -30,4 +32,5 @@
   
 
 </script>
+<style></style>
 <div id='calendar'></div>
