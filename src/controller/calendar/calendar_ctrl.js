@@ -4,7 +4,6 @@ const serCom= require("../../service/ser_common")
 const views={
     data: async(req, res)=>{ //캘린더 보이기, 세션의 이름을 가져와서 그 캘린더 출력
         const data= await ser.calRead.data(req.session.username)
-
         //console.log('ctrl views',data)s
         res.render("calendar/calendar", {calendar:data.rows})
     }
@@ -15,7 +14,7 @@ const process={
         //console.log('cal ctrl write', req.body);
         res.send(msg)
     },
-    modify : async(req, res) => { //캘린더 수정(미완성)
+    modify : async(req, res) => { //캘린더 수정
        console.log("cal ctrl", req.body)
         await ser.calUpdate.modify(req.body);
         res.redirect("/calendar");  

@@ -52,7 +52,7 @@ const views={
         if(result == undefined){ //검색 결과가 없으면
             msg ="해당하는 정보가 없습니다.";
             url =`/board`
-            let message = serCom.getaMessage(msg,url);
+            let message = serCom.getMessage(msg,url);
             res.send(message);
         }else{
             res.render("board/board", {list:result.list, start: result.start, page: result.page})
@@ -79,7 +79,7 @@ const process= {
         const msg = await ser.boardInsert.write(req.body, req.session.username);
         res.send(msg)
     },
-    modify : (req, res) => { //게시글 수정 - 없어서 terminal이 난리라 만들어두었습니다.
+    modify : (req, res) => { //게시글 수정
         //console.log("ctrl modify", req.body)
         ser.boardUpdate.modify(req.body)
         
@@ -87,7 +87,7 @@ const process= {
 
     },
     delete : (req, res) => { //게시글 삭제
-        //console.log("삭제기능") //콘솔로그로 찍어두었습니다 추후 삭제
+        //console.log("삭제기능")
         ser.boardUpdate.delete(req.params.P_ID);
         res.redirect("/board")
     }

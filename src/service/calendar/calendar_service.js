@@ -2,14 +2,13 @@ const dao= require("../../database/calendar/calendar_dao")
 const serCom= require("../ser_common")
 
 const calRead={
-    data: async (username)=>{ //캘린더 읽어오기
+    data: async (username)=>{ //세션유저의 캘린더 읽어오기
        let cal= await dao.calRead.data(username);
        return cal;
     }
 }
 const calInsert={
     write: async (body, username)=>{
-
         let msg, url;
         const result= await dao.calInsert.write(body, username);
             if(result !==0){
@@ -25,11 +24,11 @@ const calInsert={
 }
 
 const calUpdate= {
-    modify : async(body)=>{
-        console.log('service modify', body)
+    modify : async(body)=>{//캘린더 데이터 수정
+        //console.log('service modify', body)
         await dao.calUpdate.modify(body);
     },
-    delete : async(body)=>{
+    delete : async(body)=>{//캘린더 데이터 삭제
         await dao.calUpdate.delete(body);
     }
 }
