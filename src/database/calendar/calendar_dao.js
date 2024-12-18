@@ -41,7 +41,7 @@ const calUpdate= {
         return (await con).execute( sql );
     },
     modify : async ( body )=>{
-        const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_content}',
+        const sql = `update Cal set C_TITLE='${body.C_TITLE}', C_CONTENT='${body.C_CONTENT}',
         C_STARTDATE=TO_DATE('${body.C_STARTDATE}' , 'YYYY-MM-DD'), 
         C_ENDDATE=TO_DATE('${body.C_ENDDATE}', 'YYYY-MM-DD') 
         where C_ID=${body.C_ID}`;

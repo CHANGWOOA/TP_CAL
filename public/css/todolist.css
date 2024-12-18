@@ -1,7 +1,11 @@
+#inside_wrap {
+    display: flex;
+}
+
 .todo_wrap { 
     /* todo 위젯 전체 */
     float: right;
-    overflow: scroll;
+    overflow: scrolsl;
     width: 50vw; height: 80vh;
     background-color: white;
     border-radius: 50px;
@@ -15,10 +19,9 @@
 
 }
 
-
-
 .todo_priority {
-    margin: 0 10px;
+    margin: 0 10px 0 0;
+
 }
 
 .todo_label {

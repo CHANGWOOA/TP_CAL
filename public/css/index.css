@@ -1,16 +1,13 @@
-#left{
-    display: flex;
-}
-
 #calendar {
-    width: 80%; height: 65vh;
+    width: 50vw; height: auto;
     border-radius: 30px;
     background-color: white;
     padding: 15px;
 }
 
 #todo_wrap {
-    width: 50%; height: auto;
+    width: 20vw; height: auto;
+    word-break: keep-all;
     border-radius: 30px;
     padding: 15px;
 }
@@ -33,24 +30,31 @@
     }
 }
 
-#board {
+#middle {
+    display: flex;
+    flex-direction: column;
+}
+
+#calender_list {
     display: flex;
     flex-direction: column;
     width: 20vw; height: 30vh;
-    background-color: rgb(235, 235, 235);
+    background-color: white;
     border-radius: 50px;
-    margin: auto auto 0 auto;
+    /* margin: auto auto 0 auto; */
     & > .content{       
         border-radius: 50px 50px 50px 0;
         background-color: rgb(66, 189, 62);
         padding: 10px;
         margin: 5px 20px;
     }
-    & > div[name="title"]{
+    & > .title{
         text-align: center;
         font-size: 30px; font-weight: 600;
         margin: 20px auto;
-
+    }
+    & .date_label {
+        margin-bottom: 10px;
     }
 }
 

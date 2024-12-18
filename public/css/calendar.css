@@ -1,14 +1,10 @@
 #inside_wrap {
     display: flex;
-    width: 80vw;
-    height: 90vh;
-    & > * {
-        margin: 5%;
-    }
 }
 
 
 #calendar {
+    padding: 20px;
     width: 80vw; height: 70vh;
     border-radius: 30px;
     background-color: white;
@@ -17,7 +13,7 @@
 #content_wrap{
     display: flex;
     flex-direction: column;
-    width: 70%; height: auto;
+    width: 80%; height: auto;
     margin: 10px auto;
     padding: 5px;
     display: flex;
@@ -25,21 +21,38 @@
     border-radius:  30px 30px 0px 30px ;
     align-items: center;
     word-break: keep-all;
-
-
-    & input[type='checkbox'] {
-        display:none ;
+    & .date_label {
+        display: flex;
+        flex-direction: row;
     }
+    & .title {
+        margin-top: 10px;
+        font-weight: 600;
+    }
+    & > input[type="date"] {
+        padding: 5px;
 
+    }
+    & .icon_wrap {
+        margin-top: 10px;
+    }
 }
 #calendar_wrap {
     width: 50vw; height: 70vh;
 
 }
 
-.date_label {
-    & > input[type="date"] {
-        margin-left: 10px;
-        border-style: none;
-    }
+input[type="date"] {
+    margin-left: 10px;
+    border-style: none;
+}
+
+:root {
+    --fc-today-bg-color: rgba(200, 200, 200, 0.5);
+    --fc-button-bg-color: rgb(66, 189, 62);
+    --fc-button-border-color: rgb(66, 189, 62);
+    --fc-button-hover-bg-color: rgb(66, 189, 62);
+    --fc-button-hover-border-color: white;
+
+    
 }
