@@ -1,0 +1,15 @@
+.wrap {
+    float: none;
+}
+
+#content {
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgb(235, 235, 235);
+    }
+}
