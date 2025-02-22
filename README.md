@@ -7,7 +7,7 @@ TyPi_CAL
 *사용언어 및 기술스택:
  - Backend: Node.js (Express.js)
  - Frontend: HTML, CSS
- - Database: MySQL
+ - Database: Oracle
  - Tools: Visual Studio Code, GitHub, Notion
 
 *주요 기능:
